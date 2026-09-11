@@ -1,0 +1,32 @@
+# Normalize line endings
+* text=auto
+
+# Code
+*.cs text diff=csharp eol=lf
+*.shader text eol=lf
+*.hlsl text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+
+# Unity YAML — use UnityYAMLMerge if configured
+*.unity text merge=unityyamlmerge eol=lf
+*.prefab text merge=unityyamlmerge eol=lf
+*.asset text merge=unityyamlmerge eol=lf
+*.mat text merge=unityyamlmerge eol=lf
+*.anim text merge=unityyamlmerge eol=lf
+*.controller text merge=unityyamlmerge eol=lf
+*.meta text eol=lf
+*.inputactions text eol=lf
+
+# Binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.psd binary
+*.tga binary
+*.fbx binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.ttf binary
+*.otf binary
