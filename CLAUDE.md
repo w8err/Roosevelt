@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Unity 6 URP 템플릿으로 막 생성한 프로젝트. 게임플레이 코드는 아직 없고, 게임 컨셉도 미정이다. `Assets/TutorialInfo/`와 `Assets/Readme.asset`은 템플릿 안내용이라 지워도 된다.
 
+세계관은 전작 NOMANUAL의 Rhizome Solution(R.S)을 잇는다. 설정 문서는 상위 폴더의 `세계관_리좀솔루션.md`이고, 스토리·기획 작업 전에 읽는다.
+
 ## 폴더 구분
 
 - `D:\04_Project Files\Roosevelt\Roosevelt\` (이 저장소): 개발 루트. 게임 코드와 에셋은 여기에만 둔다. origin은 `https://github.com/w8err/Roosevelt`, 브랜치는 `main`.
@@ -40,6 +42,8 @@ $proj  = "D:\04_Project Files\Roosevelt\Roosevelt"
 - **입력:** `activeInputHandler: 1`이라 새 Input System만 켜져 있다. `UnityEngine.Input`(레거시 API)을 호출하면 런타임 예외가 난다. 액션 에셋은 `Assets/InputSystem_Actions.inputactions`이고 `Player`(Move/Look/Attack/Interact/Crouch/Jump/Previous/Next/Sprint)와 `UI` 맵이 있다.
 - **렌더링:** URP 품질 티어가 두 개다. `Mobile`/`PC` 각각 RP asset과 renderer 한 쌍이 `Assets/Settings/`에 있고, 현재 기본은 `PC`(`m_CurrentQuality: 1`). 렌더 설정을 바꿀 때는 두 티어 모두 반영할지 확인한다.
 - **빌드 씬:** `Assets/Scenes/SampleScene.unity` 하나뿐이다.
+- **아트 텍스처:** `Assets/Art/` 아래 텍스처는 `Assets/Editor/ArtTexturePostprocessor.cs`가 임포트할 때마다 Point 필터·밉맵 끔·무압축으로 덮어쓴다. Inspector에서 바꿔도 재임포트하면 되돌아가므로 예외가 필요하면 스크립트를 고친다.
+- **연구소 씬 빌더:** 메뉴 `Roosevelt > Lab > Build Test Room`(`Assets/Editor/LabSceneBuilder.cs`)이 `Assets/Art/Environment/Lab/Layouts/Lab_TestRoom.json`을 읽어 프리팹(BoxCollider)과 `Assets/Scenes/Lab_TestRoom.unity`를 만들고, 카메라 렌더를 `Logs/Lab_TestRoom.png`로 저장한다. JSON은 Blender 좌표로 기록하고, 빌더가 `(x,y,z)→(-x,z,-y)`, Z축 회전 θ→Y축 회전 -θ로 변환한다.
 - **패키지:** 실험/프리뷰 패키지(`com.unity.ai.assistant` pre, `com.unity.pipeline` exp)가 포함되어 있다. 패키지 관련 이상 동작은 여기부터 의심한다.
 
 ## Unity 파일 규칙

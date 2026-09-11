@@ -1,0 +1,319 @@
+{
+ "modules": [
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 2.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 2.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 4.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  }
+ ],
+ "lights": [
+  {
+   "pos": {
+    "x": 3,
+    "y": 3,
+    "z": 3.1
+   },
+   "color": {
+    "r": 0.9647058823529412,
+    "g": 0.8019607843137255,
+    "b": 0.6254901960784314,
+    "a": 1.0
+   },
+   "intensity": 3.0,
+   "range": 8.0
+  },
+  {
+   "pos": {
+    "x": 5.4,
+    "y": 0.6,
+    "z": 0.4
+   },
+   "color": {
+    "r": 0.3568627450980392,
+    "g": 0.6039215686274509,
+    "b": 0.5490196078431373,
+    "a": 1.0
+   },
+   "intensity": 0.6,
+   "range": 4.0
+  }
+ ],
+ "camera": {
+  "pos": {
+   "x": 0.5,
+   "y": 0.5,
+   "z": 1.6
+  },
+  "target": {
+   "x": 4.8,
+   "y": 4.8,
+   "z": 1.3
+  },
+  "fov": 65.0
+ }
+}
