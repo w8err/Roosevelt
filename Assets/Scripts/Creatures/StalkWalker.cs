@@ -31,6 +31,9 @@ public class StalkWalker : MonoBehaviour
     [SerializeField] float watchDistance = 22f;
     [Tooltip("Who it stares at. Empty: the main camera.")]
     [SerializeField] Transform watchTarget;
+    [Tooltip("Eye glow (emission multiplier) while roaming and at full stare.")]
+    [SerializeField] float eyeIdle = 0.5f;
+    [SerializeField] float eyeStare = 4f;
 
     [Header("World")]
     [Tooltip("Collider the feet stand on (the terrain). Empty: the lowest surface below.")]
@@ -67,6 +70,10 @@ public class StalkWalker : MonoBehaviour
     System.Random random;
     readonly Collider[] overlaps = new Collider[16];
     readonly RaycastHit[] hits = new RaycastHit[16];
+    static readonly int EmissionColorId = Shader.PropertyToID("_EmissionColor");
+    SkinnedMeshRenderer skin;
+    MaterialPropertyBlock eyeBlock;
+    float eyeGlow;
 
     // review numbers for CreatureBuilder
     int steps;
@@ -127,6 +134,8 @@ public class StalkWalker : MonoBehaviour
         }
         legs = list.ToArray();
 
+        skin = GetComponentInChildren<SkinnedMeshRenderer>();
+        eyeBlock = new MaterialPropertyBlock();
         random = new System.Random(seed);
         clock = seed * 17.3f;
         yaw = transform.eulerAngles.y;
@@ -152,6 +161,20 @@ public class StalkWalker : MonoBehaviour
         PoseHip(dt);
         foreach (var l in legs) PoseLeg(l);
         PoseSpine();
+        Eye();
+    }
+
+    // The lens smoulders and breathes while it roams, then flares as the head turns to the viewer, with an
+    // unsteady flicker so it reads as alive rather than a lamp.
+    void Eye()
+    {
+        if (skin == null) return;
+        var breath = 0.8f + 0.2f * Mathf.Sin(clock * 0.9f);
+        var flicker = 1f + 0.12f * look * (Mathf.PerlinNoise(clock * 6f, seed * 5.7f) - 0.5f) * 2f;
+        eyeGlow = Mathf.Lerp(eyeIdle * breath, eyeStare, look * look) * flicker;
+        skin.GetPropertyBlock(eyeBlock);
+        eyeBlock.SetColor(EmissionColorId, Color.white * eyeGlow);
+        skin.SetPropertyBlock(eyeBlock);
     }
 
     // ---------- behaviour ----------
@@ -435,7 +458,7 @@ public class StalkWalker : MonoBehaviour
 
     public string ReviewStats() =>
         $"moved {Flat(transform.position - start).magnitude:F2} m, {steps} steps, lowest hip {lowestHip:F2} m, " +
-        $"max overreach {overreach:F3} m, look {look:F2}";
+        $"max overreach {overreach:F3} m, look {look:F2}, eye {eyeGlow:F2}";
 
     void OnDrawGizmosSelected()
     {

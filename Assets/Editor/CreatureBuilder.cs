@@ -17,6 +17,7 @@ public static class CreatureBuilder
     const string KitDir = "Assets/Art/Creatures/Stalk";
     const string ModelPrefix = "SK_Creature_Stalk_";
     const string AtlasPath = KitDir + "/Textures/T_Creature_Stalk_Atlas.png";
+    const string EmissionPath = KitDir + "/Textures/T_Creature_Stalk_Emission.png";
     const string MaterialPath = KitDir + "/Materials/M_Creature_Stalk.mat";
     const string GroundMaterialPath = KitDir + "/Materials/M_Creature_Test_Ground.mat";
     public const string PrefabDir = "Assets/Prefabs/Creatures";
@@ -104,6 +105,17 @@ public static class CreatureBuilder
         var material = GetOrCreateMaterial(MaterialPath);
         material.mainTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(AtlasPath);
         if (material.mainTexture == null) Debug.LogError($"[CreatureBuilder] atlas not found: {AtlasPath}");
+        // The eye: an emission mask on the atlas layout. StalkWalker sets _EmissionColor per creature.
+        var glow = AssetDatabase.LoadAssetAtPath<Texture2D>(EmissionPath);
+        if (glow == null) Debug.LogError($"[CreatureBuilder] emission mask not found: {EmissionPath}");
+        material.SetTexture("_EmissionMap", glow);
+        material.SetColor("_EmissionColor", Color.white * 0.5f);
+        // The string EnableKeyword did not stick on Simple Lit; the LocalKeyword form does. Real-time emissive:
+        // the glow changes at run time, nothing is baked.
+        material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
+        material.SetKeyword(new LocalKeyword(material.shader, "_EMISSION"), true);
+        EditorUtility.SetDirty(material);
+        Debug.Log($"[CreatureBuilder] {material.name}: emission keyword {(material.IsKeywordEnabled("_EMISSION") ? "on" : "OFF")}");
         var prefabs = models.Select(p => BuildPrefab(p, material)).Where(p => p != null).ToArray();
         AssetDatabase.SaveAssets();
         BuildTestScene(prefabs);
