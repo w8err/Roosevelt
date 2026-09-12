@@ -28,9 +28,6 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] float stickSensitivity = 120f;  // degrees per second
     [SerializeField] float maxPitch = 85f;
 
-    [Header("Interact")]
-    [SerializeField] float interactDistance = 2f;
-
     CharacterController body;
     InputActionMap map;
     InputAction move, look, interact, sprint;
@@ -38,6 +35,8 @@ public class FirstPersonController : MonoBehaviour
     bool exhausted, wantedSprint;
 
     public Transform CameraTarget => cameraTarget;
+    // Read by PlayerInteraction; the action sits in the same Player map as movement.
+    public InputAction InteractAction => interact;
     public float WalkSpeed => walkSpeed;
     public float SprintSpeed => sprintSpeed;
     public bool UseStamina => useStamina;
@@ -73,10 +72,10 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
-        Look();
-        Move();
-        // The template gives Interact a Hold interaction; WasPressedThisFrame reacts on press regardless.
-        if (interact.WasPressedThisFrame()) Interact();
+        // Dialogue, transitions and cutscenes hold InputLock. Gravity keeps running so the body stays grounded.
+        var locked = InputLock.IsLocked;
+        if (!locked) Look();
+        Move(locked);
     }
 
     void Look()
@@ -88,9 +87,9 @@ public class FirstPersonController : MonoBehaviour
         cameraTarget.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 
-    void Move()
+    void Move(bool locked)
     {
-        var input = Vector2.ClampMagnitude(move.ReadValue<Vector2>(), 1f);
+        var input = locked ? Vector2.zero : Vector2.ClampMagnitude(move.ReadValue<Vector2>(), 1f);
         // Forward or forward-diagonal only; strafing or backing up falls back to walking.
         var wantsSprint = sprint.IsPressed() && input.y > 0.5f;
         // Only on the moment of trying, so holding Shift while exhausted doesn't refire every frame.
@@ -126,12 +125,4 @@ public class FirstPersonController : MonoBehaviour
             stamina = Mathf.Min(1f, stamina + Time.deltaTime / recoverDuration);
             if (stamina == 1f) exhausted = false;
         }
-    }
-
-    void Interact()
-    {
-        if (!Physics.Raycast(cameraTarget.position, cameraTarget.forward, out var hit, interactDistance, ~0, QueryTriggerInteraction.Ignore)) return;
-        var door = hit.collider.GetComponentInParent<LabDoor>();
-        if (door != null) door.Toggle();
-    }
-}
+    }}

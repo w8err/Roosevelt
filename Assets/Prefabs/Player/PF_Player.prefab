@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 3533770448650885478}
   - component: {fileID: 4424588792008741981}
   - component: {fileID: 7390215846620378144}
+  - component: {fileID: 5591267968573046784}
   m_Layer: 0
   m_Name: PF_Player
   m_TagString: Untagged
@@ -385,7 +386,6 @@ MonoBehaviour:
   mouseSensitivity: 0.08
   stickSensitivity: 120
   maxPitch: 85
-  interactDistance: 2
 --- !u!114 &4424588792008741981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,3 +418,16 @@ MonoBehaviour:
   margin: {x: 40, y: 40}
   outline: 2
   padding: 2
+--- !u!114 &5591267968573046784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8721661212378261749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479b9ca3871e5a0468d75f7adbc8cbdc, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  interactDistance: 2
