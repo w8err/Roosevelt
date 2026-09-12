@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 5481699336613981623}
   - component: {fileID: 3533770448650885478}
   - component: {fileID: 4424588792008741981}
+  - component: {fileID: 7390215846620378144}
   m_Layer: 0
   m_Name: PF_Player
   m_TagString: Untagged
@@ -379,6 +380,7 @@ MonoBehaviour:
   actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   cameraTarget: {fileID: 1459223366173570242}
   walkSpeed: 2.2
+  sprintSpeed: 6
   gravity: -9.81
   mouseSensitivity: 0.08
   stickSensitivity: 120
@@ -400,3 +402,19 @@ MonoBehaviour:
   amplitude: {x: 0.4, y: 1}
   frequency: {x: 0.35, y: 1}
   blendSpeed: 3
+--- !u!114 &7390215846620378144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8721661212378261749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9c8b84394f47598bd3e4080ae9a1c0, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::StaminaBar
+  size: {x: 240, y: 12}
+  margin: {x: 40, y: 40}
+  outline: 2
+  padding: 2

@@ -397,6 +397,7 @@ public static class LabSceneBuilder
         so = new SerializedObject(feel);
         so.FindProperty("noise").objectReferenceValue = noise;
         so.ApplyModifiedPropertiesWithoutUndo();
+        root.AddComponent<StaminaBar>();
 
         EnsureFolder(Path.GetDirectoryName(PlayerPrefabPath).Replace('\\', '/'));
         var prefab = PrefabUtility.SaveAsPrefabAsset(root, PlayerPrefabPath);

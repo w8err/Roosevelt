@@ -10,7 +10,18 @@ public class FirstPersonController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] float walkSpeed = 2.2f;
+    [SerializeField] float sprintSpeed = 6f;
+    [Tooltip("Seconds to ramp between walk and sprint speed, both ways.")]
+    [SerializeField] float speedChangeTime = 0.8f;
     [SerializeField] float gravity = -9.81f;
+
+    [Header("Stamina")]
+    [Tooltip("Off: unlimited sprint and the stamina bar is hidden.")]
+    [SerializeField] bool useStamina = true;
+    [Tooltip("Seconds of sprinting from full to empty.")]
+    [SerializeField] float sprintDuration = 10f;
+    [Tooltip("Seconds to refill from empty. Once empty, sprint stays locked until full again.")]
+    [SerializeField] float recoverDuration = 5f;
 
     [Header("Look")]
     [SerializeField] float mouseSensitivity = 0.08f; // degrees per pixel
@@ -22,10 +33,18 @@ public class FirstPersonController : MonoBehaviour
 
     CharacterController body;
     InputActionMap map;
-    InputAction move, look, interact;
-    float pitch, fallSpeed;
+    InputAction move, look, interact, sprint;
+    float pitch, fallSpeed, speed, stamina = 1f;
+    bool exhausted, wantedSprint;
 
+    public Transform CameraTarget => cameraTarget;
     public float WalkSpeed => walkSpeed;
+    public float SprintSpeed => sprintSpeed;
+    public bool UseStamina => useStamina;
+    public float Stamina01 => stamina;
+    public bool Exhausted => exhausted;
+    // Fired once each time the player tries to sprint while exhausted.
+    public event System.Action SprintDenied;
 
     void Awake()
     {
@@ -34,6 +53,8 @@ public class FirstPersonController : MonoBehaviour
         move = map.FindAction("Move", true);
         look = map.FindAction("Look", true);
         interact = map.FindAction("Interact", true);
+        sprint = map.FindAction("Sprint", true);
+        speed = walkSpeed;
     }
 
     void OnEnable()
@@ -70,10 +91,41 @@ public class FirstPersonController : MonoBehaviour
     void Move()
     {
         var input = Vector2.ClampMagnitude(move.ReadValue<Vector2>(), 1f);
-        var velocity = (transform.right * input.x + transform.forward * input.y) * walkSpeed;
+        // Forward or forward-diagonal only; strafing or backing up falls back to walking.
+        var wantsSprint = sprint.IsPressed() && input.y > 0.5f;
+        // Only on the moment of trying, so holding Shift while exhausted doesn't refire every frame.
+        if (wantsSprint && !wantedSprint && exhausted) SprintDenied?.Invoke();
+        wantedSprint = wantsSprint;
+        var sprinting = wantsSprint && !exhausted;
+        UpdateStamina(sprinting);
+        var ramp = (sprintSpeed - walkSpeed) / speedChangeTime;
+        speed = Mathf.MoveTowards(speed, sprinting ? sprintSpeed : walkSpeed, ramp * Time.deltaTime);
+
+        var velocity = (transform.right * input.x + transform.forward * input.y) * speed;
         fallSpeed = body.isGrounded ? -1f : fallSpeed + gravity * Time.deltaTime;
         velocity.y = fallSpeed;
         body.Move(velocity * Time.deltaTime);
+    }
+
+    // Drains while sprinting and refills at once otherwise. Hitting empty locks sprint until full.
+    void UpdateStamina(bool sprinting)
+    {
+        if (!useStamina)
+        {
+            stamina = 1f;
+            exhausted = false;
+            return;
+        }
+        if (sprinting)
+        {
+            stamina = Mathf.Max(0f, stamina - Time.deltaTime / sprintDuration);
+            if (stamina == 0f) exhausted = true;
+        }
+        else
+        {
+            stamina = Mathf.Min(1f, stamina + Time.deltaTime / recoverDuration);
+            if (stamina == 1f) exhausted = false;
+        }
     }
 
     void Interact()
