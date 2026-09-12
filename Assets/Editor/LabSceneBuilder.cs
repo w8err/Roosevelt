@@ -437,9 +437,8 @@ public static class LabSceneBuilder
         {
             new NoiseSettings.TransformNoiseParams
             {
-                // Smooth sine bob: up and down twice per sway cycle, like a step on each foot.
+                // Smooth side sway only. PlayerCameraFeel does the up-down bob so sprinting can deepen it on its own.
                 X = new NoiseSettings.NoiseParams { Frequency = 1f, Amplitude = 0.012f, Constant = true },
-                Y = new NoiseSettings.NoiseParams { Frequency = 2f, Amplitude = 0.025f, Constant = true },
             },
         };
         EnsureFolder(Path.GetDirectoryName(WalkNoisePath).Replace('\\', '/'));
