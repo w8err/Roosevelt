@@ -1,0 +1,101 @@
+{
+ "startNode": "again",
+ "nodes": [
+  {
+   "id": "again",
+   "requiredFlag": "TalkedToLobbyNPC",
+   "fallback": "first",
+   "speaker": "연구원",
+   "text": "방에서 쉬게. 닷새면 전부 끝나.",
+   "next": "again2"
+  },
+  {
+   "id": "again2",
+   "speaker": "연구원",
+   "text": "필요한 게 있으면 언제든 말하고. …정말 고맙네."
+  },
+  {
+   "id": "first",
+   "speaker": "연구원",
+   "text": "일어났군, 루즈벨트. 몸은 좀 어떤가.",
+   "next": "first2"
+  },
+  {
+   "id": "first2",
+   "speaker": "연구원",
+   "text": "아직 머리가 멍할 거야. 수면 실험 뒤로 당신 기억이 조금 흐트러졌거든.",
+   "next": "menu"
+  },
+  {
+   "id": "menu",
+   "speaker": "연구원",
+   "text": "뭐든 물어보게. 아는 대로 답해 주지.",
+   "choices": [
+    { "text": "수면 실험이요?", "next": "sleep" },
+    { "text": "여기서 뭘 연구하고 있죠?", "next": "tree" },
+    { "text": "밖으로 나갈 수 있나요?", "next": "outside" },
+    { "text": "…이제 괜찮습니다.", "next": "close" }
+   ]
+  },
+  {
+   "id": "sleep",
+   "speaker": "연구원",
+   "text": "잠이라고 부르긴 하지만, 실은 생각을 거의 다 꺼 두는 거지. 깊은 혼수에 가까워.",
+   "next": "sleep2"
+  },
+  {
+   "id": "sleep2",
+   "speaker": "연구원",
+   "text": "그 밑바닥에서 사람이 아닌 것과 닿는 게 목적이었네. 신이라고 불러도 좋고.",
+   "next": "sleep3"
+  },
+  {
+   "id": "sleep3",
+   "speaker": "연구원",
+   "text": "당신 몫의 일은 그걸로 끝났어. 아주 훌륭하게 해냈지.",
+   "next": "menu"
+  },
+  {
+   "id": "tree",
+   "speaker": "연구원",
+   "text": "나무야. 당신도 알잖나. …아니, 지금은 기억이 안 나겠군.",
+   "next": "tree2"
+  },
+  {
+   "id": "tree2",
+   "speaker": "연구원",
+   "text": "닷새 뒤면 그 나무에 열매가 맺혀. 그때 모든 연구가 끝나네.",
+   "next": "menu"
+  },
+  {
+   "id": "outside",
+   "speaker": "연구원",
+   "text": "미안하지만 안 되네. 보안 규정이야. 끝날 때까지는 누구도 시설 밖으로 못 나가.",
+   "next": "outside2"
+  },
+  {
+   "id": "outside2",
+   "speaker": "연구원",
+   "text": "그리고 기억이 돌아올 때까지 당신 출입 등급은 낮춰 두기로 했어. 기숙사랑 식당은 마음대로 다녀도 되네.",
+   "next": "menu"
+  },
+  {
+   "id": "close",
+   "speaker": "연구원",
+   "text": "그래, 무리하지 말고 방에 가서 쉬게. 잠이 오면 참지 말고 자고.",
+   "next": "close2"
+  },
+  {
+   "id": "close2",
+   "speaker": "연구원",
+   "text": "우리 모두 당신한테 빚을 졌어.",
+   "next": "close3"
+  },
+  {
+   "id": "close3",
+   "speaker": "연구원",
+   "text": "고맙네. 당신의 헌신.",
+   "setFlag": "TalkedToLobbyNPC"
+  }
+ ]
+}
