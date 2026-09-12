@@ -47,6 +47,9 @@ public static class LabSceneBuilder
         public MaterialDef[] materials; // FBX material slots by name; unlisted slots get `material`
         public Module[] modules;
         public DoorDef[] doors;
+        public SpawnDef[] spawns;
+        public BoxDef[] boxes;       // temporary furniture: colored cube primitives
+        public PrefabDef[] prefabs;  // dressing placed as-is (NPCs, props)
         public LightDef[] lights;
         public ViewDef camera;
         public ViewDef[] playerStarts;
@@ -58,7 +61,14 @@ public static class LabSceneBuilder
     [Serializable] class CreatureDef { public string prefab; public Vector3 pos; public float rotZ; public float scale; }
     [Serializable] class MaterialDef { public string name; public string atlas; public bool cutout; public string shader; } // shader empty = Simple Lit
     [Serializable] class Module { public string mesh; public Vector3 pos; public float rotZ; public float scale; } // scale 0 means 1
-    [Serializable] class DoorDef { public string leaf; public string[] parts; public Vector3 pos; public float rotZ; public bool locked; }
+    // Empty target: a door that swings on its hinge. Otherwise it stays shut and teleports the player to that spawn.
+    [Serializable] class DoorDef { public string leaf; public string[] parts; public Vector3 pos; public float rotZ; public bool locked; public string target; }
+    // Arrival point for transition doors, turned (yaw only) toward target.
+    [Serializable] class SpawnDef { public string name; public Vector3 pos; public Vector3 target; }
+    // Temporary furniture. pos is the center of the face touching the floor; size is (width, depth, height) in meters.
+    [Serializable] class BoxDef { public string name; public Vector3 pos; public Vector3 size; public float rotZ; public Color color; }
+    // A prefab placed as-is, e.g. the lobby NPC.
+    [Serializable] class PrefabDef { public string name; public string prefab; public Vector3 pos; public float rotZ; public float scale; }
     [Serializable] class LightDef { public Vector3 pos; public Color color; public float intensity; public float range; }
     [Serializable] class ViewDef { public Vector3 pos; public Vector3 target; public float fov; }
     [Serializable] class GroundDef { public float size; public Color color; }
@@ -118,6 +128,8 @@ public static class LabSceneBuilder
         }
         if (!File.Exists(RequestPath)) return;
 
+        // One layout name per line (json file name, no extension) builds only those; an empty request builds all.
+        var only = File.ReadAllLines(RequestPath).Select(l => l.Trim()).Where(l => l.Length > 0).ToArray();
         File.Delete(RequestPath);
         for (var i = 0; i < SceneManager.sceneCount; i++)
         {
@@ -129,20 +141,23 @@ public static class LabSceneBuilder
         }
         // Pick up files exported while the editor was in the background.
         AssetDatabase.Refresh();
-        BuildAll();
+        BuildAll(only);
     }
 
-    static void BuildAll()
+    // `only` limits the build to those layout names, so a request can't overwrite unrelated scenes.
+    static void BuildAll(string[] only = null)
     {
         var dirs = LayoutDirs.Where(AssetDatabase.IsValidFolder).ToArray();
         var paths = dirs.Length == 0 ? Array.Empty<string>() : AssetDatabase.FindAssets("t:TextAsset", dirs)
             .Select(AssetDatabase.GUIDToAssetPath)
             .Where(p => p.EndsWith(".json"))
+            .Where(p => only == null || only.Length == 0 || only.Contains(Path.GetFileNameWithoutExtension(p)))
             .OrderBy(p => p)
             .ToArray();
         if (paths.Length == 0)
         {
-            Debug.LogError($"[LabSceneBuilder] layout not found: no .json in {string.Join(", ", LayoutDirs)}");
+            var wanted = only != null && only.Length > 0 ? $" named {string.Join(", ", only)}" : "";
+            Debug.LogError($"[LabSceneBuilder] layout not found: no .json{wanted} in {string.Join(", ", LayoutDirs)}");
             return;
         }
 
@@ -208,9 +223,15 @@ public static class LabSceneBuilder
             if (m.scale > 0f) go.transform.localScale = Vector3.one * m.scale;
         }
 
+        var spawns = BuildSpawns(layout.spawns ?? Array.Empty<SpawnDef>());
         var doors = layout.doors ?? Array.Empty<DoorDef>();
         var doorRoot = new GameObject("Doors").transform;
-        foreach (var d in doors) BuildDoor(d, doorRoot, kit, prefabs);
+        foreach (var d in doors) BuildDoor(d, doorRoot, kit, prefabs, spawns);
+
+        var boxes = layout.boxes ?? Array.Empty<BoxDef>();
+        BuildBoxes(boxes, kitRoot);
+        var propDefs = layout.prefabs ?? Array.Empty<PrefabDef>();
+        BuildProps(propDefs);
 
         var lights = new GameObject("Lights").transform;
         foreach (var l in layout.lights ?? Array.Empty<LightDef>())
@@ -260,7 +281,8 @@ public static class LabSceneBuilder
             cam.gameObject.SetActive(false);
             EditorSceneManager.SaveScene(scene, scenePath);
         }
-        Debug.Log($"[LabSceneBuilder] built {sceneName}: {modules.Length} modules, {doors.Length} doors, capture {capture}");
+        Debug.Log($"[LabSceneBuilder] built {sceneName}: {modules.Length} modules, {doors.Length} doors, " +
+                  $"{boxes.Length} boxes, {propDefs.Length} prefabs, capture {capture}");
         return scenePath;
     }
 
@@ -289,27 +311,117 @@ public static class LabSceneBuilder
         Debug.Log($"[LabSceneBuilder] {creatures.Length} creatures, ground {(ground != null ? ground.name : "none")}");
     }
 
-    static void BuildDoor(DoorDef d, Transform parent, Kit kit, Dictionary<string, GameObject> prefabs)
+    static Dictionary<string, Transform> BuildSpawns(SpawnDef[] defs)
+    {
+        var map = new Dictionary<string, Transform>();
+        if (defs.Length == 0) return map;
+        var root = new GameObject("Spawns").transform;
+        foreach (var s in defs)
+        {
+            var t = new GameObject("Spawn_" + s.name).transform;
+            t.SetParent(root, false);
+            var pos = ToUnity(s.pos);
+            var dir = ToUnity(s.target) - pos;
+            dir.y = 0f;
+            t.SetPositionAndRotation(pos, dir.sqrMagnitude > 1e-6f ? Quaternion.LookRotation(dir) : Quaternion.identity);
+            map[s.name] = t;
+        }
+        return map;
+    }
+
+    static void BuildDoor(DoorDef d, Transform parent, Kit kit, Dictionary<string, GameObject> prefabs,
+                          Dictionary<string, Transform> spawns)
     {
         var root = new GameObject("Door_" + d.leaf.Replace("SM_Lab_DoorLeaf_", "")).transform;
         root.SetParent(parent, false);
         root.SetPositionAndRotation(ToUnity(d.pos), Yaw(d.rotZ));
 
-        var hinge = new GameObject("Hinge").transform;
-        hinge.SetParent(root, false);
-        hinge.localPosition = HingeOffset;
-        var door = hinge.gameObject.AddComponent<LabDoor>();
-        var so = new SerializedObject(door);
-        so.FindProperty("locked").boolValue = d.locked;
-        so.ApplyModifiedPropertiesWithoutUndo();
+        // Swinging doors hang the leaf on a hinge; transition doors keep it where it is.
+        var holder = root;
+        var leafOffset = Vector3.zero;
+        if (string.IsNullOrEmpty(d.target))
+        {
+            var hinge = new GameObject("Hinge").transform;
+            hinge.SetParent(root, false);
+            hinge.localPosition = HingeOffset;
+            var door = hinge.gameObject.AddComponent<LabDoor>();
+            var so = new SerializedObject(door);
+            so.FindProperty("locked").boolValue = d.locked;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            holder = hinge;
+            leafOffset = -HingeOffset;
+        }
+        else
+        {
+            spawns.TryGetValue(d.target, out var spawn);
+            if (spawn == null) Debug.LogError($"[LabSceneBuilder] {root.name}: spawn '{d.target}' not found");
+            root.name += "_To_" + d.target;
+            var door = root.gameObject.AddComponent<TransitionDoor>();
+            var so = new SerializedObject(door);
+            so.FindProperty("destination").objectReferenceValue = spawn;
+            so.FindProperty("locked").boolValue = d.locked;
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
 
         foreach (var mesh in new[] { d.leaf }.Concat(d.parts ?? Array.Empty<string>()))
         {
             var prefab = GetPrefab(mesh, kit, prefabs);
             if (prefab == null) continue;
-            var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, hinge);
-            go.transform.localPosition = -HingeOffset;
+            var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, holder);
+            go.transform.localPosition = leafOffset;
             go.transform.localRotation = Quaternion.identity;
+        }
+    }
+
+    // Temporary furniture boxes, e.g. a bed frame before the real model exists.
+    static void BuildBoxes(BoxDef[] defs, string kitRoot)
+    {
+        if (defs.Length == 0) return;
+        var root = new GameObject("Boxes").transform;
+        foreach (var b in defs)
+        {
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = "Box_" + b.name;
+            go.transform.SetParent(root, false);
+            go.transform.SetPositionAndRotation(ToUnity(b.pos) + new Vector3(0f, b.size.z / 2f, 0f), Yaw(b.rotZ));
+            go.transform.localScale = new Vector3(b.size.x, b.size.z, b.size.y);
+            go.GetComponent<MeshRenderer>().sharedMaterial = GetOrCreatePlaceholderMaterial(kitRoot, b.color);
+        }
+    }
+
+    // One material asset per color, reused across boxes and layouts.
+    static Material GetOrCreatePlaceholderMaterial(string kitRoot, Color color)
+    {
+        var path = $"{kitRoot}/Materials/M_Placeholder_{ColorUtility.ToHtmlStringRGB(color)}.mat";
+        var mat = AssetDatabase.LoadAssetAtPath<Material>(path);
+        if (mat == null)
+        {
+            EnsureFolder(Path.GetDirectoryName(path).Replace('\\', '/'));
+            mat = new Material(Shader.Find("Universal Render Pipeline/Simple Lit"));
+            AssetDatabase.CreateAsset(mat, path);
+        }
+        mat.color = color;
+        EditorUtility.SetDirty(mat);
+        return mat;
+    }
+
+    // Prefabs placed as-is: the lobby NPC and similar dressing that isn't part of the module kit.
+    static void BuildProps(PrefabDef[] defs)
+    {
+        if (defs.Length == 0) return;
+        var root = new GameObject("Props").transform;
+        foreach (var p in defs)
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(p.prefab);
+            if (prefab == null)
+            {
+                Debug.LogError($"[LabSceneBuilder] prop prefab not found: {p.prefab}");
+                continue;
+            }
+            var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, root);
+            go.name = p.name;
+            go.transform.SetPositionAndRotation(ToUnity(p.pos), Yaw(p.rotZ));
+            if (p.scale > 0f) go.transform.localScale = Vector3.one * p.scale;
         }
     }
 

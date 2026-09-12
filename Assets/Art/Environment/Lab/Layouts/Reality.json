@@ -1,0 +1,1777 @@
+{
+ "scene": "Reality",
+ "modules": [
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Stained_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 2.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 4.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 2.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 4.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Stained_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 12.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 30.0,
+    "y": 12.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Stained_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 12.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 32.0,
+    "y": 12.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 30.0,
+    "y": 14.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 32.0,
+    "y": 14.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 32.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 34.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 30,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 30,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 30,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 30,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 30,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 30,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 30,
+    "y": 12.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 34.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 34.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 34.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 34.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 34.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 34.0,
+    "y": 12.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 34.0,
+    "y": 14.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 60.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 60.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 60.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 60.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 60.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 60.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 60.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 60.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 60.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 60.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 62.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 62.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 62.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 62.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 62.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 62.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 62.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 62.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 62.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 62.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 64.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 64.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 64.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 64.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Stained_200x200",
+   "pos": {
+    "x": 64.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 64.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 64.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 64.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 64.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 64.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 66.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 66.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 66.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 66.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 66.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 66.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 66.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 66.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 66.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 66.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Stained_200x200",
+   "pos": {
+    "x": 68.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 68.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 68.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 68.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 68.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 68.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 68.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 68.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 68.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 68.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 60.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 62.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 64.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 66.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 68.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 62.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 64.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 66.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 68.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 70.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 60,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 60,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 60,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 60,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 60,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 70.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 70.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Door_200x350",
+   "pos": {
+    "x": 70.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 70.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 70.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  }
+ ],
+ "doors": [
+  {
+   "leaf": "SM_Lab_DoorLeaf_Standard_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 5.0,
+    "y": 4.1,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "locked": false,
+   "target": "Hall_FromDorm"
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Standard_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 29.9,
+    "y": 5.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "locked": false,
+   "target": "Dorm_FromHall"
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Standard_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 29.9,
+    "y": 9.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "locked": true,
+   "target": ""
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Standard_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 29.9,
+    "y": 13.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "locked": true,
+   "target": ""
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Standard_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 34.1,
+    "y": 3.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0,
+   "locked": true,
+   "target": ""
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Standard_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 34.1,
+    "y": 7.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0,
+   "locked": true,
+   "target": ""
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Standard_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 34.1,
+    "y": 11.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0,
+   "locked": true,
+   "target": ""
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Observation_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 33.0,
+    "y": 14.1,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "locked": false,
+   "target": "Lobby_FromHall"
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Observation_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 65.0,
+    "y": -0.1,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "locked": false,
+   "target": "Hall_FromLobby"
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Containment_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_LockBar_80x10",
+    "SM_Lab_DoorPart_Keypad_12x18"
+   ],
+   "pos": {
+    "x": 65.0,
+    "y": 10.1,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "locked": true,
+   "target": ""
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Standard_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 59.9,
+    "y": 5.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "locked": true,
+   "target": ""
+  },
+  {
+   "leaf": "SM_Lab_DoorLeaf_Containment_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_LockBar_80x10"
+   ],
+   "pos": {
+    "x": 70.1,
+    "y": 5.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0,
+   "locked": true,
+   "target": ""
+  }
+ ],
+ "spawns": [
+  {
+   "name": "Dorm_FromHall",
+   "pos": {
+    "x": 5.0,
+    "y": 2.9,
+    "z": 0.05
+   },
+   "target": {
+    "x": 5.0,
+    "y": -0.1,
+    "z": 1.6
+   }
+  },
+  {
+   "name": "Hall_FromDorm",
+   "pos": {
+    "x": 31.1,
+    "y": 5.0,
+    "z": 0.05
+   },
+   "target": {
+    "x": 34.1,
+    "y": 5.0,
+    "z": 1.6
+   }
+  },
+  {
+   "name": "Hall_FromLobby",
+   "pos": {
+    "x": 33.0,
+    "y": 12.9,
+    "z": 0.05
+   },
+   "target": {
+    "x": 33.0,
+    "y": 9.9,
+    "z": 1.6
+   }
+  },
+  {
+   "name": "Lobby_FromHall",
+   "pos": {
+    "x": 65.0,
+    "y": 1.1,
+    "z": 0.05
+   },
+   "target": {
+    "x": 65.0,
+    "y": 4.1,
+    "z": 1.6
+   }
+  }
+ ],
+ "boxes": [
+  {
+   "name": "Bed_Frame",
+   "pos": {
+    "x": 0.6,
+    "y": 1.25,
+    "z": 0.0
+   },
+   "size": {
+    "x": 1.0,
+    "y": 2.1,
+    "z": 0.4
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.227,
+    "g": 0.29,
+    "b": 0.275,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Bed_Mattress",
+   "pos": {
+    "x": 0.6,
+    "y": 1.25,
+    "z": 0.0
+   },
+   "size": {
+    "x": 0.9,
+    "y": 1.95,
+    "z": 0.55
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.788,
+    "g": 0.776,
+    "b": 0.722,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Desk",
+   "pos": {
+    "x": 5.6,
+    "y": 1.0,
+    "z": 0.0
+   },
+   "size": {
+    "x": 0.7,
+    "y": 1.3,
+    "z": 0.75
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.184,
+    "g": 0.231,
+    "b": 0.227,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Locker",
+   "pos": {
+    "x": 5.65,
+    "y": 2.75,
+    "z": 0.0
+   },
+   "size": {
+    "x": 0.6,
+    "y": 0.6,
+    "z": 1.9
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.357,
+    "g": 0.435,
+    "b": 0.471,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Reception_Desk",
+   "pos": {
+    "x": 65.0,
+    "y": 7.4,
+    "z": 0.0
+   },
+   "size": {
+    "x": 3.2,
+    "y": 0.8,
+    "z": 1.1
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.184,
+    "g": 0.278,
+    "b": 0.267,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Bench_West",
+   "pos": {
+    "x": 61.2,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "size": {
+    "x": 0.7,
+    "y": 2.4,
+    "z": 0.45
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.42,
+    "g": 0.29,
+    "b": 0.275,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Bench_East",
+   "pos": {
+    "x": 68.8,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "size": {
+    "x": 0.7,
+    "y": 2.4,
+    "z": 0.45
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.42,
+    "g": 0.29,
+    "b": 0.275,
+    "a": 1.0
+   }
+  }
+ ],
+ "prefabs": [
+  {
+   "name": "Lobby_NPC",
+   "prefab": "Assets/Prefabs/Characters/PF_Char_Researcher_Sunglasses.prefab",
+   "pos": {
+    "x": 65.0,
+    "y": 8.4,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "scale": 0.0
+  }
+ ],
+ "lights": [
+  {
+   "pos": {
+    "x": 3.0,
+    "y": 3.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 2.5,
+   "range": 7.0
+  },
+  {
+   "pos": {
+    "x": 31.0,
+    "y": 3.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 2.5,
+   "range": 7.0
+  },
+  {
+   "pos": {
+    "x": 33.0,
+    "y": 7.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 2.5,
+   "range": 7.0
+  },
+  {
+   "pos": {
+    "x": 31.0,
+    "y": 11.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 2.5,
+   "range": 7.0
+  },
+  {
+   "pos": {
+    "x": 63.0,
+    "y": 3.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 2.5,
+   "range": 7.0
+  },
+  {
+   "pos": {
+    "x": 67.0,
+    "y": 3.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 2.5,
+   "range": 7.0
+  },
+  {
+   "pos": {
+    "x": 63.0,
+    "y": 7.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 2.5,
+   "range": 7.0
+  },
+  {
+   "pos": {
+    "x": 67.0,
+    "y": 7.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 2.5,
+   "range": 7.0
+  }
+ ],
+ "camera": {
+  "pos": {
+   "x": 5.4,
+   "y": 0.4,
+   "z": 1.6
+  },
+  "target": {
+   "x": 1.0,
+   "y": 3.2,
+   "z": 0.8
+  },
+  "fov": 70.0
+ },
+ "playerStarts": [
+  {
+   "pos": {
+    "x": 1.7,
+    "y": 1.3,
+    "z": 0.05
+   },
+   "target": {
+    "x": 5.0,
+    "y": 4.0,
+    "z": 1.6
+   },
+   "fov": 0.0
+  }
+ ]
+}
