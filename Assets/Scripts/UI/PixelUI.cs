@@ -48,6 +48,8 @@ public static class PixelUI
         var text = rect.gameObject.AddComponent<Text>();
         text.font = Font;
         text.fontSize = FontSize;
+        // Unity's default text colour is a dark grey that vanishes against the dark rooms.
+        text.color = Color.white;
         text.alignment = TextAnchor.UpperCenter;
         text.horizontalOverflow = HorizontalWrapMode.Overflow;
         text.verticalOverflow = VerticalWrapMode.Overflow;
