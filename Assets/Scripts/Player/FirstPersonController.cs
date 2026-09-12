@@ -78,6 +78,20 @@ public class FirstPersonController : MonoBehaviour
         Move(locked);
     }
 
+    // Moves the player without CharacterController fighting the teleport, for room
+    // transitions and the dream/wake flow. Used by ScreenTransition while the screen is
+    // black. rotation sets yaw only; pitch resets level and fall speed resets grounded,
+    // so the player never lands already mid-fall from wherever they warped from.
+    public void Warp(Vector3 position, Quaternion rotation)
+    {
+        body.enabled = false;
+        transform.SetPositionAndRotation(position, rotation);
+        body.enabled = true;
+        pitch = 0f;
+        cameraTarget.localRotation = Quaternion.identity;
+        fallSpeed = -1f;
+    }
+
     void Look()
     {
         var delta = look.ReadValue<Vector2>();
@@ -125,4 +139,5 @@ public class FirstPersonController : MonoBehaviour
             stamina = Mathf.Min(1f, stamina + Time.deltaTime / recoverDuration);
             if (stamina == 1f) exhausted = false;
         }
-    }}
+    }
+}
