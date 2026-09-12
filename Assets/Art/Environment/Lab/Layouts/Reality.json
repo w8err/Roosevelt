@@ -1508,6 +1508,9 @@
     "g": 0.776,
     "b": 0.722,
     "a": 1.0
+   },
+   "interact": {
+    "type": "bed"
    }
   },
   {
@@ -1621,7 +1624,11 @@
     "z": 0.0
    },
    "rotZ": 0.0,
-   "scale": 0.0
+   "scale": 0.0,
+   "interact": {
+    "type": "npc",
+    "dialogue": "Assets/Dialogue/Lobby_Day0.dialogue"
+   }
   }
  ],
  "lights": [

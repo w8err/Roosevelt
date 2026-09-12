@@ -66,9 +66,11 @@ public static class LabSceneBuilder
     // Arrival point for transition doors, turned (yaw only) toward target.
     [Serializable] class SpawnDef { public string name; public Vector3 pos; public Vector3 target; }
     // Temporary furniture. pos is the center of the face touching the floor; size is (width, depth, height) in meters.
-    [Serializable] class BoxDef { public string name; public Vector3 pos; public Vector3 size; public float rotZ; public Color color; }
+    [Serializable] class BoxDef { public string name; public Vector3 pos; public Vector3 size; public float rotZ; public Color color; public InteractDef interact; }
     // A prefab placed as-is, e.g. the lobby NPC.
-    [Serializable] class PrefabDef { public string name; public string prefab; public Vector3 pos; public float rotZ; public float scale; }
+    [Serializable] class PrefabDef { public string name; public string prefab; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; }
+    // What using a box or prop does. type "bed" sleeps into tonight's dream; "npc" plays `dialogue` (a .dialogue asset path).
+    [Serializable] class InteractDef { public string type; public string dialogue; }
     [Serializable] class LightDef { public Vector3 pos; public Color color; public float intensity; public float range; }
     [Serializable] class ViewDef { public Vector3 pos; public Vector3 target; public float fov; }
     [Serializable] class GroundDef { public float size; public Color color; }
@@ -386,6 +388,7 @@ public static class LabSceneBuilder
             go.transform.SetPositionAndRotation(ToUnity(b.pos) + new Vector3(0f, b.size.z / 2f, 0f), Yaw(b.rotZ));
             go.transform.localScale = new Vector3(b.size.x, b.size.z, b.size.y);
             go.GetComponent<MeshRenderer>().sharedMaterial = GetOrCreatePlaceholderMaterial(kitRoot, b.color);
+            AttachInteract(go, b.interact);
         }
     }
 
@@ -422,6 +425,37 @@ public static class LabSceneBuilder
             go.name = p.name;
             go.transform.SetPositionAndRotation(ToUnity(p.pos), Yaw(p.rotZ));
             if (p.scale > 0f) go.transform.localScale = Vector3.one * p.scale;
+            AttachInteract(go, p.interact);
+        }
+    }
+
+    // JsonUtility fills a missing `interact` with an empty object, so an empty type means none.
+    static void AttachInteract(GameObject go, InteractDef def)
+    {
+        if (def == null || string.IsNullOrEmpty(def.type)) return;
+        switch (def.type)
+        {
+            case "bed":
+                go.AddComponent<BedInteractable>();
+                break;
+            case "npc":
+            {
+                // RequireComponent adds the capsule; size it to a standing person so the view ray finds them.
+                var npc = go.AddComponent<NpcInteractable>();
+                var capsule = go.GetComponent<CapsuleCollider>();
+                capsule.center = new Vector3(0f, 0.9f, 0f);
+                capsule.height = 1.8f;
+                capsule.radius = 0.35f;
+                var dialogue = AssetDatabase.LoadAssetAtPath<DialogueData>(def.dialogue);
+                if (dialogue == null) Debug.LogError($"[LabSceneBuilder] {go.name}: dialogue not found: {def.dialogue}");
+                var so = new SerializedObject(npc);
+                so.FindProperty("dialogue").objectReferenceValue = dialogue;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            default:
+                Debug.LogError($"[LabSceneBuilder] {go.name}: unknown interact type '{def.type}'");
+                break;
         }
     }
 
