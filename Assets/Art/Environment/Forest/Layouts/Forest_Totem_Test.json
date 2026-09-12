@@ -1,0 +1,27 @@
+{
+ "scene": "Forest_Totem_Test",
+ "material": "M_Forest_Bark",
+ "atlas": "T_Forest_Bark_Atlas",
+ "prefabDir": "Assets/Prefabs/Environment/Forest",
+ "modules": [
+  {"mesh": "SM_Forest_ChoirTotem_A_160x170x420", "pos": {"x": -1.9, "y": 0.5, "z": 0.0}, "rotZ": 18},
+  {"mesh": "SM_Forest_ChoirTotem_A_160x170x420", "pos": {"x": 0.0, "y": -0.5, "z": 0.0}, "rotZ": -4},
+  {"mesh": "SM_Forest_ChoirTotem_A_160x170x420", "pos": {"x": 1.9, "y": 0.6, "z": 0.0}, "rotZ": -22}
+ ],
+ "lights": [],
+ "ground": {"size": 80, "color": {"r": 0.10, "g": 0.12, "b": 0.10, "a": 1.0}},
+ "environment": {
+  "fogMode": "Linear",
+  "fogStart": 25,
+  "fogEnd": 65,
+  "fogDensity": 0,
+  "fogColor": {"r": 0.36, "g": 0.40, "b": 0.37, "a": 1.0},
+  "ambient": {"r": 0.12, "g": 0.16, "b": 0.16, "a": 1.0},
+  "background": {"r": 0.30, "g": 0.34, "b": 0.32, "a": 1.0},
+  "sunDirection": {"x": 0.3, "y": 0.6, "z": -0.74},
+  "sunColor": {"r": 0.85, "g": 0.87, "b": 0.80, "a": 1.0},
+  "sunIntensity": 1.0
+ },
+ "camera": {"pos": {"x": 0.3, "y": -10.5, "z": 1.7}, "target": {"x": 0.0, "y": 0.0, "z": 2.3}, "fov": 40},
+ "playerStarts": [{"pos": {"x": 0.3, "y": -9.0, "z": 0.05}, "target": {"x": 0.0, "y": 0.0, "z": 1.6}, "fov": 0}]
+}
