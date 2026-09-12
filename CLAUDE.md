@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 프로젝트 상태
 
-Unity 6 URP 프로젝트. NOMANUAL 0(1편 프리퀄)이고 지금은 0일차 MVP를 만든다. 단계별 계획은 상위 폴더 `01_기획/0일차_기획.md` 7장에 있다. 게임플레이 코드는 `Assets/Scripts/` 아래 Player(이동·`InputLock`), Interaction(`IInteractable`·`PlayerInteraction`), UI(픽셀 폰트 HUD), Environment(문), Creatures, Core(`Roosevelt.Core` asmdef: GameState·플래그·저장)로 나뉜다. `Assets/TutorialInfo/`와 `Assets/Readme.asset`은 템플릿 안내용이라 지워도 된다.
+Unity 6 URP 프로젝트. NOMANUAL 0(1편 프리퀄)이고 지금은 0일차 MVP를 만든다. 단계별 계획은 상위 폴더 `01_기획/0일차_기획.md` 7장에 있다. 게임플레이 코드는 `Assets/Scripts/` 아래 Player(이동·`InputLock`), Interaction(`IInteractable`·`PlayerInteraction`·이동용 문 `TransitionDoor`), UI(픽셀 폰트 HUD), Environment(문), Presentation(암전 전환 `ScreenTransition`), Flow(`GameFlow`, 빌드 목록 밖 씬도 여는 `SceneLoader`, F1 디버그 패널), Creatures, Core(`Roosevelt.Core` asmdef: GameState·플래그·저장)로 나뉜다. `Assets/TutorialInfo/`와 `Assets/Readme.asset`은 템플릿 안내용이라 지워도 된다.
 
 세계관은 전작 NOMANUAL의 Rhizome Solution(R.S)을 잇는다. 설정 문서는 상위 폴더의 `02_세계관/세계관_리좀솔루션.md`이고, 스토리·기획 작업 전에 읽는다.
 
@@ -45,7 +45,7 @@ $proj  = "D:\04_Project Files\Roosevelt\Roosevelt"
 - **렌더링:** URP 품질 티어가 두 개다. `Mobile`/`PC` 각각 RP asset과 renderer 한 쌍이 `Assets/Settings/`에 있고, 현재 기본은 `PC`(`m_CurrentQuality: 1`). 렌더 설정을 바꿀 때는 두 티어 모두 반영할지 확인한다.
 - **빌드 씬:** `Assets/Scenes/SampleScene.unity` 하나뿐이다.
 - **아트 텍스처:** `Assets/Art/` 아래 텍스처는 `Assets/Editor/ArtTexturePostprocessor.cs`가 임포트할 때마다 Point 필터·밉맵 끔·무압축으로 덮어쓴다. Inspector에서 바꿔도 재임포트하면 되돌아가므로 예외가 필요하면 스크립트를 고친다.
-- **연구소 씬 빌더:** 메뉴 `Roosevelt > Lab > Build Layouts` 또는 `Temp/LabSceneBuilder.request` 파일 생성(에디터가 1초마다 확인, 열린 씬이 저장된 상태일 때만 실행)으로 `Assets/Editor/LabSceneBuilder.cs`가 `Assets/Art/Environment/{Lab,Forest}/Layouts/*.json`마다 `Assets/Scenes/<씬 이름>.unity`를 만들고(배치마다 `material`·`atlas`·`prefabDir`, FBX 머티리얼 슬롯별 `materials`(아틀라스·컷아웃·`shader`, 먼 산은 `Assets/Shaders/DistantHaze.shader`), 모듈 `scale`, 야외는 `ground`·`environment`로 바닥·해·안개·하늘색 지정) 카메라 렌더를 `Logs/<씬 이름>.png`로 저장한다. 모듈 프리팹은 `Assets/Prefabs/Environment/{Lab/Modules,Forest}/PF_*`이고, 충돌체는 빌더의 이름 태그 목록(`MeshColliderTags`·`NoColliderTags`, 나머지는 BoxCollider)으로 정한다. 숲 배치 `Forest_Test.json`은 손으로 쓰지 않고 `Art/tools/make_forest_test.py`가 만든다. `doors`는 경첩(`LabDoor`) 아래에 문짝·손잡이를 붙여 조립하고, `playerStarts`가 있으면 `Assets/Prefabs/Player/PF_Player.prefab`(없을 때만 생성)을 놓는다. JSON은 Blender 좌표로 기록하고, 빌더가 `(x,y,z)→(-x,z,-y)`, Z축 회전 θ→Y축 회전 -θ로 변환한다.
+- **연구소 씬 빌더:** 메뉴 `Roosevelt > Lab > Build Layouts` 또는 `Temp/LabSceneBuilder.request` 파일 생성(에디터가 1초마다 확인, 열린 씬이 저장된 상태일 때만 실행. 파일에 배치 이름을 줄마다 쓰면 그 배치만, 비어 있으면 전부 빌드하는데 전부 빌드는 `Forest_Test.unity`도 다시 만든다)으로 `Assets/Editor/LabSceneBuilder.cs`가 `Assets/Art/Environment/{Lab,Forest}/Layouts/*.json`마다 `Assets/Scenes/<씬 이름>.unity`를 만들고(배치마다 `material`·`atlas`·`prefabDir`, FBX 머티리얼 슬롯별 `materials`(아틀라스·컷아웃·`shader`, 먼 산은 `Assets/Shaders/DistantHaze.shader`), 모듈 `scale`, 야외는 `ground`·`environment`로 바닥·해·안개·하늘색 지정) 카메라 렌더를 `Logs/<씬 이름>.png`로 저장한다. 모듈 프리팹은 `Assets/Prefabs/Environment/{Lab/Modules,Forest}/PF_*`이고, 충돌체는 빌더의 이름 태그 목록(`MeshColliderTags`·`NoColliderTags`, 나머지는 BoxCollider)으로 정한다. 숲 배치 `Forest_Test.json`은 손으로 쓰지 않고 `Art/tools/make_forest_test.py`가 만든다. `doors`는 경첩(`LabDoor`) 아래에 문짝·손잡이를 붙여 조립하고, `target`이 있으면 열리지 않는 이동용 문(`TransitionDoor`)으로 만들어 `spawns`의 같은 이름 지점으로 보낸다. 방 상자 배치는 `Art/tools/make_room_layouts.py`가 JSON으로 만든다. `playerStarts`가 있으면 `Assets/Prefabs/Player/PF_Player.prefab`(없을 때만 생성)을 놓는다. JSON은 Blender 좌표로 기록하고, 빌더가 `(x,y,z)→(-x,z,-y)`, Z축 회전 θ→Y축 회전 -θ로 변환한다.
 - **캐릭터 조립:** 메뉴 `Roosevelt > Characters > Assemble Examples` 또는 `Temp/CharacterAssembler.request`로 `Assets/Editor/CharacterAssembler.cs`가 `Assets/Art/Props/Example Character/`의 모듈 캐릭터(PolyMate) 파츠를 뼈 이름으로 한 뼈대에 합쳐 `Assets/Prefabs/Characters/PF_Char_Example_*`와 `Assets/Scenes/Character_Test.unity`를 만든다. FBX가 원작자 PC의 텍스처를 가리켜서, 기본 FBX에서 꺼낸 팔레트 `Textures/T_Char_Example_Palette.png`를 모든 파츠에 입힌다.
 - **크리처:** `Art/tools/make_stalk.py`가 스킨 FBX(`Assets/Art/Creatures/Stalk/`)를 만들면, 메뉴 `Roosevelt > Creatures > Build Stalks`(또는 `Temp/CreatureBuilder.request`)로 `Assets/Editor/CreatureBuilder.cs`가 `Assets/Prefabs/Creatures/PF_Creature_Stalk_*`와 `Creature_Stalk_Test.unity`를 만들고 걷기 시뮬레이션 캡처를 `Logs/Creature_*.png`로 저장한다. 걷기는 애니메이션 클립 없이 `StalkWalker`가 뼈 이름으로 절차적으로 처리한다. 숲에는 배치 JSON의 `creatures`로 놓는다. 자세한 내용은 상위 폴더 `04_에셋_제작/크리처_Stalk.md`에 있다.
 - **카메라:** Cinemachine은 에디터 내장 패키지(`com.unity.cinemachine` 6.6.0, 네임스페이스 `Unity.Cinemachine`, API는 CM3)다. `PF_Player`의 `PlayerCamera`가 `CameraTarget`을 따라가고, `PlayerCameraFeel`이 서기·걷기·달리기 속도에 맞춰 노이즈 세기·빠르기를 섞는다. 노이즈 프로필은 `Assets/Settings/Cinemachine/Noise_WalkBob.asset`(좌우 사인파 + 손떨림 회전). 위아래 흔들림은 노이즈가 아니라 `PlayerCameraFeel`이 `CameraTarget` 높이를 직접 움직여서, 달릴 때 위아래만 따로 키울 수 있다. 걸음마다 임펄스를 쓰면 카메라가 뚝뚝 떨어져 보여서 뺐다.
@@ -59,7 +59,7 @@ $proj  = "D:\04_Project Files\Roosevelt\Roosevelt"
 - 에셋을 추가·이동·이름변경할 때는 `.meta`도 함께 다룬다. `.meta`의 GUID가 참조를 유지하므로, 에셋만 옮기고 `.meta`를 두고 가면 씬/프리팹 참조가 깨진다.
 - `*.csproj`, `*.sln`은 Unity가 생성하는 파일이다. git에서 제외되어 있으니 수정하지 않는다.
 - `.unity`, `.prefab`, `.asset`은 YAML이다. 직접 편집은 간단한 필드 수정 정도로만 하고, 구조 변경은 에디터에서 하는 편이 안전하다.
-- Git LFS는 `*.mp3`만 추적한다(`.gitattributes`). GitHub LFS 예산이 초과된 상태라 폰트는 일반 파일로 둔다. 텍스처·모델·다른 오디오 형식 같은 큰 바이너리를 추가하기 전에 LFS 추적을 먼저 제안한다.
+- Git LFS는 쓰지 않는다(GitHub LFS 예산 초과). mp3는 `.gitignore`로 저장소에서 뺀다. 수십 MB 이상의 큰 바이너리를 추가하기 전에는 사용자에게 먼저 묻는다.
 
 ## CLAUDE.md 관리 규칙
 

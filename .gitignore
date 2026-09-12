@@ -72,6 +72,10 @@ crashlytics-build.properties
 .idea/
 .vscode/
 
+# Audio kept out of the repo (the GitHub LFS budget is used up); the meta goes with its asset
+*.mp3
+*.mp3.meta
+
 # OS
 .DS_Store
 Thumbs.db

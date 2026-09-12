@@ -27,8 +27,6 @@
 *.fbx binary
 *.wav binary
 *.ogg binary
+*.mp3 binary
 *.ttf binary
 *.otf binary
-
-# Git LFS
-*.mp3 filter=lfs diff=lfs merge=lfs -text
