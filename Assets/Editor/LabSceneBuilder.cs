@@ -24,7 +24,6 @@ public static class LabSceneBuilder
     const string HandheldNoisePath = "Packages/com.unity.cinemachine/Presets/Noise/Handheld_normal_mild.asset";
     const string WalkNoisePath = "Assets/Settings/Cinemachine/Noise_WalkBob.asset";
     const string SceneDir = "Assets/Scenes";
-    const string NpcControllerPath = "Assets/Animation/Controllers/AC_Npc.controller";
     // Creating this file (e.g. from an external tool) requests a build without opening the menu.
     const string RequestPath = "Temp/LabSceneBuilder.request";
     const string ForestRequestPath = "Temp/ForestSkyboxReview.request";
@@ -246,7 +245,30 @@ public static class LabSceneBuilder
             var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, room);
             go.transform.SetPositionAndRotation(ToUnity(m.pos), Yaw(m.rotZ));
             if (m.scale > 0f) go.transform.localScale = Vector3.one * m.scale;
-            AttachInteract(go, m.interact);
+            AttachInteract(go, m.interact, m.mesh);
+
+            // Rigged non-NPC figures (e.g. seated figures with Idle animation): auto-detect and attach animator
+            if ((m.interact == null || string.IsNullOrEmpty(m.interact?.type)) &&
+                go.GetComponent<Animator>() != null)
+            {
+                var animator = go.GetComponent<Animator>();
+
+                // Attach CharacterAnimator script
+                if (go.GetComponent<CharacterAnimator>() == null)
+                    go.AddComponent<CharacterAnimator>();
+
+                // Attach controller via b1's API
+                var controllerPath = NpcAnimatorControllerCreator.ControllerPathFor(m.mesh);
+                var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(controllerPath);
+                if (controller != null)
+                {
+                    animator.runtimeAnimatorController = controller;
+                }
+                else
+                {
+                    Debug.LogWarning($"[LabSceneBuilder] {go.name}: controller not found for rigged figure {m.mesh} at {controllerPath}");
+                }
+            }
         }
 
         var spawns = BuildSpawns(layout.spawns ?? Array.Empty<SpawnDef>());
@@ -528,7 +550,7 @@ public static class LabSceneBuilder
     }
 
     // JsonUtility fills a missing `interact` with an empty object, so an empty type means none.
-    static void AttachInteract(GameObject go, InteractDef def)
+    static void AttachInteract(GameObject go, InteractDef def, string meshName = "")
     {
         if (def == null || string.IsNullOrEmpty(def.type)) return;
         switch (def.type)
@@ -566,14 +588,22 @@ public static class LabSceneBuilder
 
                 // Attach Animator and animation controller (or reuse existing)
                 var animator = go.GetComponent<Animator>() ?? go.AddComponent<Animator>();
-                var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(NpcControllerPath);
-                if (controller != null)
+                if (!string.IsNullOrEmpty(meshName))
                 {
-                    animator.runtimeAnimatorController = controller;
+                    var controllerPath = NpcAnimatorControllerCreator.ControllerPathFor(meshName);
+                    var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(controllerPath);
+                    if (controller != null)
+                    {
+                        animator.runtimeAnimatorController = controller;
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[LabSceneBuilder] {go.name}: animation controller not found at {controllerPath}");
+                    }
                 }
                 else
                 {
-                    Debug.LogWarning($"[LabSceneBuilder] {go.name}: animation controller not found at {NpcControllerPath}");
+                    Debug.LogWarning($"[LabSceneBuilder] {go.name}: meshName not provided for NPC controller");
                 }
 
                 // Attach CharacterAnimator script (or reuse existing)
