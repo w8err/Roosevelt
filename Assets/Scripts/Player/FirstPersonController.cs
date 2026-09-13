@@ -13,6 +13,10 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] float sprintSpeed = 6f;
     [Tooltip("Seconds to ramp between walk and sprint speed, both ways.")]
     [SerializeField] float speedChangeTime = 0.8f;
+    [Tooltip("Seconds to reach walk speed from standing still.")]
+    [SerializeField] float accelerationTime = 0.2f;
+    [Tooltip("Seconds to stop from walk speed. A sprint stops at the same rate, so it takes longer.")]
+    [SerializeField] float decelerationTime = 0.12f;
     [SerializeField] float gravity = -9.81f;
 
     [Header("Stamina")]
@@ -31,7 +35,9 @@ public class FirstPersonController : MonoBehaviour
     CharacterController body;
     InputActionMap map;
     InputAction move, look, interact, sprint;
-    float pitch, fallSpeed, speed, stamina = 1f;
+    // speed: the walk/sprint speed the player is heading for. moveSpeed: how fast they actually go along moveDir.
+    float pitch, fallSpeed, speed, moveSpeed, stamina = 1f;
+    Vector3 moveDir;
     bool exhausted, wantedSprint;
 
     public Transform CameraTarget => cameraTarget;
@@ -80,8 +86,8 @@ public class FirstPersonController : MonoBehaviour
 
     // Moves the player without CharacterController fighting the teleport, for room
     // transitions and the dream/wake flow. Used by ScreenTransition while the screen is
-    // black. rotation sets yaw only; pitch resets level and fall speed resets grounded,
-    // so the player never lands already mid-fall from wherever they warped from.
+    // black. rotation sets yaw only; pitch resets level, fall speed resets grounded and the
+    // player arrives standing still, so nothing carries over from wherever they warped from.
     public void Warp(Vector3 position, Quaternion rotation)
     {
         body.enabled = false;
@@ -90,6 +96,7 @@ public class FirstPersonController : MonoBehaviour
         pitch = 0f;
         cameraTarget.localRotation = Quaternion.identity;
         fallSpeed = -1f;
+        moveSpeed = 0f;
     }
 
     void Look()
@@ -111,10 +118,24 @@ public class FirstPersonController : MonoBehaviour
         wantedSprint = wantsSprint;
         var sprinting = wantsSprint && !exhausted;
         UpdateStamina(sprinting);
+        // Sprint momentum never outlasts actual motion: stop, then walk again, and it starts from walk speed.
+        speed = Mathf.Min(speed, Mathf.Max(walkSpeed, moveSpeed));
         var ramp = (sprintSpeed - walkSpeed) / speedChangeTime;
         speed = Mathf.MoveTowards(speed, sprinting ? sprintSpeed : walkSpeed, ramp * Time.deltaTime);
 
-        var velocity = (transform.right * input.x + transform.forward * input.y) * speed;
+        // Direction follows the input at once so turning stays crisp; only the speed eases in and out.
+        // With no input the last direction is kept, so the player comes to a short stop instead of halting dead.
+        var wish = transform.right * input.x + transform.forward * input.y;
+        var targetSpeed = 0f;
+        if (wish.sqrMagnitude > 1e-4f)
+        {
+            moveDir = wish.normalized;
+            targetSpeed = speed * wish.magnitude;
+        }
+        var rate = walkSpeed / (targetSpeed > moveSpeed ? accelerationTime : decelerationTime);
+        moveSpeed = Mathf.MoveTowards(moveSpeed, targetSpeed, rate * Time.deltaTime);
+
+        var velocity = moveDir * moveSpeed;
         fallSpeed = body.isGrounded ? -1f : fallSpeed + gravity * Time.deltaTime;
         velocity.y = fallSpeed;
         body.Move(velocity * Time.deltaTime);

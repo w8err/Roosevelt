@@ -8,6 +8,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(FirstPersonController))]
 public class PlayerInteraction : MonoBehaviour
 {
+    // How far the view ray looks. Whether the hit is close enough is decided afterwards, by the
+    // distance to the object's nearest point, so this only has to cover the far end of a bed.
+    const float MaxRayDistance = 4f;
+
+    readonly RaycastHit[] hits = new RaycastHit[8];
+
+    [Tooltip("Meters from the eye to the nearest point of what is aimed at, so any part of a big object like a bed counts.")]
     [SerializeField] float interactDistance = 2f;
     [Tooltip("Dot at screen center: faint while idle, bright over something usable.")]
     [SerializeField] bool showCrosshair = true;
@@ -19,6 +26,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] Color idleCrosshairColor = new Color(1f, 1f, 1f, 0.25f);
 
     FirstPersonController controller;
+    Camera eyeCamera;
     GameObject hud;
     Image crosshair;
     Text prompt;
@@ -30,6 +38,7 @@ public class PlayerInteraction : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<FirstPersonController>();
+        eyeCamera = GetComponentInChildren<Camera>();
         BuildHud();
     }
 
@@ -56,10 +65,33 @@ public class PlayerInteraction : MonoBehaviour
 
     IInteractable FindTarget()
     {
-        var eye = controller.CameraTarget;
-        if (!Physics.Raycast(eye.position, eye.forward, out var hit, interactDistance, ~0, QueryTriggerInteraction.Ignore)) return null;
-        return hit.collider.GetComponentInParent<IInteractable>();
+        // Aim from the rendering camera so the ray stays on the crosshair while the camera noise sways the view.
+        var eye = eyeCamera != null ? eyeCamera.transform : controller.CameraTarget;
+        var count = Physics.RaycastNonAlloc(eye.position, eye.forward, hits, MaxRayDistance, ~0, QueryTriggerInteraction.Ignore);
+        // The nearest hit that isn't the player's own body. Looking down 30-40 degrees (at a bed), the
+        // ray hit the player's own CharacterController even though the eye sits inside it, and the
+        // prompt flickered (confirmed with an aim log, 2026-09-13).
+        var found = false;
+        var hit = default(RaycastHit);
+        for (var i = 0; i < count; i++)
+        {
+            if (hits[i].collider.transform.IsChildOf(transform)) continue;
+            if (found && hits[i].distance >= hit.distance) continue;
+            hit = hits[i];
+            found = true;
+        }
+        if (!found) return null;
+        var target = hit.collider.GetComponentInParent<IInteractable>();
+        if (target == null || hit.distance <= interactDistance) return target;
+        // What decides is how close the object's nearest point is, not where on it the player looks,
+        // so standing by a bed and looking at its far end still counts.
+        return NearestDistance(hit.collider, eye.position) <= interactDistance ? target : null;
     }
+
+    // Collider.ClosestPoint only supports primitives and convex meshes; anything else only counts within ray range.
+    static float NearestDistance(Collider collider, Vector3 from) => collider is MeshCollider { convex: false }
+        ? float.PositiveInfinity
+        : Vector3.Distance(from, collider.ClosestPoint(from));
 
     void ShowPrompt()
     {

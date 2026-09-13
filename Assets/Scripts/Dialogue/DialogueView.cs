@@ -11,6 +11,9 @@ public class DialogueView : MonoBehaviour
     const int SortingOrder = 500;
     const float SecondsPerChar = 0.02f;
     const int MaxChoices = 4; // enough for a 1-4 number-key shortcut
+    // Choices appear dimmed once the line is fully typed and only take input after this many
+    // seconds without a confirm press, so mashing through the lines can't pick choice 1.
+    const float ChoiceArmDelay = 0.5f;
 
     static DialogueView instance;
 
@@ -29,6 +32,7 @@ public class DialogueView : MonoBehaviour
     static void ResetOnPlay() => instance = null;
 
     Text speakerText, bodyText, choicesText;
+    Color choicesColor;
     DialogueRunner runner;
     InputAction interact;
     string fullBody = "";
@@ -37,6 +41,8 @@ public class DialogueView : MonoBehaviour
     int selected;
     int openedOnFrame;
     bool pendingFinish;
+    bool choicesShown, choicesArmed;
+    float armTimer;
 
     public void Show(DialogueRunner runner)
     {
@@ -63,6 +69,7 @@ public class DialogueView : MonoBehaviour
         revealedChars = 0;
         revealTimer = 0f;
         selected = 0;
+        choicesShown = choicesArmed = false;
         RenderChoices();
     }
 
@@ -80,15 +87,34 @@ public class DialogueView : MonoBehaviour
 
         if (Time.frameCount == openedOnFrame) return;
 
+        var revealed = revealedChars >= fullBody.Length;
         var choices = runner.VisibleChoices;
-        if (choices.Count > 0)
+        if (choices.Count > 0 && revealed)
         {
+            if (!choicesShown)
+            {
+                choicesShown = true;
+                armTimer = 0f;
+                RenderChoices();
+                return;
+            }
+            if (!choicesArmed)
+            {
+                // Every press while the choices are still dim restarts the wait.
+                if (ConfirmPressed() || NumberPressed(choices.Count) >= 0) armTimer = 0f;
+                else armTimer += Time.deltaTime;
+                if (armTimer < ChoiceArmDelay) return;
+                choicesArmed = true;
+                RenderChoices();
+                return;
+            }
             Navigate(choices.Count);
             if (ChoiceConfirmed(choices.Count)) Step(() => runner.Choose(selected));
         }
         else if (ConfirmPressed())
         {
-            if (revealedChars < fullBody.Length) revealedChars = fullBody.Length;
+            // Skips the typing; on a choice node the choices then appear (still dim) next frame.
+            if (!revealed) revealedChars = fullBody.Length;
             else Step(() => runner.Advance());
         }
     }
@@ -107,11 +133,19 @@ public class DialogueView : MonoBehaviour
     // (Interact / Enter / Space / click) picks whichever choice is highlighted.
     bool ChoiceConfirmed(int count)
     {
-        var keyboard = Keyboard.current;
-        if (keyboard != null)
-            for (var i = 0; i < count && i < MaxChoices; i++)
-                if (keyboard[(Key)((int)Key.Digit1 + i)].wasPressedThisFrame) { selected = i; return true; }
+        var number = NumberPressed(count);
+        if (number >= 0) { selected = number; return true; }
         return ConfirmPressed();
+    }
+
+    // Index of the choice whose number key went down this frame, or -1.
+    static int NumberPressed(int count)
+    {
+        var keyboard = Keyboard.current;
+        if (keyboard == null) return -1;
+        for (var i = 0; i < count && i < MaxChoices; i++)
+            if (keyboard[(Key)((int)Key.Digit1 + i)].wasPressedThisFrame) return i;
+        return -1;
     }
 
     bool ConfirmPressed()
@@ -141,16 +175,18 @@ public class DialogueView : MonoBehaviour
         Dialogue.NotifyFinished();
     }
 
+    // Hidden while the line is still typing, dim and without a cursor until armed.
     void RenderChoices()
     {
         var choices = runner.VisibleChoices;
-        if (choices.Count == 0) { choicesText.text = ""; return; }
+        if (!choicesShown || choices.Count == 0) { choicesText.text = ""; return; }
         var lines = new string[choices.Count];
         for (var i = 0; i < choices.Count; i++)
-            lines[i] = (i == selected ? "> " : "  ") + $"{i + 1}. {choices[i].text}";
+            lines[i] = (choicesArmed && i == selected ? "> " : "  ") + $"{i + 1}. {choices[i].text}";
         // No trailing newline: with LowerLeft alignment an extra blank line would push every
         // visible line up by one, toward the body text above.
         choicesText.text = string.Join("\n", lines);
+        choicesText.color = choicesArmed ? choicesColor : new Color(choicesColor.r, choicesColor.g, choicesColor.b, choicesColor.a * 0.4f);
     }
 
     static void Build()
@@ -181,6 +217,7 @@ public class DialogueView : MonoBehaviour
 
         instance.choicesText = PixelUI.CreateText("Choices", panel.transform);
         Place(instance.choicesText, new Vector2(6f, 4f), 64f, TextAnchor.LowerLeft, fromBottom: true);
+        instance.choicesColor = instance.choicesText.color;
 
         canvas.gameObject.SetActive(false);
     }
