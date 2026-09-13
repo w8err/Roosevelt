@@ -28,6 +28,11 @@
    "name": "M_Forest_Foliage",
    "atlas": "T_Forest_Foliage_Atlas",
    "cutout": true
+  },
+  {
+   "name": "M_Forest_Figures",
+   "atlas": "T_Forest_Figures_Atlas",
+   "cutout": false
   }
  ],
  "modules": [
@@ -6322,6 +6327,26 @@
    "scale": 1.0
   },
   {
+   "mesh": "SM_Forest_Figure_Woman_Seated_50x80x130",
+   "pos": {
+    "x": -0.55,
+    "y": -9.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "scale": 1.0
+  },
+  {
+   "mesh": "SM_Forest_Figure_Child_Seated_30x60x110",
+   "pos": {
+    "x": 0.55,
+    "y": -9.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "scale": 1.0
+  },
+  {
    "mesh": "SM_Forest_Chair_Ritual_40x40x90",
    "pos": {
     "x": 1.7,
@@ -6345,128 +6370,7 @@
    }
   }
  ],
- "boxes": [
-  {
-   "name": "Woman_Thighs",
-   "pos": {
-    "x": -0.55,
-    "y": -8.86,
-    "z": 0.4
-   },
-   "size": {
-    "x": 0.34,
-    "y": 0.48,
-    "z": 0.12
-   },
-   "rotZ": 0.0,
-   "color": {
-    "r": 0.294,
-    "g": 0.29,
-    "b": 0.322,
-    "a": 1.0
-   }
-  },
-  {
-   "name": "Woman_Torso",
-   "pos": {
-    "x": -0.55,
-    "y": -9.28,
-    "z": 0.45
-   },
-   "size": {
-    "x": 0.42,
-    "y": 0.3,
-    "z": 0.62
-   },
-   "rotZ": 0.0,
-   "color": {
-    "r": 0.294,
-    "g": 0.29,
-    "b": 0.322,
-    "a": 1.0
-   }
-  },
-  {
-   "name": "Woman_Head",
-   "pos": {
-    "x": -0.55,
-    "y": -9.28,
-    "z": 1.07
-   },
-   "size": {
-    "x": 0.22,
-    "y": 0.22,
-    "z": 0.26
-   },
-   "rotZ": 0.0,
-   "color": {
-    "r": 0.541,
-    "g": 0.502,
-    "b": 0.463,
-    "a": 1.0
-   }
-  },
-  {
-   "name": "Child_Thighs",
-   "pos": {
-    "x": 0.55,
-    "y": -8.94,
-    "z": 0.4
-   },
-   "size": {
-    "x": 0.26,
-    "y": 0.36,
-    "z": 0.11
-   },
-   "rotZ": 0.0,
-   "color": {
-    "r": 0.333,
-    "g": 0.325,
-    "b": 0.361,
-    "a": 1.0
-   }
-  },
-  {
-   "name": "Child_Torso",
-   "pos": {
-    "x": 0.55,
-    "y": -9.28,
-    "z": 0.45
-   },
-   "size": {
-    "x": 0.3,
-    "y": 0.24,
-    "z": 0.42
-   },
-   "rotZ": 0.0,
-   "color": {
-    "r": 0.333,
-    "g": 0.325,
-    "b": 0.361,
-    "a": 1.0
-   }
-  },
-  {
-   "name": "Child_Head",
-   "pos": {
-    "x": 0.55,
-    "y": -9.28,
-    "z": 0.87
-   },
-   "size": {
-    "x": 0.19,
-    "y": 0.19,
-    "z": 0.22
-   },
-   "rotZ": 0.0,
-   "color": {
-    "r": 0.541,
-    "g": 0.502,
-    "b": 0.463,
-    "a": 1.0
-   }
-  }
- ],
+ "boxes": [],
  "ground": {
   "size": 420.0,
   "color": {
@@ -6513,6 +6417,68 @@
   },
   "sunIntensity": 0.55
  },
+ "sounds": [
+  {
+   "type": "ambient",
+   "name": "Drone_Low",
+   "pos": {
+    "x": 0.0,
+    "y": -36.0,
+    "z": 3.0
+   },
+   "clip": "Drone_Low",
+   "volume": 0.2,
+   "spatial": false,
+   "minDistance": 0.0,
+   "maxDistance": 0.0
+  },
+  {
+   "type": "ambient",
+   "name": "Wind",
+   "pos": {
+    "x": 0.0,
+    "y": -36.0,
+    "z": 5.0
+   },
+   "clip": "Wind",
+   "volume": 0.15,
+   "spatial": false,
+   "minDistance": 0.0,
+   "maxDistance": 0.0
+  },
+  {
+   "type": "random",
+   "name": "Wood_Creak",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 5.0
+   },
+   "clip": "Wood_Creak",
+   "volume": 0.5,
+   "intervalMin": 12.0,
+   "intervalMax": 30.0,
+   "radius": 0.0,
+   "minDistance": 6.0,
+   "maxDistance": 45.0
+  },
+  {
+   "type": "random",
+   "name": "Unknown",
+   "pos": {
+    "x": 0.0,
+    "y": -72.0,
+    "z": 1.0
+   },
+   "clip": "Unknown",
+   "volume": 0.35,
+   "intervalMin": 25.0,
+   "intervalMax": 60.0,
+   "radius": 20.0,
+   "minDistance": 5.0,
+   "maxDistance": 30.0
+  }
+ ],
  "camera": {
   "pos": {
    "x": 0.0,

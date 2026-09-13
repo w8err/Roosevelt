@@ -56,11 +56,12 @@ public static class LabSceneBuilder
         public GroundDef ground;
         public EnvDef environment;
         public CreatureDef[] creatures;
+        public SoundDef[] sounds;    // ambient loops and random one-shot emitters
     }
     // Prefab name in CreatureBuilder.PrefabDir; walkers get the layout's terrain as their ground.
     [Serializable] class CreatureDef { public string prefab; public Vector3 pos; public float rotZ; public float scale; }
-    [Serializable] class MaterialDef { public string name; public string atlas; public bool cutout; public string shader; } // shader empty = Simple Lit
-    [Serializable] class Module { public string mesh; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; } // scale 0 means 1
+    [Serializable] class MaterialDef { public string name; public string atlas; public bool cutout; public string shader; public string kit; } // shader empty = Simple Lit, kit empty = use kitRoot
+    [Serializable] class Module { public string mesh; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; public string kit; } // scale 0 means 1, kit empty = kitRoot/Meshes
     // Empty target: a door that swings on its hinge. Otherwise it stays shut and teleports the player to that spawn.
     [Serializable] class DoorDef { public string leaf; public string[] parts; public Vector3 pos; public float rotZ; public bool locked; public string target; }
     // Arrival point for transition doors, turned (yaw only) toward target.
@@ -74,6 +75,21 @@ public static class LabSceneBuilder
     [Serializable] class LightDef { public Vector3 pos; public Color color; public float intensity; public float range; }
     [Serializable] class ViewDef { public Vector3 pos; public Vector3 target; public float fov; }
     [Serializable] class GroundDef { public float size; public Color color; }
+    // Audio: ambient loop or random one-shot emitter
+    [Serializable] class SoundDef
+    {
+        public string type;  // "ambient" or "random"
+        public string name;
+        public Vector3 pos;
+        public string clip;  // for ambient, or primary clip name for random (clips generated from name pattern)
+        public float volume;
+        public bool spatial; // ambient only
+        public float minDistance; // both types, default 3 (linear attenuation: full volume until this distance)
+        public float maxDistance; // both types, default 15 (linear attenuation: silent beyond this distance)
+        public float intervalMin; // random, default 0
+        public float intervalMax; // random, default 0
+        public float radius; // random, 0=fixed, >0=random in radius
+    }
     // Outdoor settings. An empty fogMode keeps the dark indoor defaults. sunDirection is in Blender space.
     [Serializable] class EnvDef
     {
@@ -210,7 +226,11 @@ public static class LabSceneBuilder
                 $"{kitRoot}/Materials/{(string.IsNullOrEmpty(layout.material) ? DefaultMaterial : layout.material)}.mat",
                 $"{kitRoot}/Textures/{(string.IsNullOrEmpty(layout.atlas) ? DefaultAtlas : layout.atlas)}.png"),
             Materials = (layout.materials ?? Array.Empty<MaterialDef>()).ToDictionary(d => d.name, d =>
-                GetOrCreateMaterial($"{kitRoot}/Materials/{d.name}.mat", $"{kitRoot}/Textures/{d.atlas}.png", d.cutout, d.shader)),
+            {
+                var matDir = string.IsNullOrEmpty(d.kit) ? $"{kitRoot}/Materials" : $"{kitRoot}/{d.kit}/Materials";
+                var texDir = string.IsNullOrEmpty(d.kit) ? $"{kitRoot}/Textures" : $"{kitRoot}/{d.kit}/Textures";
+                return GetOrCreateMaterial($"{matDir}/{d.name}.mat", $"{texDir}/{d.atlas}.png", d.cutout, d.shader);
+            }),
         };
         Debug.Log($"[LabSceneBuilder] build started: {sceneName}");
 
@@ -219,7 +239,7 @@ public static class LabSceneBuilder
         var modules = layout.modules ?? Array.Empty<Module>();
         foreach (var m in modules)
         {
-            var prefab = GetPrefab(m.mesh, kit, prefabs);
+            var prefab = GetPrefab(m.mesh, kit, m.kit, kitRoot, layout.prefabDir, kit.Materials, prefabs);
             if (prefab == null) continue;
             var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, room);
             go.transform.SetPositionAndRotation(ToUnity(m.pos), Yaw(m.rotZ));
@@ -269,6 +289,9 @@ public static class LabSceneBuilder
         var creatures = layout.creatures ?? Array.Empty<CreatureDef>();
         if (creatures.Length > 0) SpawnCreatures(creatures, room);
 
+        var sounds = layout.sounds ?? Array.Empty<SoundDef>();
+        if (sounds.Length > 0) BuildSounds(sounds, room);
+
         var starts = layout.playerStarts ?? Array.Empty<ViewDef>();
         var cam = CreateReviewCamera(layout.camera, background);
         if (starts.Length > 0) SpawnPlayer(starts[0], background);
@@ -313,6 +336,77 @@ public static class LabSceneBuilder
             so.ApplyModifiedPropertiesWithoutUndo();
         }
         Debug.Log($"[LabSceneBuilder] {creatures.Length} creatures, ground {(ground != null ? ground.name : "none")}");
+    }
+
+    // Audio sources: ambient loops and random one-shot emitters
+    static void BuildSounds(SoundDef[] sounds, Transform room)
+    {
+        var soundsRoot = new GameObject("Sounds").transform;
+        foreach (var s in sounds)
+        {
+            var go = new GameObject("Sound_" + s.name);
+            go.transform.SetParent(soundsRoot, false);
+            go.transform.position = ToUnity(s.pos);
+
+            if (s.type == "ambient")
+            {
+                var ambient = go.AddComponent<AmbientLoop>();
+                var clip = AssetDatabase.LoadAssetAtPath<AudioClip>($"Assets/Audio/Ambience/{s.clip}.wav");
+                if (clip == null) Debug.LogError($"[LabSceneBuilder] {go.name}: clip not found: Assets/Audio/Ambience/{s.clip}.wav");
+                var so = new SerializedObject(ambient);
+                so.FindProperty("clip").objectReferenceValue = clip;
+                so.FindProperty("volume").floatValue = s.volume;
+                so.FindProperty("spatial").boolValue = s.spatial;
+                so.FindProperty("minDistance").floatValue = s.minDistance > 0 ? s.minDistance : 3f;
+                so.FindProperty("maxDistance").floatValue = s.maxDistance > 0 ? s.maxDistance : 15f;
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
+            else if (s.type == "random")
+            {
+                var random = go.AddComponent<RandomSoundEmitter>();
+                var clips = new List<AudioClip>();
+
+                // Try numbered clips first: {clip}_01.wav, _02.wav, etc.
+                for (int i = 1; i <= 99; i++)
+                {
+                    var clipPath = $"Assets/Audio/Ambience/{s.clip}_{i:00}.wav";
+                    var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(clipPath);
+                    if (clip == null) break;
+                    clips.Add(clip);
+                }
+
+                // If no numbered clips, try single file {clip}.wav
+                if (clips.Count == 0)
+                {
+                    var clipPath = $"Assets/Audio/Ambience/{s.clip}.wav";
+                    var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(clipPath);
+                    if (clip != null)
+                        clips.Add(clip);
+                    else
+                        Debug.LogError($"[LabSceneBuilder] {go.name}: no clips found for '{s.clip}' (tried {s.clip}_01, {s.clip}_02, ... and {s.clip}.wav)");
+                }
+
+                var so = new SerializedObject(random);
+                so.FindProperty("volume").floatValue = s.volume;
+                so.FindProperty("intervalMin").floatValue = s.intervalMin;
+                so.FindProperty("intervalMax").floatValue = s.intervalMax;
+                so.FindProperty("radius").floatValue = s.radius;
+                so.FindProperty("minDistance").floatValue = s.minDistance > 0 ? s.minDistance : 3f;
+                so.FindProperty("maxDistance").floatValue = s.maxDistance > 0 ? s.maxDistance : 15f;
+
+                // Populate clips array
+                var clipsProp = so.FindProperty("clips");
+                if (clipsProp != null)
+                {
+                    clipsProp.arraySize = clips.Count;
+                    for (int i = 0; i < clips.Count; i++)
+                        clipsProp.GetArrayElementAtIndex(i).objectReferenceValue = clips[i];
+                }
+
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
+        }
+        Debug.Log($"[LabSceneBuilder] {sounds.Length} audio sources");
     }
 
     static Dictionary<string, Transform> BuildSpawns(SpawnDef[] defs)
@@ -369,7 +463,7 @@ public static class LabSceneBuilder
 
         foreach (var mesh in new[] { d.leaf }.Concat(d.parts ?? Array.Empty<string>()))
         {
-            var prefab = GetPrefab(mesh, kit, prefabs);
+            var prefab = GetPrefab(mesh, kit, null, "", "", kit.Materials, prefabs);
             if (prefab == null) continue;
             var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, holder);
             go.transform.localPosition = leafOffset;
@@ -690,12 +784,34 @@ public static class LabSceneBuilder
         return kit.Material;
     }
 
-    static GameObject GetPrefab(string meshName, Kit kit, Dictionary<string, GameObject> cache)
+    static GameObject GetPrefab(string meshName, Kit kit, string moduleKit, string kitRoot, string defaultPrefabDir, Dictionary<string, Material> layoutMaterials, Dictionary<string, GameObject> cache)
     {
-        var key = $"{kit.MeshDir}/{meshName}";
+        // Use module kit if specified, otherwise use default kit
+        var resolvedKit = string.IsNullOrEmpty(moduleKit) ? kit : CreateModuleKit(moduleKit, kitRoot, defaultPrefabDir, layoutMaterials);
+        var key = $"{resolvedKit.MeshDir}/{meshName}";
         if (!cache.TryGetValue(key, out var prefab))
-            cache[key] = prefab = CreatePrefab(meshName, kit);
+            cache[key] = prefab = CreatePrefab(meshName, resolvedKit);
         return prefab;
+    }
+
+    static Kit CreateModuleKit(string moduleKit, string kitRoot, string defaultPrefabDir, Dictionary<string, Material> layoutMaterials)
+    {
+        var meshDir = $"{kitRoot}/{moduleKit}/Meshes";
+        var prefabDir = string.IsNullOrEmpty(defaultPrefabDir)
+            ? $"{kitRoot}/{moduleKit}"
+            : $"{Path.GetDirectoryName(defaultPrefabDir).Replace('\\', '/')}/{moduleKit}";
+        // Create/load default material for this kit (e.g., M_Lab_Props_Atlas for "Props" kit)
+        var defaultMaterialName = $"M_Lab_{moduleKit}";
+        var materialPath = $"{kitRoot}/{moduleKit}/Materials/{defaultMaterialName}.mat";
+        var atlasPath = $"{kitRoot}/{moduleKit}/Textures/T_Lab_{moduleKit}_Atlas.png";
+        var defaultMaterial = GetOrCreateMaterial(materialPath, atlasPath);
+        return new Kit
+        {
+            MeshDir = meshDir,
+            PrefabDir = prefabDir,
+            Material = defaultMaterial,
+            Materials = layoutMaterials // Share the materials dictionary
+        };
     }
 
     static GameObject CreatePrefab(string meshName, Kit kit)

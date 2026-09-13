@@ -1796,6 +1796,204 @@
    "range": 7.0
   }
  ],
+ "sounds": [
+  {
+   "type": "ambient",
+   "name": "Fan_Computer",
+   "pos": {
+    "x": 5.6,
+    "y": 1.0,
+    "z": 0.75
+   },
+   "clip": "Fan_Computer",
+   "volume": 0.2,
+   "spatial": true,
+   "minDistance": 1.5,
+   "maxDistance": 5.0
+  },
+  {
+   "type": "ambient",
+   "name": "Hum_Dorm",
+   "pos": {
+    "x": 1.0,
+    "y": 1.0,
+    "z": 2.5
+   },
+   "clip": "Hum_Fluorescent",
+   "volume": 0.25,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "ambient",
+   "name": "Vent_Dorm",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 2.0
+   },
+   "clip": "Vent",
+   "volume": 0.15,
+   "spatial": false,
+   "minDistance": 0.0,
+   "maxDistance": 0.0
+  },
+  {
+   "type": "ambient",
+   "name": "Hum_Hall_N1",
+   "pos": {
+    "x": 30.0,
+    "y": 1.0,
+    "z": 2.5
+   },
+   "clip": "Hum_Fluorescent",
+   "volume": 0.25,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "ambient",
+   "name": "Hum_Hall_N2",
+   "pos": {
+    "x": 31.0,
+    "y": 3.0,
+    "z": 2.5
+   },
+   "clip": "Hum_Fluorescent",
+   "volume": 0.25,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "ambient",
+   "name": "Hum_Hall_N3",
+   "pos": {
+    "x": 30.0,
+    "y": 5.0,
+    "z": 2.5
+   },
+   "clip": "Hum_Fluorescent",
+   "volume": 0.25,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "ambient",
+   "name": "Vent_Hall",
+   "pos": {
+    "x": 30.0,
+    "y": 0.0,
+    "z": 2.0
+   },
+   "clip": "Vent",
+   "volume": 0.15,
+   "spatial": false,
+   "minDistance": 0.0,
+   "maxDistance": 0.0
+  },
+  {
+   "type": "ambient",
+   "name": "Machinery_Hall",
+   "pos": {
+    "x": 30.0,
+    "y": 3.5,
+    "z": 0.0
+   },
+   "clip": "Machinery_Distant",
+   "volume": 0.1,
+   "spatial": false,
+   "minDistance": 0.0,
+   "maxDistance": 0.0
+  },
+  {
+   "type": "ambient",
+   "name": "Hum_Lobby_SW",
+   "pos": {
+    "x": 61.0,
+    "y": 1.0,
+    "z": 2.5
+   },
+   "clip": "Hum_Fluorescent",
+   "volume": 0.25,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "ambient",
+   "name": "Hum_Lobby_SE",
+   "pos": {
+    "x": 69.0,
+    "y": 1.0,
+    "z": 2.5
+   },
+   "clip": "Hum_Fluorescent",
+   "volume": 0.25,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "ambient",
+   "name": "Hum_Lobby_NW",
+   "pos": {
+    "x": 61.0,
+    "y": 3.0,
+    "z": 2.5
+   },
+   "clip": "Hum_Fluorescent",
+   "volume": 0.25,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "ambient",
+   "name": "Hum_Lobby_NE",
+   "pos": {
+    "x": 69.0,
+    "y": 3.0,
+    "z": 2.5
+   },
+   "clip": "Hum_Fluorescent",
+   "volume": 0.25,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "ambient",
+   "name": "Vent_Lobby",
+   "pos": {
+    "x": 65.0,
+    "y": 0.0,
+    "z": 2.0
+   },
+   "clip": "Vent",
+   "volume": 0.15,
+   "spatial": false,
+   "minDistance": 0.0,
+   "maxDistance": 0.0
+  },
+  {
+   "type": "ambient",
+   "name": "Machinery_Lobby",
+   "pos": {
+    "x": 65.0,
+    "y": 3.5,
+    "z": 0.0
+   },
+   "clip": "Machinery_Distant",
+   "volume": 0.1,
+   "spatial": false,
+   "minDistance": 0.0,
+   "maxDistance": 0.0
+  }
+ ],
  "camera": {
   "pos": {
    "x": 5.4,
