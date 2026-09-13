@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f518ff73a90e0434d9f23f20f8a22275, type: 3}
+  m_Name: OceanSettings
+  m_EditorClassIdentifier: Assembly-CSharp::OceanSettings
+  waves:
+  - direction: {x: 1, y: 0}
+    wavelength: 19.7
+    amplitude: 0.35
+    speed: 2
+  - direction: {x: 0.7986, y: 0.6018}
+    wavelength: 13.7
+    amplitude: 0.2
+    speed: 1.3
+  - direction: {x: -0.1908, y: 0.9816}
+    wavelength: 10.3
+    amplitude: 0.09
+    speed: 1.7
+  - direction: {x: -0.8572, y: 0.515}
+    wavelength: 7.9
+    amplitude: 0.05
+    speed: 2.6
