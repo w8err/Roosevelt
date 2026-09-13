@@ -14,6 +14,12 @@
    "atlas": "T_Lab_Props_Atlas",
    "cutout": false,
    "kit": "Props"
+  },
+  {
+   "name": "M_Lab_Figures",
+   "atlas": "T_Lab_Figures_Atlas",
+   "cutout": false,
+   "kit": "Figures"
   }
  ],
  "modules": [
@@ -1341,6 +1347,20 @@
    },
    "rotZ": 0.0,
    "kit": "Props"
+  },
+  {
+   "mesh": "SM_Lab_Figure_Researcher_Standing_50x40x170",
+   "pos": {
+    "x": 65.0,
+    "y": 8.4,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Figures",
+   "interact": {
+    "type": "npc",
+    "dialogue": "Assets/Dialogue/Lobby_Day0.dialogue"
+   }
   }
  ],
  "doors": [
@@ -1565,23 +1585,6 @@
     "x": 65.0,
     "y": 4.1,
     "z": 1.6
-   }
-  }
- ],
- "prefabs": [
-  {
-   "name": "Lobby_NPC",
-   "prefab": "Assets/Prefabs/Characters/PF_Char_Researcher_Sunglasses.prefab",
-   "pos": {
-    "x": 65.0,
-    "y": 8.4,
-    "z": 0.0
-   },
-   "rotZ": 0.0,
-   "scale": 0.0,
-   "interact": {
-    "type": "npc",
-    "dialogue": "Assets/Dialogue/Lobby_Day0.dialogue"
    }
   }
  ],

@@ -533,12 +533,35 @@ public static class LabSceneBuilder
         {
             case "npc":
             {
-                // RequireComponent adds the capsule; size it to a standing person so the view ray finds them.
+                // RequireComponent adds the capsule; size it based on mesh bounds for accurate raycasting.
+                // Remove any BoxColliders (module default) and keep only the capsule.
+                foreach (var box in go.GetComponentsInChildren<BoxCollider>())
+                    UnityEngine.Object.DestroyImmediate(box);
+
                 var npc = go.AddComponent<NpcInteractable>();
                 var capsule = go.GetComponent<CapsuleCollider>();
-                capsule.center = new Vector3(0f, 0.9f, 0f);
-                capsule.height = 1.8f;
-                capsule.radius = 0.35f;
+
+                // Size capsule from combined mesh renderer bounds (includes children like CreatePrefab does)
+                var renderers = go.GetComponentsInChildren<Renderer>();
+                if (renderers.Length > 0)
+                {
+                    var bounds = renderers[0].bounds;
+                    for (int i = 1; i < renderers.Length; i++)
+                        bounds.Encapsulate(renderers[i].bounds);
+
+                    capsule.height = bounds.size.y;
+                    capsule.center = new Vector3(0f, bounds.size.y / 2f, 0f);
+                    var horizontalRadius = Mathf.Min(bounds.extents.x, bounds.extents.z);
+                    capsule.radius = Mathf.Clamp(horizontalRadius, 0.2f, 0.4f);
+                }
+                else
+                {
+                    // Fallback to defaults if no renderers found
+                    capsule.center = new Vector3(0f, 0.9f, 0f);
+                    capsule.height = 1.8f;
+                    capsule.radius = 0.35f;
+                }
+
                 var dialogue = AssetDatabase.LoadAssetAtPath<DialogueData>(def.dialogue);
                 if (dialogue == null) Debug.LogError($"[LabSceneBuilder] {go.name}: dialogue not found: {def.dialogue}");
                 var so = new SerializedObject(npc);
@@ -787,29 +810,25 @@ public static class LabSceneBuilder
     static GameObject GetPrefab(string meshName, Kit kit, string moduleKit, string kitRoot, string defaultPrefabDir, Dictionary<string, Material> layoutMaterials, Dictionary<string, GameObject> cache)
     {
         // Use module kit if specified, otherwise use default kit
-        var resolvedKit = string.IsNullOrEmpty(moduleKit) ? kit : CreateModuleKit(moduleKit, kitRoot, defaultPrefabDir, layoutMaterials);
+        var resolvedKit = string.IsNullOrEmpty(moduleKit) ? kit : CreateModuleKit(moduleKit, kitRoot, defaultPrefabDir, kit, layoutMaterials);
         var key = $"{resolvedKit.MeshDir}/{meshName}";
         if (!cache.TryGetValue(key, out var prefab))
             cache[key] = prefab = CreatePrefab(meshName, resolvedKit);
         return prefab;
     }
 
-    static Kit CreateModuleKit(string moduleKit, string kitRoot, string defaultPrefabDir, Dictionary<string, Material> layoutMaterials)
+    static Kit CreateModuleKit(string moduleKit, string kitRoot, string defaultPrefabDir, Kit parentKit, Dictionary<string, Material> layoutMaterials)
     {
         var meshDir = $"{kitRoot}/{moduleKit}/Meshes";
         var prefabDir = string.IsNullOrEmpty(defaultPrefabDir)
             ? $"{kitRoot}/{moduleKit}"
             : $"{Path.GetDirectoryName(defaultPrefabDir).Replace('\\', '/')}/{moduleKit}";
-        // Create/load default material for this kit (e.g., M_Lab_Props_Atlas for "Props" kit)
-        var defaultMaterialName = $"M_Lab_{moduleKit}";
-        var materialPath = $"{kitRoot}/{moduleKit}/Materials/{defaultMaterialName}.mat";
-        var atlasPath = $"{kitRoot}/{moduleKit}/Textures/T_Lab_{moduleKit}_Atlas.png";
-        var defaultMaterial = GetOrCreateMaterial(materialPath, atlasPath);
+        // Use parent kit's material as default (no new materials created for module kits)
         return new Kit
         {
             MeshDir = meshDir,
             PrefabDir = prefabDir,
-            Material = defaultMaterial,
+            Material = parentKit.Material,
             Materials = layoutMaterials // Share the materials dictionary
         };
     }
