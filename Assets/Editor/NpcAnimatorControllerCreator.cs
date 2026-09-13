@@ -1,58 +1,91 @@
+using System;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
 
-// Builds Assets/Animation/Controllers/AC_Npc.controller: default state Idle (loops on its own
-// clip settings), a Talk trigger that jumps from any state into Talk, and an Exit Time transition
-// back to Idle once the Talk clip finishes. CharacterAnimator only ever calls Play("Talk") /
-// ReturnToIdle(), so more states can be added here later without touching call sites.
+// Builds one AC_<identity>.controller per rigged figure FBX under Lab/Figures or Forest/Meshes
+// (Figure_*): default state Idle (loops on its own clip settings), and — only when that FBX also has
+// a Talk clip — a Talk trigger that jumps from any state into Talk with an Exit Time transition back
+// to Idle once the clip finishes. CharacterAnimator only ever calls Play(action)/ReturnToIdle(), so a
+// mute figure with no Talk clip (the dream Woman/Child) simply never gets that trigger and
+// Play("Talk") on it stays the silent no-op it already is.
 //
-// Runs once automatically when the editor loads (TransitionSettingsCreator does the same for its
-// asset) and again from the menu any time roosevelt-70's researcher FBX changes. Safe to call
-// repeatedly: existing parameters/states/transitions are left alone, and a state's motion is only
-// filled in when it is still empty or the clip it names has changed.
+// One controller per figure rather than one shared AC_Npc: each figure's Idle/Talk clips are
+// sub-assets of its own FBX, and two figures that each name a clip "Idle" must not collide into the
+// same state. ControllerPathFor(meshName) is the single place the AC_<identity> naming rule lives —
+// LabSceneBuilder (roosevelt-2d) looks a figure's controller path up through it instead of guessing.
+//
+// Runs on every editor load (TransitionSettingsCreator does the same for its asset) and again from
+// the menu any time a figure FBX changes. Safe to call repeatedly and cheap when nothing changed:
+// existing parameters/states/transitions are left alone and the asset is only re-saved when a state,
+// trigger or motion was actually added — a still-missing clip leaves a warning, nothing else.
 [InitializeOnLoad]
 public static class NpcAnimatorControllerCreator
 {
     const string ControllerDir = "Assets/Animation/Controllers";
-    const string ControllerPath = ControllerDir + "/AC_Npc.controller";
     const string TalkTrigger = "Talk";
     const string IdleState = "Idle";
     const string TalkState = "Talk";
-    // Every Lab figure FBX under here shares the same skeleton and this one controller.
-    static readonly string[] ClipSearchDirs = { "Assets/Art/Environment/Lab/Figures/Meshes" };
+    const string LabFiguresDir = "Assets/Art/Environment/Lab/Figures/Meshes/";
+    const string ForestMeshesDir = "Assets/Art/Environment/Forest/Meshes/";
 
-    static NpcAnimatorControllerCreator() => EditorApplication.delayCall += BuildIfMissing;
+    static NpcAnimatorControllerCreator() => EditorApplication.delayCall += BuildAll;
 
-    [MenuItem("Roosevelt/Characters/Build NPC Animator Controller")]
-    public static void BuildFromMenu() => Build();
+    [MenuItem("Roosevelt/Characters/Build NPC Animator Controllers")]
+    public static void BuildFromMenu() => BuildAll();
 
-    static void BuildIfMissing()
+    // The one place the AC_<identity> naming rule lives. `meshName` is the FBX asset's own name —
+    // Object.name / filename without extension, e.g. "SM_Lab_Figure_Researcher_Standing_50x40x170" —
+    // which is what LabSceneBuilder already has on hand for the model it just loaded. Pure path
+    // derivation: works whether or not the controller has been built yet.
+    public static string ControllerPathFor(string meshName)
     {
-        var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
-        // Also rebuilds when the controller already exists but Idle/Talk still has no motion, so a
-        // researcher FBX that lands its clips after the controller was first created gets picked up
-        // on the next editor load instead of staying empty until someone remembers the menu item.
-        if (controller != null && !HasEmptyMotion(controller)) return;
-        Build();
+        if (string.IsNullOrEmpty(meshName)) return null;
+        return $"{ControllerDir}/AC_{Identity(meshName)}.controller";
     }
 
-    static bool HasEmptyMotion(AnimatorController controller) =>
-        controller.layers[0].stateMachine.states
-            .Select(s => s.state)
-            .Any(s => (s.name == IdleState || s.name == TalkState) && s.motion == null);
+    // Mirrors FigureModelPostprocessor.IsFigureModel's two target locations (Lab researcher, Forest
+    // Figure_* meshes) so both scripts agree on what counts as a figure. Keep in sync if that changes.
+    static bool IsFigureModel(string path) =>
+        path.Contains(LabFiguresDir) || (path.Contains(ForestMeshesDir) && path.Contains("Figure_"));
 
-    static void Build()
+    // Strips the "SM_" prefix and a trailing "_WxHxD" size tag so a remodel that only changes
+    // dimensions keeps the same controller instead of orphaning it.
+    static string Identity(string meshName)
     {
+        var name = meshName.EndsWith(".fbx", StringComparison.OrdinalIgnoreCase)
+            ? meshName.Substring(0, meshName.Length - 4) : meshName;
+        if (name.StartsWith("SM_")) name = name.Substring(3);
+        return Regex.Replace(name, @"_\d+x\d+x\d+$", "");
+    }
+
+    static void BuildAll()
+    {
+        var models = AssetDatabase.FindAssets("t:Model", new[]
+                { "Assets/Art/Environment/Lab/Figures/Meshes", "Assets/Art/Environment/Forest/Meshes" })
+            .Select(AssetDatabase.GUIDToAssetPath).Distinct()
+            .Where(IsFigureModel).OrderBy(p => p).ToArray();
+        if (models.Length == 0) return;
+
         LabSceneBuilder.EnsureFolder(ControllerDir);
+        foreach (var modelPath in models) BuildOne(modelPath);
+    }
 
-        var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
+    static void BuildOne(string modelPath)
+    {
+        var meshName = Path.GetFileNameWithoutExtension(modelPath);
+        var controllerPath = ControllerPathFor(meshName);
+        var clips = AssetDatabase.LoadAllAssetsAtPath(modelPath).OfType<AnimationClip>().ToList();
+        var idleClip = clips.FirstOrDefault(c => c.name == IdleState);
+        var talkClip = clips.FirstOrDefault(c => c.name == TalkState);
+
+        var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(controllerPath);
         var isNew = controller == null;
-        if (isNew) controller = AnimatorController.CreateAnimatorControllerAtPath(ControllerPath);
-
-        if (!controller.parameters.Any(p => p.name == TalkTrigger && p.type == AnimatorControllerParameterType.Trigger))
-            controller.AddParameter(TalkTrigger, AnimatorControllerParameterType.Trigger);
+        if (isNew) controller = AnimatorController.CreateAnimatorControllerAtPath(controllerPath);
+        var changed = isNew;
 
         var sm = controller.layers[0].stateMachine;
         var idle = sm.states.Select(s => s.state).FirstOrDefault(s => s.name == IdleState);
@@ -60,56 +93,64 @@ public static class NpcAnimatorControllerCreator
         {
             idle = sm.AddState(IdleState);
             sm.defaultState = idle;
+            changed = true;
         }
-        var talk = sm.states.Select(s => s.state).FirstOrDefault(s => s.name == TalkState);
-        if (talk == null) talk = sm.AddState(TalkState);
-
-        // From any state (not just Idle) so a conversation running longer than one Talk clip can
-        // retrigger it mid-gesture; NpcInteractable does that on a fixed interval.
-        if (!sm.anyStateTransitions.Any(t => t.destinationState == talk))
+        if (idle.motion == null && idleClip != null)
         {
-            var toTalk = sm.AddAnyStateTransition(talk);
-            toTalk.hasExitTime = false;
-            toTalk.duration = 0.1f;
-            toTalk.canTransitionToSelf = true;
-            toTalk.AddCondition(AnimatorConditionMode.If, 0f, TalkTrigger);
+            idle.motion = idleClip;
+            changed = true;
         }
-        if (!talk.transitions.Any(t => t.destinationState == idle))
+        if (idle.motion == null)
+            Debug.LogWarning($"[NpcAnimatorControllerCreator] {meshName}: no '{IdleState}' clip yet; Idle state left without a motion.");
+
+        if (talkClip != null)
         {
-            var toIdle = talk.AddTransition(idle);
-            toIdle.hasExitTime = true;
-            toIdle.exitTime = 1f;
-            toIdle.hasFixedDuration = true;
-            toIdle.duration = 0.15f;
+            if (!controller.parameters.Any(p => p.name == TalkTrigger && p.type == AnimatorControllerParameterType.Trigger))
+            {
+                controller.AddParameter(TalkTrigger, AnimatorControllerParameterType.Trigger);
+                changed = true;
+            }
+            var talk = sm.states.Select(s => s.state).FirstOrDefault(s => s.name == TalkState);
+            if (talk == null)
+            {
+                talk = sm.AddState(TalkState);
+                changed = true;
+            }
+            if (talk.motion == null)
+            {
+                talk.motion = talkClip;
+                changed = true;
+            }
+
+            // From any state (not just Idle) so a conversation running longer than one Talk clip can
+            // retrigger it mid-gesture; NpcInteractable does that on a fixed interval.
+            if (!sm.anyStateTransitions.Any(t => t.destinationState == talk))
+            {
+                var toTalk = sm.AddAnyStateTransition(talk);
+                toTalk.hasExitTime = false;
+                toTalk.duration = 0.1f;
+                toTalk.canTransitionToSelf = true;
+                toTalk.AddCondition(AnimatorConditionMode.If, 0f, TalkTrigger);
+                changed = true;
+            }
+            if (!talk.transitions.Any(t => t.destinationState == idle))
+            {
+                var toIdle = talk.AddTransition(idle);
+                toIdle.hasExitTime = true;
+                toIdle.exitTime = 1f;
+                toIdle.hasFixedDuration = true;
+                toIdle.duration = 0.15f;
+                changed = true;
+            }
         }
+        // No Talk clip on this figure (e.g. the dream Woman/Child): left Idle-only. CharacterAnimator's
+        // Play("Talk") is already a silent no-op when the controller has no such trigger, so there is
+        // nothing else to wire up — a mute figure simply never gets one.
 
-        var linked = 0;
-        idle.motion = LinkClip(IdleState, idle.motion, ref linked);
-        talk.motion = LinkClip(TalkState, talk.motion, ref linked);
-
+        if (!changed) return;
         EditorUtility.SetDirty(controller);
         AssetDatabase.SaveAssets();
-        Debug.Log($"[NpcAnimatorControllerCreator] {(isNew ? "created" : "checked")} {ControllerPath}, {linked} clip(s) linked");
-    }
-
-    // Finds an AnimationClip named `clipName` among the figure FBX sub-assets. Returns `current`
-    // unchanged (which may be null) when none exists yet — the state stays without a motion rather
-    // than failing the whole build.
-    static Motion LinkClip(string clipName, Motion current, ref int linked)
-    {
-        var clip = AssetDatabase.FindAssets("t:AnimationClip", ClipSearchDirs)
-            .Select(AssetDatabase.GUIDToAssetPath).Distinct()
-            .SelectMany(AssetDatabase.LoadAllAssetsAtPath)
-            .OfType<AnimationClip>()
-            .FirstOrDefault(c => c.name == clipName);
-        if (clip == null)
-        {
-            if (current == null)
-                Debug.LogWarning($"[NpcAnimatorControllerCreator] no '{clipName}' clip found yet under "
-                    + $"{string.Join(", ", ClipSearchDirs)}; {clipName} state left without a motion.");
-            return current;
-        }
-        linked++;
-        return clip;
+        Debug.Log($"[NpcAnimatorControllerCreator] {(isNew ? "created" : "updated")} {controllerPath} for {meshName}"
+            + (talkClip != null ? " (Idle+Talk)" : " (Idle only)"));
     }
 }
