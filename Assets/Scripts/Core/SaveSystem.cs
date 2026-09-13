@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-// A single save slot holding Day and flags. Loading only restores GameState;
+// A single save slot holding Day, flags and items. Loading only restores GameState;
 // the caller is responsible for starting the player in the Reality dormitory.
 public static class SaveSystem
 {
@@ -29,4 +29,5 @@ public sealed class SaveData
 {
     public int day;
     public List<string> flags = new();
+    public List<string> items = new();
 }
