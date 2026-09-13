@@ -1,0 +1,6544 @@
+{
+ "scene": "Dream_00",
+ "material": "M_Forest_Bark",
+ "atlas": "T_Forest_Bark_Atlas",
+ "prefabDir": "Assets/Prefabs/Environment/Forest",
+ "materials": [
+  {
+   "name": "M_Forest_Bark",
+   "atlas": "T_Forest_Bark_Atlas",
+   "cutout": false
+  },
+  {
+   "name": "M_Forest_Props",
+   "atlas": "T_Forest_Props_Atlas",
+   "cutout": false
+  },
+  {
+   "name": "M_Forest_Cutout",
+   "atlas": "T_Forest_Cutout_Atlas",
+   "cutout": true
+  },
+  {
+   "name": "M_Forest_Ground",
+   "atlas": "T_Forest_Ground_Atlas",
+   "cutout": false
+  },
+  {
+   "name": "M_Forest_Foliage",
+   "atlas": "T_Forest_Foliage_Atlas",
+   "cutout": true
+  }
+ ],
+ "modules": [
+  {
+   "mesh": "SM_Forest_Tree_Gamigin_4910x4810x6600",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "scale": 1.0
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -22.615,
+    "y": 32.658,
+    "z": 0.0
+   },
+   "rotZ": 135.5,
+   "scale": 1.293
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -35.942,
+    "y": 45.698,
+    "z": 0.0
+   },
+   "rotZ": 270.8,
+   "scale": 1.101
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 34.601,
+    "y": -63.367,
+    "z": 0.0
+   },
+   "rotZ": 60.9,
+   "scale": 0.988
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 71.859,
+    "y": 18.96,
+    "z": 0.0
+   },
+   "rotZ": 196.7,
+   "scale": 1.259
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 63.902,
+    "y": 52.14,
+    "z": 0.0
+   },
+   "rotZ": 307.2,
+   "scale": 1.3
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -74.665,
+    "y": -19.729,
+    "z": 0.0
+   },
+   "rotZ": 226.7,
+   "scale": 1.006
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 34.675,
+    "y": -14.33,
+    "z": 0.0
+   },
+   "rotZ": 89.4,
+   "scale": 0.854
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -40.975,
+    "y": 37.997,
+    "z": 0.0
+   },
+   "rotZ": 53.2,
+   "scale": 1.151
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 21.306,
+    "y": 81.331,
+    "z": 0.0
+   },
+   "rotZ": 3.3,
+   "scale": 1.02
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 8.093,
+    "y": -69.577,
+    "z": 0.0
+   },
+   "rotZ": 73.3,
+   "scale": 1.101
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 94.385,
+    "y": -52.676,
+    "z": 0.0
+   },
+   "rotZ": 182.3,
+   "scale": 0.893
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -47.597,
+    "y": 70.849,
+    "z": 0.0
+   },
+   "rotZ": 302.7,
+   "scale": 1.205
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -108.428,
+    "y": -14.995,
+    "z": 0.0
+   },
+   "rotZ": 265.9,
+   "scale": 1.236
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": 3.39,
+    "y": -78.033,
+    "z": 0.0
+   },
+   "rotZ": 306.3,
+   "scale": 1.026
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -70.452,
+    "y": -87.882,
+    "z": 0.0
+   },
+   "rotZ": 30.4,
+   "scale": 1.234
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 1.866,
+    "y": 96.606,
+    "z": 0.0
+   },
+   "rotZ": 334.8,
+   "scale": 1.224
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -65.568,
+    "y": 14.303,
+    "z": 0.0
+   },
+   "rotZ": 171.4,
+   "scale": 1.011
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -28.48,
+    "y": 39.482,
+    "z": 0.0
+   },
+   "rotZ": 60.5,
+   "scale": 1.296
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -63.928,
+    "y": -6.707,
+    "z": 0.0
+   },
+   "rotZ": 23.1,
+   "scale": 1.288
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -43.39,
+    "y": 42.348,
+    "z": 0.0
+   },
+   "rotZ": 101.8,
+   "scale": 0.975
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 11.119,
+    "y": 109.079,
+    "z": 0.0
+   },
+   "rotZ": 198.3,
+   "scale": 1.245
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -28.834,
+    "y": -90.032,
+    "z": 0.0
+   },
+   "rotZ": 52.0,
+   "scale": 1.092
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -107.343,
+    "y": 42.045,
+    "z": 0.0
+   },
+   "rotZ": 168.7,
+   "scale": 0.853
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -90.801,
+    "y": 2.558,
+    "z": 0.0
+   },
+   "rotZ": 247.8,
+   "scale": 0.943
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -31.403,
+    "y": 21.273,
+    "z": 0.0
+   },
+   "rotZ": 58.5,
+   "scale": 1.249
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -94.676,
+    "y": -41.44,
+    "z": 0.0
+   },
+   "rotZ": 57.6,
+   "scale": 1.192
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 62.755,
+    "y": -7.921,
+    "z": 0.0
+   },
+   "rotZ": 140.1,
+   "scale": 1.248
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 35.363,
+    "y": 39.641,
+    "z": 0.0
+   },
+   "rotZ": 230.4,
+   "scale": 1.242
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 3.875,
+    "y": 58.802,
+    "z": 0.0
+   },
+   "rotZ": 295.6,
+   "scale": 1.084
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -42.345,
+    "y": -66.851,
+    "z": 0.0
+   },
+   "rotZ": 236.5,
+   "scale": 1.171
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -27.963,
+    "y": -112.448,
+    "z": 0.0
+   },
+   "rotZ": 185.9,
+   "scale": 0.966
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -47.471,
+    "y": 2.676,
+    "z": 0.0
+   },
+   "rotZ": 348.5,
+   "scale": 1.191
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 63.754,
+    "y": -53.768,
+    "z": 0.0
+   },
+   "rotZ": 159.0,
+   "scale": 1.203
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -112.835,
+    "y": 9.879,
+    "z": 0.0
+   },
+   "rotZ": 59.7,
+   "scale": 0.974
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 63.37,
+    "y": 65.809,
+    "z": 0.0
+   },
+   "rotZ": 171.9,
+   "scale": 1.002
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -52.982,
+    "y": -19.61,
+    "z": 0.0
+   },
+   "rotZ": 253.3,
+   "scale": 0.9
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 68.624,
+    "y": 45.037,
+    "z": 0.0
+   },
+   "rotZ": 209.4,
+   "scale": 1.199
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": 26.258,
+    "y": -91.95,
+    "z": 0.0
+   },
+   "rotZ": 337.7,
+   "scale": 1.048
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 74.758,
+    "y": 49.419,
+    "z": 0.0
+   },
+   "rotZ": 248.5,
+   "scale": 0.986
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": -35.37,
+    "y": -107.642,
+    "z": 0.0
+   },
+   "rotZ": 14.8,
+   "scale": 0.97
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -105.095,
+    "y": -10.685,
+    "z": 0.0
+   },
+   "rotZ": 306.5,
+   "scale": 1.27
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 75.633,
+    "y": -66.551,
+    "z": 0.0
+   },
+   "rotZ": 193.8,
+   "scale": 0.869
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -15.182,
+    "y": 74.209,
+    "z": 0.0
+   },
+   "rotZ": 187.4,
+   "scale": 1.275
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -51.53,
+    "y": 50.622,
+    "z": 0.0
+   },
+   "rotZ": 249.0,
+   "scale": 0.872
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 99.416,
+    "y": -28.781,
+    "z": 0.0
+   },
+   "rotZ": 256.8,
+   "scale": 1.029
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -0.952,
+    "y": -112.778,
+    "z": 0.0
+   },
+   "rotZ": 106.2,
+   "scale": 0.951
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -34.422,
+    "y": 64.539,
+    "z": 0.0
+   },
+   "rotZ": 186.9,
+   "scale": 0.892
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -55.83,
+    "y": -8.597,
+    "z": 0.0
+   },
+   "rotZ": 358.9,
+   "scale": 1.219
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -53.422,
+    "y": 78.959,
+    "z": 0.0
+   },
+   "rotZ": 73.1,
+   "scale": 1.1
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -58.979,
+    "y": -95.393,
+    "z": 0.0
+   },
+   "rotZ": 111.6,
+   "scale": 0.957
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 62.558,
+    "y": 49.951,
+    "z": 0.0
+   },
+   "rotZ": 99.3,
+   "scale": 1.012
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -45.909,
+    "y": 93.777,
+    "z": 0.0
+   },
+   "rotZ": 196.8,
+   "scale": 1.027
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -17.386,
+    "y": 64.955,
+    "z": 0.0
+   },
+   "rotZ": 223.8,
+   "scale": 1.016
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 48.197,
+    "y": -104.255,
+    "z": 0.0
+   },
+   "rotZ": 78.3,
+   "scale": 1.16
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 14.234,
+    "y": -52.266,
+    "z": 0.0
+   },
+   "rotZ": 131.2,
+   "scale": 1.089
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 17.978,
+    "y": 112.834,
+    "z": 0.0
+   },
+   "rotZ": 310.8,
+   "scale": 1.071
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -54.73,
+    "y": 56.711,
+    "z": 0.0
+   },
+   "rotZ": 296.3,
+   "scale": 1.105
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 104.516,
+    "y": 49.683,
+    "z": 0.0
+   },
+   "rotZ": 224.7,
+   "scale": 1.121
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -31.925,
+    "y": 52.549,
+    "z": 0.0
+   },
+   "rotZ": 50.4,
+   "scale": 1.04
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 79.805,
+    "y": -9.359,
+    "z": 0.0
+   },
+   "rotZ": 272.2,
+   "scale": 1.233
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 73.989,
+    "y": 35.718,
+    "z": 0.0
+   },
+   "rotZ": 132.8,
+   "scale": 0.87
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 101.726,
+    "y": 8.279,
+    "z": 0.0
+   },
+   "rotZ": 217.0,
+   "scale": 1.171
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -45.847,
+    "y": -90.414,
+    "z": 0.0
+   },
+   "rotZ": 260.0,
+   "scale": 1.28
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": -18.54,
+    "y": -102.66,
+    "z": 0.0
+   },
+   "rotZ": 255.5,
+   "scale": 0.908
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 51.092,
+    "y": -24.322,
+    "z": 0.0
+   },
+   "rotZ": 69.8,
+   "scale": 1.008
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 30.842,
+    "y": 41.374,
+    "z": 0.0
+   },
+   "rotZ": 202.8,
+   "scale": 1.138
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -56.542,
+    "y": -50.777,
+    "z": 0.0
+   },
+   "rotZ": 47.0,
+   "scale": 1.194
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": -25.035,
+    "y": -99.37,
+    "z": 0.0
+   },
+   "rotZ": 64.6,
+   "scale": 0.996
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 23.689,
+    "y": -22.177,
+    "z": 0.0
+   },
+   "rotZ": 145.1,
+   "scale": 0.93
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 60.358,
+    "y": 17.704,
+    "z": 0.0
+   },
+   "rotZ": 329.5,
+   "scale": 1.287
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 84.471,
+    "y": 45.326,
+    "z": 0.0
+   },
+   "rotZ": 71.3,
+   "scale": 1.113
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 99.581,
+    "y": -18.246,
+    "z": 0.0
+   },
+   "rotZ": 223.2,
+   "scale": 0.989
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 41.062,
+    "y": -70.878,
+    "z": 0.0
+   },
+   "rotZ": 263.9,
+   "scale": 0.902
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 0.343,
+    "y": 25.249,
+    "z": 0.0
+   },
+   "rotZ": 168.4,
+   "scale": 0.881
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -12.905,
+    "y": -53.83,
+    "z": 0.0
+   },
+   "rotZ": 253.7,
+   "scale": 1.159
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 38.923,
+    "y": 62.824,
+    "z": 0.0
+   },
+   "rotZ": 12.0,
+   "scale": 0.856
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": -56.095,
+    "y": -49.612,
+    "z": 0.0
+   },
+   "rotZ": 61.3,
+   "scale": 1.297
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 20.786,
+    "y": 30.228,
+    "z": 0.0
+   },
+   "rotZ": 192.1,
+   "scale": 1.284
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -3.437,
+    "y": 90.909,
+    "z": 0.0
+   },
+   "rotZ": 261.0,
+   "scale": 1.067
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -52.053,
+    "y": 6.709,
+    "z": 0.0
+   },
+   "rotZ": 71.9,
+   "scale": 0.882
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 90.069,
+    "y": -37.781,
+    "z": 0.0
+   },
+   "rotZ": 44.2,
+   "scale": 1.201
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 6.676,
+    "y": -84.959,
+    "z": 0.0
+   },
+   "rotZ": 242.8,
+   "scale": 1.033
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 68.027,
+    "y": 3.938,
+    "z": 0.0
+   },
+   "rotZ": 153.7,
+   "scale": 1.272
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": 96.801,
+    "y": 58.744,
+    "z": 0.0
+   },
+   "rotZ": 310.8,
+   "scale": 1.017
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -86.101,
+    "y": -25.183,
+    "z": 0.0
+   },
+   "rotZ": 326.3,
+   "scale": 1.297
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": 108.85,
+    "y": 23.064,
+    "z": 0.0
+   },
+   "rotZ": 201.4,
+   "scale": 1.123
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 40.704,
+    "y": 105.925,
+    "z": 0.0
+   },
+   "rotZ": 330.6,
+   "scale": 1.044
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -9.294,
+    "y": -101.798,
+    "z": 0.0
+   },
+   "rotZ": 8.5,
+   "scale": 1.278
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -10.634,
+    "y": 24.621,
+    "z": 0.0
+   },
+   "rotZ": 307.5,
+   "scale": 0.877
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 13.772,
+    "y": 93.253,
+    "z": 0.0
+   },
+   "rotZ": 134.5,
+   "scale": 1.082
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 46.158,
+    "y": 48.623,
+    "z": 0.0
+   },
+   "rotZ": 359.8,
+   "scale": 0.904
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -60.207,
+    "y": -25.07,
+    "z": 0.0
+   },
+   "rotZ": 177.1,
+   "scale": 1.16
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -68.137,
+    "y": -3.39,
+    "z": 0.0
+   },
+   "rotZ": 330.0,
+   "scale": 0.918
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 88.551,
+    "y": 35.845,
+    "z": 0.0
+   },
+   "rotZ": 274.5,
+   "scale": 0.898
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 58.283,
+    "y": -17.108,
+    "z": 0.0
+   },
+   "rotZ": 299.7,
+   "scale": 1.237
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 49.997,
+    "y": -21.398,
+    "z": 0.0
+   },
+   "rotZ": 324.5,
+   "scale": 0.906
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -43.149,
+    "y": -64.214,
+    "z": 0.0
+   },
+   "rotZ": 43.6,
+   "scale": 1.137
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -0.517,
+    "y": -75.2,
+    "z": 0.0
+   },
+   "rotZ": 17.5,
+   "scale": 0.989
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": 88.221,
+    "y": 49.226,
+    "z": 0.0
+   },
+   "rotZ": 248.8,
+   "scale": 1.213
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -42.976,
+    "y": 59.318,
+    "z": 0.0
+   },
+   "rotZ": 208.8,
+   "scale": 0.861
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 39.741,
+    "y": -74.464,
+    "z": 0.0
+   },
+   "rotZ": 312.1,
+   "scale": 0.916
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -46.221,
+    "y": 9.801,
+    "z": 0.0
+   },
+   "rotZ": 230.8,
+   "scale": 0.944
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 74.53,
+    "y": -52.233,
+    "z": 0.0
+   },
+   "rotZ": 338.9,
+   "scale": 1.028
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -106.757,
+    "y": -4.31,
+    "z": 0.0
+   },
+   "rotZ": 175.1,
+   "scale": 1.084
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -86.247,
+    "y": 23.884,
+    "z": 0.0
+   },
+   "rotZ": 63.2,
+   "scale": 1.054
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 27.426,
+    "y": 49.471,
+    "z": 0.0
+   },
+   "rotZ": 351.7,
+   "scale": 1.256
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -62.086,
+    "y": -70.713,
+    "z": 0.0
+   },
+   "rotZ": 164.3,
+   "scale": 1.103
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 69.927,
+    "y": -73.126,
+    "z": 0.0
+   },
+   "rotZ": 29.9,
+   "scale": 0.997
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -18.275,
+    "y": 109.923,
+    "z": 0.0
+   },
+   "rotZ": 333.4,
+   "scale": 0.858
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -7.781,
+    "y": -61.482,
+    "z": 0.0
+   },
+   "rotZ": 289.6,
+   "scale": 1.276
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 52.427,
+    "y": 49.245,
+    "z": 0.0
+   },
+   "rotZ": 288.9,
+   "scale": 1.046
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 81.183,
+    "y": -40.95,
+    "z": 0.0
+   },
+   "rotZ": 201.6,
+   "scale": 0.99
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -44.846,
+    "y": 21.641,
+    "z": 0.0
+   },
+   "rotZ": 80.3,
+   "scale": 1.275
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 56.583,
+    "y": -4.665,
+    "z": 0.0
+   },
+   "rotZ": 48.7,
+   "scale": 1.079
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -88.334,
+    "y": 9.932,
+    "z": 0.0
+   },
+   "rotZ": 130.2,
+   "scale": 0.921
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 46.92,
+    "y": -102.309,
+    "z": 0.0
+   },
+   "rotZ": 88.5,
+   "scale": 1.307
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -76.418,
+    "y": -74.446,
+    "z": 0.0
+   },
+   "rotZ": 309.8,
+   "scale": 1.033
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -20.809,
+    "y": 119.761,
+    "z": 0.0
+   },
+   "rotZ": 109.0,
+   "scale": 1.286
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -98.661,
+    "y": -50.144,
+    "z": 0.0
+   },
+   "rotZ": 136.7,
+   "scale": 1.011
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -92.4,
+    "y": -77.025,
+    "z": 0.0
+   },
+   "rotZ": 337.6,
+   "scale": 1.068
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 29.225,
+    "y": 104.02,
+    "z": 0.0
+   },
+   "rotZ": 41.9,
+   "scale": 1.231
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 57.215,
+    "y": -95.577,
+    "z": 0.0
+   },
+   "rotZ": 12.4,
+   "scale": 1.134
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -103.434,
+    "y": 53.344,
+    "z": 0.0
+   },
+   "rotZ": 161.9,
+   "scale": 1.284
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 58.285,
+    "y": -96.927,
+    "z": 0.0
+   },
+   "rotZ": 124.9,
+   "scale": 1.375
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 50.976,
+    "y": -107.881,
+    "z": 0.0
+   },
+   "rotZ": 300.2,
+   "scale": 1.052
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 107.0,
+    "y": -51.444,
+    "z": 0.0
+   },
+   "rotZ": 174.6,
+   "scale": 1.007
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": -47.451,
+    "y": 97.137,
+    "z": 0.0
+   },
+   "rotZ": 280.3,
+   "scale": 1.172
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -6.356,
+    "y": 112.522,
+    "z": 0.0
+   },
+   "rotZ": 359.7,
+   "scale": 1.084
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -116.762,
+    "y": -19.949,
+    "z": 0.0
+   },
+   "rotZ": 326.5,
+   "scale": 1.098
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": 86.192,
+    "y": -86.268,
+    "z": 0.0
+   },
+   "rotZ": 230.0,
+   "scale": 1.167
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 29.493,
+    "y": 113.045,
+    "z": 0.0
+   },
+   "rotZ": 225.1,
+   "scale": 1.133
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 1.222,
+    "y": 106.408,
+    "z": 0.0
+   },
+   "rotZ": 109.5,
+   "scale": 1.023
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 68.705,
+    "y": -99.624,
+    "z": 0.0
+   },
+   "rotZ": 74.2,
+   "scale": 1.013
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 6.116,
+    "y": -113.671,
+    "z": 0.0
+   },
+   "rotZ": 103.7,
+   "scale": 1.102
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 88.015,
+    "y": -81.193,
+    "z": 0.0
+   },
+   "rotZ": 333.7,
+   "scale": 1.048
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": 69.645,
+    "y": 89.403,
+    "z": 0.0
+   },
+   "rotZ": 22.6,
+   "scale": 1.194
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -72.076,
+    "y": 97.544,
+    "z": 0.0
+   },
+   "rotZ": 318.5,
+   "scale": 1.299
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -110.683,
+    "y": -23.333,
+    "z": 0.0
+   },
+   "rotZ": 45.1,
+   "scale": 1.119
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 117.472,
+    "y": -17.675,
+    "z": 0.0
+   },
+   "rotZ": 39.4,
+   "scale": 1.182
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -96.192,
+    "y": -55.317,
+    "z": 0.0
+   },
+   "rotZ": 225.9,
+   "scale": 1.397
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 108.961,
+    "y": 7.523,
+    "z": 0.0
+   },
+   "rotZ": 228.1,
+   "scale": 1.198
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 106.177,
+    "y": 1.804,
+    "z": 0.0
+   },
+   "rotZ": 209.8,
+   "scale": 1.273
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 101.951,
+    "y": 32.884,
+    "z": 0.0
+   },
+   "rotZ": 143.5,
+   "scale": 1.289
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": -0.291,
+    "y": 115.83,
+    "z": 0.0
+   },
+   "rotZ": 244.8,
+   "scale": 1.166
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 45.934,
+    "y": 96.501,
+    "z": 0.0
+   },
+   "rotZ": 63.0,
+   "scale": 1.348
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 118.499,
+    "y": 10.885,
+    "z": 0.0
+   },
+   "rotZ": 348.3,
+   "scale": 1.249
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -119.066,
+    "y": 8.187,
+    "z": 0.0
+   },
+   "rotZ": 222.5,
+   "scale": 1.194
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -20.742,
+    "y": 107.833,
+    "z": 0.0
+   },
+   "rotZ": 277.6,
+   "scale": 1.339
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 23.42,
+    "y": -104.292,
+    "z": 0.0
+   },
+   "rotZ": 100.6,
+   "scale": 1.146
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 58.362,
+    "y": 104.743,
+    "z": 0.0
+   },
+   "rotZ": 128.2,
+   "scale": 1.388
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -100.871,
+    "y": 35.813,
+    "z": 0.0
+   },
+   "rotZ": 98.7,
+   "scale": 1.184
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 117.434,
+    "y": -19.242,
+    "z": 0.0
+   },
+   "rotZ": 324.7,
+   "scale": 1.267
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 106.722,
+    "y": 16.725,
+    "z": 0.0
+   },
+   "rotZ": 53.8,
+   "scale": 1.035
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 40.022,
+    "y": 100.308,
+    "z": 0.0
+   },
+   "rotZ": 348.1,
+   "scale": 1.19
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": -85.816,
+    "y": 70.409,
+    "z": 0.0
+   },
+   "rotZ": 196.2,
+   "scale": 1.209
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -103.873,
+    "y": 27.825,
+    "z": 0.0
+   },
+   "rotZ": 29.0,
+   "scale": 1.171
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 104.773,
+    "y": -39.252,
+    "z": 0.0
+   },
+   "rotZ": 197.2,
+   "scale": 1.137
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -88.934,
+    "y": 64.67,
+    "z": 0.0
+   },
+   "rotZ": 138.6,
+   "scale": 1.079
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 39.869,
+    "y": 114.315,
+    "z": 0.0
+   },
+   "rotZ": 166.3,
+   "scale": 1.172
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 96.072,
+    "y": -67.142,
+    "z": 0.0
+   },
+   "rotZ": 166.9,
+   "scale": 1.035
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 101.325,
+    "y": -36.472,
+    "z": 0.0
+   },
+   "rotZ": 174.2,
+   "scale": 1.244
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 103.253,
+    "y": 37.056,
+    "z": 0.0
+   },
+   "rotZ": 67.4,
+   "scale": 1.251
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": 65.503,
+    "y": 101.375,
+    "z": 0.0
+   },
+   "rotZ": 21.1,
+   "scale": 1.047
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 98.195,
+    "y": 66.926,
+    "z": 0.0
+   },
+   "rotZ": 261.5,
+   "scale": 1.15
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -100.132,
+    "y": -56.185,
+    "z": 0.0
+   },
+   "rotZ": 110.8,
+   "scale": 1.113
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 35.526,
+    "y": -110.41,
+    "z": 0.0
+   },
+   "rotZ": 136.1,
+   "scale": 1.065
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": -117.666,
+    "y": -19.022,
+    "z": 0.0
+   },
+   "rotZ": 159.5,
+   "scale": 1.271
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -64.538,
+    "y": -87.411,
+    "z": 0.0
+   },
+   "rotZ": 134.7,
+   "scale": 1.349
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -83.239,
+    "y": 67.502,
+    "z": 0.0
+   },
+   "rotZ": 302.2,
+   "scale": 1.117
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 76.404,
+    "y": -84.601,
+    "z": 0.0
+   },
+   "rotZ": 285.8,
+   "scale": 1.221
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 84.429,
+    "y": 85.797,
+    "z": 0.0
+   },
+   "rotZ": 277.5,
+   "scale": 1.125
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 35.249,
+    "y": 104.028,
+    "z": 0.0
+   },
+   "rotZ": 73.0,
+   "scale": 1.123
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": -72.238,
+    "y": -78.064,
+    "z": 0.0
+   },
+   "rotZ": 239.9,
+   "scale": 1.11
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadA_380x390x800",
+   "pos": {
+    "x": 31.028,
+    "y": -107.919,
+    "z": 0.0
+   },
+   "rotZ": 200.2,
+   "scale": 1.213
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 7.708,
+    "y": -111.106,
+    "z": 0.0
+   },
+   "rotZ": 109.5,
+   "scale": 1.09
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 74.803,
+    "y": -86.744,
+    "z": 0.0
+   },
+   "rotZ": 139.0,
+   "scale": 1.041
+  },
+  {
+   "mesh": "SM_Forest_Tree_Twisted_420x220x670",
+   "pos": {
+    "x": -112.633,
+    "y": -21.604,
+    "z": 0.0
+   },
+   "rotZ": 15.4,
+   "scale": 1.074
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 1.382,
+    "y": -106.331,
+    "z": 0.0
+   },
+   "rotZ": 196.3,
+   "scale": 1.397
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -88.741,
+    "y": -67.511,
+    "z": 0.0
+   },
+   "rotZ": 252.2,
+   "scale": 1.022
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyB_750x700x1190",
+   "pos": {
+    "x": 67.881,
+    "y": -87.804,
+    "z": 0.0
+   },
+   "rotZ": 147.0,
+   "scale": 1.112
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": 96.068,
+    "y": 46.572,
+    "z": 0.0
+   },
+   "rotZ": 244.8,
+   "scale": 1.179
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": 106.029,
+    "y": 12.945,
+    "z": 0.0
+   },
+   "rotZ": 282.6,
+   "scale": 1.253
+  },
+  {
+   "mesh": "SM_Forest_Tree_DeadB_360x510x1100",
+   "pos": {
+    "x": -5.763,
+    "y": 111.302,
+    "z": 0.0
+   },
+   "rotZ": 276.9,
+   "scale": 1.387
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -80.731,
+    "y": 78.497,
+    "z": 0.0
+   },
+   "rotZ": 77.6,
+   "scale": 1.343
+  },
+  {
+   "mesh": "SM_Forest_Tree_LeafyA_600x510x900",
+   "pos": {
+    "x": -118.732,
+    "y": -11.535,
+    "z": 0.0
+   },
+   "rotZ": 276.3,
+   "scale": 1.163
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -69.141,
+    "y": -50.132,
+    "z": 0.0
+   },
+   "rotZ": 255.9,
+   "scale": 0.921
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -82.101,
+    "y": -69.585,
+    "z": 0.0
+   },
+   "rotZ": 293.9,
+   "scale": 1.048
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -68.023,
+    "y": -63.631,
+    "z": 0.0
+   },
+   "rotZ": 45.6,
+   "scale": 1.099
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 50.373,
+    "y": 1.506,
+    "z": 0.0
+   },
+   "rotZ": 173.6,
+   "scale": 1.258
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 20.051,
+    "y": -11.759,
+    "z": 0.0
+   },
+   "rotZ": 1.3,
+   "scale": 0.853
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 108.431,
+    "y": -41.031,
+    "z": 0.0
+   },
+   "rotZ": 246.8,
+   "scale": 1.086
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 24.145,
+    "y": -80.0,
+    "z": 0.0
+   },
+   "rotZ": 42.3,
+   "scale": 0.858
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -50.424,
+    "y": -36.24,
+    "z": 0.0
+   },
+   "rotZ": 160.4,
+   "scale": 0.863
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 34.809,
+    "y": 28.953,
+    "z": 0.0
+   },
+   "rotZ": 34.7,
+   "scale": 1.041
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 34.435,
+    "y": 18.046,
+    "z": 0.0
+   },
+   "rotZ": 147.7,
+   "scale": 0.908
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 50.464,
+    "y": 47.49,
+    "z": 0.0
+   },
+   "rotZ": 311.3,
+   "scale": 0.928
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 114.476,
+    "y": -3.896,
+    "z": 0.0
+   },
+   "rotZ": 298.9,
+   "scale": 1.175
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -52.192,
+    "y": -28.202,
+    "z": 0.0
+   },
+   "rotZ": 246.5,
+   "scale": 1.016
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 88.095,
+    "y": 0.789,
+    "z": 0.0
+   },
+   "rotZ": 159.9,
+   "scale": 1.315
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -58.108,
+    "y": 42.016,
+    "z": 0.0
+   },
+   "rotZ": 335.8,
+   "scale": 1.057
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -20.253,
+    "y": 11.438,
+    "z": 0.0
+   },
+   "rotZ": 277.4,
+   "scale": 0.945
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 44.624,
+    "y": 76.552,
+    "z": 0.0
+   },
+   "rotZ": 296.9,
+   "scale": 1.304
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -47.82,
+    "y": -82.826,
+    "z": 0.0
+   },
+   "rotZ": 71.2,
+   "scale": 1.011
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 69.997,
+    "y": -14.433,
+    "z": 0.0
+   },
+   "rotZ": 157.9,
+   "scale": 0.87
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 104.885,
+    "y": -45.295,
+    "z": 0.0
+   },
+   "rotZ": 123.1,
+   "scale": 0.983
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -25.653,
+    "y": 7.182,
+    "z": 0.0
+   },
+   "rotZ": 95.2,
+   "scale": 0.819
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 81.73,
+    "y": -45.157,
+    "z": 0.0
+   },
+   "rotZ": 54.0,
+   "scale": 1.256
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -62.562,
+    "y": 2.324,
+    "z": 0.0
+   },
+   "rotZ": 330.2,
+   "scale": 0.937
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -12.419,
+    "y": 108.238,
+    "z": 0.0
+   },
+   "rotZ": 83.7,
+   "scale": 0.96
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 52.389,
+    "y": 82.646,
+    "z": 0.0
+   },
+   "rotZ": 168.0,
+   "scale": 0.893
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 22.578,
+    "y": 43.096,
+    "z": 0.0
+   },
+   "rotZ": 303.7,
+   "scale": 0.999
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -88.747,
+    "y": 10.9,
+    "z": 0.0
+   },
+   "rotZ": 202.1,
+   "scale": 1.268
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 20.339,
+    "y": 57.827,
+    "z": 0.0
+   },
+   "rotZ": 176.3,
+   "scale": 0.98
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -74.358,
+    "y": 27.179,
+    "z": 0.0
+   },
+   "rotZ": 359.3,
+   "scale": 1.196
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 5.531,
+    "y": -18.292,
+    "z": 0.0
+   },
+   "rotZ": 133.8,
+   "scale": 0.928
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 76.759,
+    "y": 84.326,
+    "z": 0.0
+   },
+   "rotZ": 34.5,
+   "scale": 1.222
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -10.861,
+    "y": -92.243,
+    "z": 0.0
+   },
+   "rotZ": 18.5,
+   "scale": 1.218
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -28.795,
+    "y": -83.728,
+    "z": 0.0
+   },
+   "rotZ": 257.8,
+   "scale": 0.842
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -76.758,
+    "y": 20.849,
+    "z": 0.0
+   },
+   "rotZ": 244.4,
+   "scale": 1.014
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 87.483,
+    "y": -51.638,
+    "z": 0.0
+   },
+   "rotZ": 257.1,
+   "scale": 1.111
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 68.007,
+    "y": -75.4,
+    "z": 0.0
+   },
+   "rotZ": 233.9,
+   "scale": 1.231
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 39.87,
+    "y": 12.293,
+    "z": 0.0
+   },
+   "rotZ": 281.5,
+   "scale": 1.2
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -22.931,
+    "y": -74.161,
+    "z": 0.0
+   },
+   "rotZ": 224.2,
+   "scale": 1.055
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -16.867,
+    "y": -59.732,
+    "z": 0.0
+   },
+   "rotZ": 254.1,
+   "scale": 0.844
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 13.916,
+    "y": 78.569,
+    "z": 0.0
+   },
+   "rotZ": 128.1,
+   "scale": 1.298
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -43.99,
+    "y": 43.919,
+    "z": 0.0
+   },
+   "rotZ": 237.4,
+   "scale": 1.004
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -44.705,
+    "y": 32.361,
+    "z": 0.0
+   },
+   "rotZ": 220.9,
+   "scale": 1.011
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 16.511,
+    "y": 32.404,
+    "z": 0.0
+   },
+   "rotZ": 230.4,
+   "scale": 1.246
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 100.637,
+    "y": -37.082,
+    "z": 0.0
+   },
+   "rotZ": 41.7,
+   "scale": 1.282
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -49.94,
+    "y": -9.876,
+    "z": 0.0
+   },
+   "rotZ": 237.3,
+   "scale": 0.915
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -41.859,
+    "y": 7.136,
+    "z": 0.0
+   },
+   "rotZ": 207.8,
+   "scale": 0.962
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 23.817,
+    "y": -106.897,
+    "z": 0.0
+   },
+   "rotZ": 139.6,
+   "scale": 1.228
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 76.388,
+    "y": -9.023,
+    "z": 0.0
+   },
+   "rotZ": 248.6,
+   "scale": 1.218
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 43.766,
+    "y": 17.965,
+    "z": 0.0
+   },
+   "rotZ": 42.9,
+   "scale": 0.817
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -81.27,
+    "y": 15.29,
+    "z": 0.0
+   },
+   "rotZ": 136.2,
+   "scale": 1.01
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -48.802,
+    "y": -14.796,
+    "z": 0.0
+   },
+   "rotZ": 344.0,
+   "scale": 0.968
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -25.297,
+    "y": -22.026,
+    "z": 0.0
+   },
+   "rotZ": 182.1,
+   "scale": 1.29
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 49.421,
+    "y": 81.484,
+    "z": 0.0
+   },
+   "rotZ": 231.4,
+   "scale": 1.05
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 48.002,
+    "y": 31.345,
+    "z": 0.0
+   },
+   "rotZ": 313.5,
+   "scale": 0.898
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 110.242,
+    "y": -24.804,
+    "z": 0.0
+   },
+   "rotZ": 242.4,
+   "scale": 0.829
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -14.381,
+    "y": -67.981,
+    "z": 0.0
+   },
+   "rotZ": 350.7,
+   "scale": 1.053
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -13.231,
+    "y": -12.31,
+    "z": 0.0
+   },
+   "rotZ": 177.6,
+   "scale": 1.322
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 106.692,
+    "y": -19.596,
+    "z": 0.0
+   },
+   "rotZ": 162.2,
+   "scale": 0.934
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 61.382,
+    "y": 75.058,
+    "z": 0.0
+   },
+   "rotZ": 89.0,
+   "scale": 1.253
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 50.347,
+    "y": -71.845,
+    "z": 0.0
+   },
+   "rotZ": 68.3,
+   "scale": 0.871
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -22.874,
+    "y": 98.012,
+    "z": 0.0
+   },
+   "rotZ": 117.6,
+   "scale": 1.292
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -83.763,
+    "y": 62.1,
+    "z": 0.0
+   },
+   "rotZ": 310.6,
+   "scale": 1.165
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 76.108,
+    "y": 44.67,
+    "z": 0.0
+   },
+   "rotZ": 80.8,
+   "scale": 0.993
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 25.331,
+    "y": -70.001,
+    "z": 0.0
+   },
+   "rotZ": 64.9,
+   "scale": 0.854
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -8.733,
+    "y": -46.388,
+    "z": 0.0
+   },
+   "rotZ": 330.7,
+   "scale": 1.004
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 40.235,
+    "y": 86.435,
+    "z": 0.0
+   },
+   "rotZ": 204.5,
+   "scale": 0.842
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -29.517,
+    "y": -105.806,
+    "z": 0.0
+   },
+   "rotZ": 310.6,
+   "scale": 1.036
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 79.34,
+    "y": -47.771,
+    "z": 0.0
+   },
+   "rotZ": 48.9,
+   "scale": 1.217
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -33.889,
+    "y": 84.413,
+    "z": 0.0
+   },
+   "rotZ": 234.9,
+   "scale": 1.062
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 42.248,
+    "y": 53.359,
+    "z": 0.0
+   },
+   "rotZ": 210.2,
+   "scale": 1.119
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 21.673,
+    "y": -21.268,
+    "z": 0.0
+   },
+   "rotZ": 322.3,
+   "scale": 1.082
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 95.681,
+    "y": 48.703,
+    "z": 0.0
+   },
+   "rotZ": 303.4,
+   "scale": 1.221
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -38.097,
+    "y": -50.711,
+    "z": 0.0
+   },
+   "rotZ": 297.1,
+   "scale": 1.055
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 28.846,
+    "y": 25.622,
+    "z": 0.0
+   },
+   "rotZ": 0.3,
+   "scale": 1.076
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 34.55,
+    "y": 21.377,
+    "z": 0.0
+   },
+   "rotZ": 101.4,
+   "scale": 1.29
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -46.459,
+    "y": 49.04,
+    "z": 0.0
+   },
+   "rotZ": 185.5,
+   "scale": 1.298
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 84.343,
+    "y": 20.755,
+    "z": 0.0
+   },
+   "rotZ": 236.2,
+   "scale": 0.953
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -46.191,
+    "y": 31.836,
+    "z": 0.0
+   },
+   "rotZ": 359.7,
+   "scale": 1.068
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -45.625,
+    "y": -37.982,
+    "z": 0.0
+   },
+   "rotZ": 331.4,
+   "scale": 1.311
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 49.936,
+    "y": 92.692,
+    "z": 0.0
+   },
+   "rotZ": 207.7,
+   "scale": 0.92
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 40.317,
+    "y": -19.409,
+    "z": 0.0
+   },
+   "rotZ": 183.8,
+   "scale": 1.247
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 32.034,
+    "y": 41.329,
+    "z": 0.0
+   },
+   "rotZ": 6.7,
+   "scale": 1.339
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 79.306,
+    "y": -44.302,
+    "z": 0.0
+   },
+   "rotZ": 300.6,
+   "scale": 1.15
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -91.072,
+    "y": 17.487,
+    "z": 0.0
+   },
+   "rotZ": 27.5,
+   "scale": 1.22
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -85.732,
+    "y": -23.373,
+    "z": 0.0
+   },
+   "rotZ": 57.6,
+   "scale": 1.079
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 57.247,
+    "y": -41.195,
+    "z": 0.0
+   },
+   "rotZ": 308.4,
+   "scale": 1.295
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 80.949,
+    "y": 61.058,
+    "z": 0.0
+   },
+   "rotZ": 150.5,
+   "scale": 0.825
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 8.517,
+    "y": 65.668,
+    "z": 0.0
+   },
+   "rotZ": 274.3,
+   "scale": 1.081
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -106.893,
+    "y": -3.223,
+    "z": 0.0
+   },
+   "rotZ": 254.5,
+   "scale": 1.344
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -27.408,
+    "y": 63.641,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "scale": 1.34
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 114.289,
+    "y": -17.699,
+    "z": 0.0
+   },
+   "rotZ": 126.2,
+   "scale": 1.248
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -24.168,
+    "y": -3.612,
+    "z": 0.0
+   },
+   "rotZ": 233.9,
+   "scale": 1.085
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 48.235,
+    "y": -42.46,
+    "z": 0.0
+   },
+   "rotZ": 314.8,
+   "scale": 1.301
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 104.444,
+    "y": -37.525,
+    "z": 0.0
+   },
+   "rotZ": 127.2,
+   "scale": 0.88
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 29.837,
+    "y": -44.038,
+    "z": 0.0
+   },
+   "rotZ": 110.2,
+   "scale": 1.342
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -54.905,
+    "y": 78.551,
+    "z": 0.0
+   },
+   "rotZ": 27.4,
+   "scale": 0.874
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 82.496,
+    "y": -16.547,
+    "z": 0.0
+   },
+   "rotZ": 51.6,
+   "scale": 1.209
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 6.197,
+    "y": 21.161,
+    "z": 0.0
+   },
+   "rotZ": 87.6,
+   "scale": 1.114
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -81.727,
+    "y": -43.429,
+    "z": 0.0
+   },
+   "rotZ": 93.8,
+   "scale": 1.091
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 41.792,
+    "y": -51.0,
+    "z": 0.0
+   },
+   "rotZ": 357.5,
+   "scale": 1.073
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 38.205,
+    "y": 45.281,
+    "z": 0.0
+   },
+   "rotZ": 48.1,
+   "scale": 0.942
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -65.485,
+    "y": 53.306,
+    "z": 0.0
+   },
+   "rotZ": 299.6,
+   "scale": 0.905
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -85.016,
+    "y": -50.45,
+    "z": 0.0
+   },
+   "rotZ": 56.8,
+   "scale": 1.157
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -43.167,
+    "y": -33.13,
+    "z": 0.0
+   },
+   "rotZ": 302.4,
+   "scale": 1.029
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 103.129,
+    "y": 19.028,
+    "z": 0.0
+   },
+   "rotZ": 241.0,
+   "scale": 0.848
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 0.419,
+    "y": -89.849,
+    "z": 0.0
+   },
+   "rotZ": 241.2,
+   "scale": 0.959
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -59.767,
+    "y": 41.421,
+    "z": 0.0
+   },
+   "rotZ": 279.1,
+   "scale": 1.141
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -29.943,
+    "y": -41.238,
+    "z": 0.0
+   },
+   "rotZ": 192.9,
+   "scale": 0.989
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 16.915,
+    "y": -77.563,
+    "z": 0.0
+   },
+   "rotZ": 140.3,
+   "scale": 1.099
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 23.284,
+    "y": 53.18,
+    "z": 0.0
+   },
+   "rotZ": 21.6,
+   "scale": 1.041
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -8.616,
+    "y": -56.846,
+    "z": 0.0
+   },
+   "rotZ": 176.3,
+   "scale": 0.966
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -12.495,
+    "y": -100.168,
+    "z": 0.0
+   },
+   "rotZ": 17.1,
+   "scale": 1.228
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -48.84,
+    "y": -72.289,
+    "z": 0.0
+   },
+   "rotZ": 346.4,
+   "scale": 1.049
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 13.856,
+    "y": -97.842,
+    "z": 0.0
+   },
+   "rotZ": 20.6,
+   "scale": 1.199
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -43.884,
+    "y": 19.57,
+    "z": 0.0
+   },
+   "rotZ": 108.2,
+   "scale": 1.047
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 12.999,
+    "y": -47.543,
+    "z": 0.0
+   },
+   "rotZ": 120.6,
+   "scale": 1.22
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 81.905,
+    "y": 25.264,
+    "z": 0.0
+   },
+   "rotZ": 138.9,
+   "scale": 1.029
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -21.491,
+    "y": -44.464,
+    "z": 0.0
+   },
+   "rotZ": 32.3,
+   "scale": 1.246
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -39.746,
+    "y": 108.69,
+    "z": 0.0
+   },
+   "rotZ": 165.2,
+   "scale": 1.318
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -3.593,
+    "y": 46.579,
+    "z": 0.0
+   },
+   "rotZ": 10.4,
+   "scale": 1.154
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": -41.081,
+    "y": 2.541,
+    "z": 0.0
+   },
+   "rotZ": 137.3,
+   "scale": 1.088
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -97.338,
+    "y": -36.621,
+    "z": 0.0
+   },
+   "rotZ": 98.5,
+   "scale": 1.028
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 84.216,
+    "y": 58.548,
+    "z": 0.0
+   },
+   "rotZ": 186.1,
+   "scale": 0.898
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -6.882,
+    "y": 108.338,
+    "z": 0.0
+   },
+   "rotZ": 290.8,
+   "scale": 1.148
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -55.079,
+    "y": 97.93,
+    "z": 0.0
+   },
+   "rotZ": 20.0,
+   "scale": 1.294
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 99.764,
+    "y": 40.996,
+    "z": 0.0
+   },
+   "rotZ": 190.3,
+   "scale": 1.3
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 15.047,
+    "y": -26.027,
+    "z": 0.0
+   },
+   "rotZ": 54.8,
+   "scale": 1.064
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -84.385,
+    "y": -63.173,
+    "z": 0.0
+   },
+   "rotZ": 195.9,
+   "scale": 0.956
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 60.313,
+    "y": -79.025,
+    "z": 0.0
+   },
+   "rotZ": 98.1,
+   "scale": 1.226
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 13.152,
+    "y": -4.369,
+    "z": 0.0
+   },
+   "rotZ": 245.7,
+   "scale": 1.057
+  },
+  {
+   "mesh": "SM_Forest_Shrub_C_200x170x130",
+   "pos": {
+    "x": 27.571,
+    "y": -5.537,
+    "z": 0.0
+   },
+   "rotZ": 9.0,
+   "scale": 1.321
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -102.599,
+    "y": 25.791,
+    "z": 0.0
+   },
+   "rotZ": 324.8,
+   "scale": 1.076
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 86.978,
+    "y": -58.371,
+    "z": 0.0
+   },
+   "rotZ": 78.6,
+   "scale": 0.836
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 87.901,
+    "y": -30.599,
+    "z": 0.0
+   },
+   "rotZ": 36.3,
+   "scale": 0.824
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -68.739,
+    "y": -33.979,
+    "z": 0.0
+   },
+   "rotZ": 200.1,
+   "scale": 1.081
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": -52.577,
+    "y": 85.416,
+    "z": 0.0
+   },
+   "rotZ": 271.9,
+   "scale": 0.924
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": -24.27,
+    "y": -3.057,
+    "z": 0.0
+   },
+   "rotZ": 169.1,
+   "scale": 0.988
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 6.805,
+    "y": 32.793,
+    "z": 0.0
+   },
+   "rotZ": 66.4,
+   "scale": 0.836
+  },
+  {
+   "mesh": "SM_Forest_Shrub_A_150x130x130",
+   "pos": {
+    "x": 22.823,
+    "y": -62.711,
+    "z": 0.0
+   },
+   "rotZ": 193.6,
+   "scale": 1.208
+  },
+  {
+   "mesh": "SM_Forest_Shrub_B_200x200x110",
+   "pos": {
+    "x": 66.521,
+    "y": -52.554,
+    "z": 0.0
+   },
+   "rotZ": 200.6,
+   "scale": 1.192
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 32.159,
+    "y": -105.624,
+    "z": 0.0
+   },
+   "rotZ": 58.6,
+   "scale": 1.023
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -28.082,
+    "y": -9.26,
+    "z": 0.0
+   },
+   "rotZ": 306.8,
+   "scale": 1.417
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -89.189,
+    "y": 62.445,
+    "z": 0.0
+   },
+   "rotZ": 92.2,
+   "scale": 1.266
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -74.464,
+    "y": 73.559,
+    "z": 0.0
+   },
+   "rotZ": 266.7,
+   "scale": 1.376
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 3.773,
+    "y": -113.802,
+    "z": 0.0
+   },
+   "rotZ": 253.4,
+   "scale": 0.832
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -27.029,
+    "y": 43.016,
+    "z": 0.0
+   },
+   "rotZ": 148.1,
+   "scale": 1.407
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -70.368,
+    "y": -2.172,
+    "z": 0.0
+   },
+   "rotZ": 98.9,
+   "scale": 1.159
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -9.002,
+    "y": 103.827,
+    "z": 0.0
+   },
+   "rotZ": 78.6,
+   "scale": 1.026
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -22.66,
+    "y": 110.361,
+    "z": 0.0
+   },
+   "rotZ": 12.7,
+   "scale": 1.281
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 101.531,
+    "y": -50.948,
+    "z": 0.0
+   },
+   "rotZ": 259.4,
+   "scale": 1.459
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -82.345,
+    "y": 15.434,
+    "z": 0.0
+   },
+   "rotZ": 126.1,
+   "scale": 1.069
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 0.734,
+    "y": -101.368,
+    "z": 0.0
+   },
+   "rotZ": 209.2,
+   "scale": 0.959
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -40.446,
+    "y": -70.723,
+    "z": 0.0
+   },
+   "rotZ": 99.2,
+   "scale": 0.957
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 48.622,
+    "y": 72.235,
+    "z": 0.0
+   },
+   "rotZ": 145.7,
+   "scale": 0.81
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 8.42,
+    "y": -69.844,
+    "z": 0.0
+   },
+   "rotZ": 335.8,
+   "scale": 1.222
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -22.429,
+    "y": 24.409,
+    "z": 0.0
+   },
+   "rotZ": 247.4,
+   "scale": 1.2
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -15.06,
+    "y": 2.552,
+    "z": 0.0
+   },
+   "rotZ": 338.5,
+   "scale": 0.902
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 45.857,
+    "y": 50.352,
+    "z": 0.0
+   },
+   "rotZ": 45.9,
+   "scale": 0.947
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -21.097,
+    "y": 112.771,
+    "z": 0.0
+   },
+   "rotZ": 49.7,
+   "scale": 1.137
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -19.158,
+    "y": 86.018,
+    "z": 0.0
+   },
+   "rotZ": 189.1,
+   "scale": 1.414
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 11.926,
+    "y": -49.375,
+    "z": 0.0
+   },
+   "rotZ": 322.6,
+   "scale": 1.305
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 2.702,
+    "y": 83.548,
+    "z": 0.0
+   },
+   "rotZ": 138.2,
+   "scale": 1.083
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -102.587,
+    "y": 37.781,
+    "z": 0.0
+   },
+   "rotZ": 226.3,
+   "scale": 1.43
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 44.739,
+    "y": 75.75,
+    "z": 0.0
+   },
+   "rotZ": 266.5,
+   "scale": 0.836
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 76.433,
+    "y": -18.685,
+    "z": 0.0
+   },
+   "rotZ": 319.6,
+   "scale": 0.852
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -85.238,
+    "y": -64.302,
+    "z": 0.0
+   },
+   "rotZ": 78.9,
+   "scale": 0.832
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -113.393,
+    "y": 17.976,
+    "z": 0.0
+   },
+   "rotZ": 258.3,
+   "scale": 1.456
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 12.724,
+    "y": -53.856,
+    "z": 0.0
+   },
+   "rotZ": 16.0,
+   "scale": 1.272
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -63.572,
+    "y": 84.143,
+    "z": 0.0
+   },
+   "rotZ": 238.2,
+   "scale": 0.924
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -54.165,
+    "y": -15.628,
+    "z": 0.0
+   },
+   "rotZ": 113.2,
+   "scale": 1.471
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -8.501,
+    "y": 71.974,
+    "z": 0.0
+   },
+   "rotZ": 144.8,
+   "scale": 1.161
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -14.405,
+    "y": 57.934,
+    "z": 0.0
+   },
+   "rotZ": 298.1,
+   "scale": 1.097
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 0.853,
+    "y": 32.828,
+    "z": 0.0
+   },
+   "rotZ": 241.6,
+   "scale": 1.289
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -19.459,
+    "y": 29.494,
+    "z": 0.0
+   },
+   "rotZ": 172.7,
+   "scale": 1.262
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 68.465,
+    "y": 80.028,
+    "z": 0.0
+   },
+   "rotZ": 145.2,
+   "scale": 1.497
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -102.262,
+    "y": -18.316,
+    "z": 0.0
+   },
+   "rotZ": 334.9,
+   "scale": 0.861
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 17.402,
+    "y": 83.906,
+    "z": 0.0
+   },
+   "rotZ": 93.9,
+   "scale": 1.126
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -25.582,
+    "y": 76.105,
+    "z": 0.0
+   },
+   "rotZ": 124.4,
+   "scale": 1.008
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -93.425,
+    "y": -26.513,
+    "z": 0.0
+   },
+   "rotZ": 349.9,
+   "scale": 0.919
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -114.035,
+    "y": -8.551,
+    "z": 0.0
+   },
+   "rotZ": 33.5,
+   "scale": 1.292
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -90.809,
+    "y": 69.465,
+    "z": 0.0
+   },
+   "rotZ": 163.9,
+   "scale": 1.205
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -40.344,
+    "y": -19.714,
+    "z": 0.0
+   },
+   "rotZ": 303.2,
+   "scale": 0.826
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 69.501,
+    "y": 27.376,
+    "z": 0.0
+   },
+   "rotZ": 238.7,
+   "scale": 0.997
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -81.139,
+    "y": 57.362,
+    "z": 0.0
+   },
+   "rotZ": 209.5,
+   "scale": 0.832
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 105.998,
+    "y": -14.445,
+    "z": 0.0
+   },
+   "rotZ": 335.2,
+   "scale": 0.836
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 9.092,
+    "y": -3.76,
+    "z": 0.0
+   },
+   "rotZ": 159.6,
+   "scale": 1.022
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -7.497,
+    "y": -72.674,
+    "z": 0.0
+   },
+   "rotZ": 131.2,
+   "scale": 1.079
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -65.161,
+    "y": -14.019,
+    "z": 0.0
+   },
+   "rotZ": 189.0,
+   "scale": 1.364
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 11.744,
+    "y": -105.74,
+    "z": 0.0
+   },
+   "rotZ": 173.8,
+   "scale": 1.39
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -39.319,
+    "y": 35.572,
+    "z": 0.0
+   },
+   "rotZ": 153.3,
+   "scale": 1.091
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -52.825,
+    "y": 61.105,
+    "z": 0.0
+   },
+   "rotZ": 84.3,
+   "scale": 1.062
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 54.547,
+    "y": -26.944,
+    "z": 0.0
+   },
+   "rotZ": 321.6,
+   "scale": 0.853
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 80.891,
+    "y": -24.357,
+    "z": 0.0
+   },
+   "rotZ": 62.5,
+   "scale": 1.091
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -105.095,
+    "y": 12.024,
+    "z": 0.0
+   },
+   "rotZ": 57.0,
+   "scale": 1.182
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -77.735,
+    "y": 45.283,
+    "z": 0.0
+   },
+   "rotZ": 140.5,
+   "scale": 1.482
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -0.483,
+    "y": 47.142,
+    "z": 0.0
+   },
+   "rotZ": 239.4,
+   "scale": 1.393
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -26.897,
+    "y": 87.575,
+    "z": 0.0
+   },
+   "rotZ": 303.4,
+   "scale": 0.846
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 85.771,
+    "y": -76.36,
+    "z": 0.0
+   },
+   "rotZ": 194.9,
+   "scale": 0.888
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 7.749,
+    "y": -15.337,
+    "z": 0.0
+   },
+   "rotZ": 173.7,
+   "scale": 1.238
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -51.013,
+    "y": -53.623,
+    "z": 0.0
+   },
+   "rotZ": 318.9,
+   "scale": 0.881
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 6.03,
+    "y": 9.955,
+    "z": 0.0
+   },
+   "rotZ": 312.7,
+   "scale": 1.174
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 98.448,
+    "y": 38.484,
+    "z": 0.0
+   },
+   "rotZ": 171.9,
+   "scale": 1.385
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -7.597,
+    "y": -50.282,
+    "z": 0.0
+   },
+   "rotZ": 88.6,
+   "scale": 1.004
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 106.271,
+    "y": 31.987,
+    "z": 0.0
+   },
+   "rotZ": 6.0,
+   "scale": 0.991
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 93.588,
+    "y": 67.633,
+    "z": 0.0
+   },
+   "rotZ": 21.1,
+   "scale": 1.141
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 36.769,
+    "y": 88.91,
+    "z": 0.0
+   },
+   "rotZ": 290.1,
+   "scale": 1.032
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 9.308,
+    "y": 80.056,
+    "z": 0.0
+   },
+   "rotZ": 327.7,
+   "scale": 1.471
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 69.749,
+    "y": 32.242,
+    "z": 0.0
+   },
+   "rotZ": 149.8,
+   "scale": 1.421
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -38.035,
+    "y": -14.842,
+    "z": 0.0
+   },
+   "rotZ": 321.7,
+   "scale": 1.452
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -33.52,
+    "y": 48.732,
+    "z": 0.0
+   },
+   "rotZ": 312.9,
+   "scale": 1.153
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -22.059,
+    "y": 43.171,
+    "z": 0.0
+   },
+   "rotZ": 133.2,
+   "scale": 1.408
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -94.66,
+    "y": -60.421,
+    "z": 0.0
+   },
+   "rotZ": 53.4,
+   "scale": 1.211
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -96.137,
+    "y": 57.564,
+    "z": 0.0
+   },
+   "rotZ": 181.2,
+   "scale": 0.943
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -13.74,
+    "y": -98.208,
+    "z": 0.0
+   },
+   "rotZ": 128.2,
+   "scale": 1.457
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 53.313,
+    "y": -73.181,
+    "z": 0.0
+   },
+   "rotZ": 315.1,
+   "scale": 1.274
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 110.526,
+    "y": 11.346,
+    "z": 0.0
+   },
+   "rotZ": 82.0,
+   "scale": 1.444
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 64.018,
+    "y": 73.845,
+    "z": 0.0
+   },
+   "rotZ": 91.0,
+   "scale": 1.339
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -97.281,
+    "y": 43.592,
+    "z": 0.0
+   },
+   "rotZ": 69.5,
+   "scale": 0.854
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 33.601,
+    "y": -3.918,
+    "z": 0.0
+   },
+   "rotZ": 289.9,
+   "scale": 1.313
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 70.337,
+    "y": -64.658,
+    "z": 0.0
+   },
+   "rotZ": 53.8,
+   "scale": 1.344
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -74.229,
+    "y": -43.997,
+    "z": 0.0
+   },
+   "rotZ": 349.4,
+   "scale": 1.303
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -45.181,
+    "y": 45.206,
+    "z": 0.0
+   },
+   "rotZ": 208.4,
+   "scale": 1.247
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 25.807,
+    "y": 25.517,
+    "z": 0.0
+   },
+   "rotZ": 217.3,
+   "scale": 0.912
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 82.968,
+    "y": 37.866,
+    "z": 0.0
+   },
+   "rotZ": 142.1,
+   "scale": 1.405
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -59.394,
+    "y": -7.223,
+    "z": 0.0
+   },
+   "rotZ": 164.2,
+   "scale": 1.069
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 13.636,
+    "y": -33.857,
+    "z": 0.0
+   },
+   "rotZ": 197.0,
+   "scale": 0.94
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -75.31,
+    "y": -43.072,
+    "z": 0.0
+   },
+   "rotZ": 322.8,
+   "scale": 0.87
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 19.572,
+    "y": 95.693,
+    "z": 0.0
+   },
+   "rotZ": 341.9,
+   "scale": 1.236
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -33.822,
+    "y": 55.253,
+    "z": 0.0
+   },
+   "rotZ": 320.7,
+   "scale": 1.412
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 70.261,
+    "y": 76.088,
+    "z": 0.0
+   },
+   "rotZ": 276.8,
+   "scale": 1.251
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 30.643,
+    "y": -68.651,
+    "z": 0.0
+   },
+   "rotZ": 317.3,
+   "scale": 1.459
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 56.571,
+    "y": 55.3,
+    "z": 0.0
+   },
+   "rotZ": 38.7,
+   "scale": 0.946
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 40.306,
+    "y": 74.454,
+    "z": 0.0
+   },
+   "rotZ": 302.3,
+   "scale": 1.065
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 14.027,
+    "y": 32.109,
+    "z": 0.0
+   },
+   "rotZ": 359.5,
+   "scale": 0.872
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 1.503,
+    "y": 64.943,
+    "z": 0.0
+   },
+   "rotZ": 223.1,
+   "scale": 1.445
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -51.129,
+    "y": 53.766,
+    "z": 0.0
+   },
+   "rotZ": 120.2,
+   "scale": 1.202
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 64.456,
+    "y": -70.461,
+    "z": 0.0
+   },
+   "rotZ": 40.5,
+   "scale": 1.27
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 45.592,
+    "y": 72.488,
+    "z": 0.0
+   },
+   "rotZ": 34.9,
+   "scale": 1.2
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -33.574,
+    "y": 51.062,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "scale": 1.168
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -43.269,
+    "y": -85.351,
+    "z": 0.0
+   },
+   "rotZ": 268.0,
+   "scale": 0.845
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -10.884,
+    "y": 55.781,
+    "z": 0.0
+   },
+   "rotZ": 2.2,
+   "scale": 1.073
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -58.519,
+    "y": 5.703,
+    "z": 0.0
+   },
+   "rotZ": 113.5,
+   "scale": 0.968
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -53.167,
+    "y": 89.668,
+    "z": 0.0
+   },
+   "rotZ": 261.2,
+   "scale": 1.228
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 80.452,
+    "y": 14.294,
+    "z": 0.0
+   },
+   "rotZ": 339.6,
+   "scale": 1.067
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 63.643,
+    "y": 90.32,
+    "z": 0.0
+   },
+   "rotZ": 107.2,
+   "scale": 0.84
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 58.338,
+    "y": -59.878,
+    "z": 0.0
+   },
+   "rotZ": 139.2,
+   "scale": 1.447
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -10.075,
+    "y": 4.855,
+    "z": 0.0
+   },
+   "rotZ": 348.4,
+   "scale": 1.139
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 97.276,
+    "y": 42.346,
+    "z": 0.0
+   },
+   "rotZ": 82.6,
+   "scale": 1.112
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 26.039,
+    "y": -40.241,
+    "z": 0.0
+   },
+   "rotZ": 278.7,
+   "scale": 1.171
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 10.629,
+    "y": -101.157,
+    "z": 0.0
+   },
+   "rotZ": 162.8,
+   "scale": 1.191
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 65.744,
+    "y": -46.687,
+    "z": 0.0
+   },
+   "rotZ": 325.1,
+   "scale": 1.156
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 102.126,
+    "y": 5.819,
+    "z": 0.0
+   },
+   "rotZ": 100.9,
+   "scale": 1.355
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -15.935,
+    "y": 5.947,
+    "z": 0.0
+   },
+   "rotZ": 320.1,
+   "scale": 1.19
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -2.003,
+    "y": -9.262,
+    "z": 0.0
+   },
+   "rotZ": 153.4,
+   "scale": 0.804
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -61.437,
+    "y": -94.849,
+    "z": 0.0
+   },
+   "rotZ": 49.9,
+   "scale": 1.243
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 82.663,
+    "y": 48.33,
+    "z": 0.0
+   },
+   "rotZ": 140.2,
+   "scale": 1.413
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -36.758,
+    "y": 23.793,
+    "z": 0.0
+   },
+   "rotZ": 48.6,
+   "scale": 1.333
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -57.547,
+    "y": 35.962,
+    "z": 0.0
+   },
+   "rotZ": 267.5,
+   "scale": 1.146
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -30.533,
+    "y": 50.287,
+    "z": 0.0
+   },
+   "rotZ": 266.8,
+   "scale": 1.082
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 41.408,
+    "y": 79.895,
+    "z": 0.0
+   },
+   "rotZ": 176.1,
+   "scale": 1.284
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 20.432,
+    "y": 62.74,
+    "z": 0.0
+   },
+   "rotZ": 101.6,
+   "scale": 1.266
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 4.242,
+    "y": -108.35,
+    "z": 0.0
+   },
+   "rotZ": 252.7,
+   "scale": 0.921
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -30.968,
+    "y": -47.701,
+    "z": 0.0
+   },
+   "rotZ": 62.1,
+   "scale": 0.958
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -27.671,
+    "y": 39.145,
+    "z": 0.0
+   },
+   "rotZ": 274.9,
+   "scale": 0.904
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 20.567,
+    "y": -20.833,
+    "z": 0.0
+   },
+   "rotZ": 271.7,
+   "scale": 1.228
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -45.618,
+    "y": 8.969,
+    "z": 0.0
+   },
+   "rotZ": 258.4,
+   "scale": 1.159
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -15.938,
+    "y": 76.569,
+    "z": 0.0
+   },
+   "rotZ": 185.2,
+   "scale": 1.379
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -90.982,
+    "y": 8.708,
+    "z": 0.0
+   },
+   "rotZ": 256.3,
+   "scale": 1.182
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 17.746,
+    "y": 6.768,
+    "z": 0.0
+   },
+   "rotZ": 34.3,
+   "scale": 0.833
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -36.404,
+    "y": 53.029,
+    "z": 0.0
+   },
+   "rotZ": 10.5,
+   "scale": 1.239
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -6.823,
+    "y": -61.651,
+    "z": 0.0
+   },
+   "rotZ": 350.1,
+   "scale": 1.039
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 76.836,
+    "y": 76.085,
+    "z": 0.0
+   },
+   "rotZ": 109.7,
+   "scale": 0.91
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -48.125,
+    "y": -75.825,
+    "z": 0.0
+   },
+   "rotZ": 265.5,
+   "scale": 1.109
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 73.086,
+    "y": -85.381,
+    "z": 0.0
+   },
+   "rotZ": 55.8,
+   "scale": 0.809
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 32.441,
+    "y": 56.506,
+    "z": 0.0
+   },
+   "rotZ": 337.2,
+   "scale": 1.25
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 39.353,
+    "y": 76.989,
+    "z": 0.0
+   },
+   "rotZ": 267.8,
+   "scale": 1.255
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 97.89,
+    "y": 10.352,
+    "z": 0.0
+   },
+   "rotZ": 60.5,
+   "scale": 0.816
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 58.014,
+    "y": 75.231,
+    "z": 0.0
+   },
+   "rotZ": 266.5,
+   "scale": 1.24
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 57.073,
+    "y": 54.747,
+    "z": 0.0
+   },
+   "rotZ": 203.2,
+   "scale": 0.967
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -52.169,
+    "y": -48.066,
+    "z": 0.0
+   },
+   "rotZ": 78.5,
+   "scale": 1.454
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 34.404,
+    "y": 72.042,
+    "z": 0.0
+   },
+   "rotZ": 70.5,
+   "scale": 1.043
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 63.057,
+    "y": -35.277,
+    "z": 0.0
+   },
+   "rotZ": 188.7,
+   "scale": 0.903
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -8.85,
+    "y": -83.941,
+    "z": 0.0
+   },
+   "rotZ": 214.2,
+   "scale": 0.851
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 26.632,
+    "y": -84.645,
+    "z": 0.0
+   },
+   "rotZ": 252.7,
+   "scale": 1.013
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -94.028,
+    "y": -9.069,
+    "z": 0.0
+   },
+   "rotZ": 31.8,
+   "scale": 1.385
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 48.412,
+    "y": -43.167,
+    "z": 0.0
+   },
+   "rotZ": 309.3,
+   "scale": 1.354
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 52.166,
+    "y": -89.081,
+    "z": 0.0
+   },
+   "rotZ": 284.3,
+   "scale": 1.041
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -81.765,
+    "y": -35.553,
+    "z": 0.0
+   },
+   "rotZ": 16.6,
+   "scale": 1.263
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -28.392,
+    "y": -29.134,
+    "z": 0.0
+   },
+   "rotZ": 348.9,
+   "scale": 1.24
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -110.243,
+    "y": 26.338,
+    "z": 0.0
+   },
+   "rotZ": 58.8,
+   "scale": 1.408
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -49.136,
+    "y": -93.653,
+    "z": 0.0
+   },
+   "rotZ": 340.5,
+   "scale": 0.868
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 52.588,
+    "y": -65.433,
+    "z": 0.0
+   },
+   "rotZ": 228.7,
+   "scale": 0.995
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -107.597,
+    "y": -8.355,
+    "z": 0.0
+   },
+   "rotZ": 309.7,
+   "scale": 1.154
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 49.64,
+    "y": -85.541,
+    "z": 0.0
+   },
+   "rotZ": 41.9,
+   "scale": 1.12
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -19.752,
+    "y": -45.519,
+    "z": 0.0
+   },
+   "rotZ": 94.5,
+   "scale": 0.967
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 31.449,
+    "y": -11.714,
+    "z": 0.0
+   },
+   "rotZ": 82.9,
+   "scale": 1.356
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 56.463,
+    "y": 19.87,
+    "z": 0.0
+   },
+   "rotZ": 104.0,
+   "scale": 0.889
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 8.034,
+    "y": 51.712,
+    "z": 0.0
+   },
+   "rotZ": 123.8,
+   "scale": 0.918
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 100.351,
+    "y": 20.356,
+    "z": 0.0
+   },
+   "rotZ": 240.6,
+   "scale": 1.008
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 10.042,
+    "y": 41.846,
+    "z": 0.0
+   },
+   "rotZ": 81.6,
+   "scale": 1.44
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 82.652,
+    "y": -15.498,
+    "z": 0.0
+   },
+   "rotZ": 118.1,
+   "scale": 1.204
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 6.951,
+    "y": -9.875,
+    "z": 0.0
+   },
+   "rotZ": 49.5,
+   "scale": 1.122
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 111.59,
+    "y": 11.693,
+    "z": 0.0
+   },
+   "rotZ": 7.5,
+   "scale": 1.097
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -60.357,
+    "y": 69.348,
+    "z": 0.0
+   },
+   "rotZ": 211.5,
+   "scale": 1.377
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -14.482,
+    "y": -29.231,
+    "z": 0.0
+   },
+   "rotZ": 287.9,
+   "scale": 1.445
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -91.992,
+    "y": -22.97,
+    "z": 0.0
+   },
+   "rotZ": 35.3,
+   "scale": 1.199
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -17.943,
+    "y": -84.9,
+    "z": 0.0
+   },
+   "rotZ": 37.9,
+   "scale": 1.387
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 25.998,
+    "y": -11.292,
+    "z": 0.0
+   },
+   "rotZ": 329.5,
+   "scale": 1.058
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -91.248,
+    "y": -55.821,
+    "z": 0.0
+   },
+   "rotZ": 335.7,
+   "scale": 0.912
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -95.824,
+    "y": -2.725,
+    "z": 0.0
+   },
+   "rotZ": 308.3,
+   "scale": 1.415
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -6.399,
+    "y": 61.925,
+    "z": 0.0
+   },
+   "rotZ": 28.9,
+   "scale": 1.166
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -49.423,
+    "y": -33.501,
+    "z": 0.0
+   },
+   "rotZ": 228.7,
+   "scale": 1.195
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 108.271,
+    "y": -34.101,
+    "z": 0.0
+   },
+   "rotZ": 13.6,
+   "scale": 1.013
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -9.248,
+    "y": 86.007,
+    "z": 0.0
+   },
+   "rotZ": 41.3,
+   "scale": 1.214
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 6.986,
+    "y": -69.046,
+    "z": 0.0
+   },
+   "rotZ": 226.0,
+   "scale": 1.211
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 21.054,
+    "y": 58.986,
+    "z": 0.0
+   },
+   "rotZ": 123.6,
+   "scale": 1.308
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -69.34,
+    "y": -28.525,
+    "z": 0.0
+   },
+   "rotZ": 126.9,
+   "scale": 1.119
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -76.229,
+    "y": 51.212,
+    "z": 0.0
+   },
+   "rotZ": 101.2,
+   "scale": 1.315
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -95.134,
+    "y": -64.135,
+    "z": 0.0
+   },
+   "rotZ": 34.4,
+   "scale": 1.024
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 98.611,
+    "y": 30.872,
+    "z": 0.0
+   },
+   "rotZ": 355.8,
+   "scale": 1.441
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -85.358,
+    "y": 32.116,
+    "z": 0.0
+   },
+   "rotZ": 278.7,
+   "scale": 1.415
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -22.812,
+    "y": 106.403,
+    "z": 0.0
+   },
+   "rotZ": 194.3,
+   "scale": 1.015
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -18.439,
+    "y": 4.412,
+    "z": 0.0
+   },
+   "rotZ": 236.3,
+   "scale": 0.85
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 29.442,
+    "y": 110.805,
+    "z": 0.0
+   },
+   "rotZ": 342.0,
+   "scale": 0.847
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 0.785,
+    "y": -87.246,
+    "z": 0.0
+   },
+   "rotZ": 353.0,
+   "scale": 1.1
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 35.233,
+    "y": 20.608,
+    "z": 0.0
+   },
+   "rotZ": 290.9,
+   "scale": 1.274
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 111.875,
+    "y": 10.964,
+    "z": 0.0
+   },
+   "rotZ": 140.8,
+   "scale": 1.492
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 43.27,
+    "y": 96.705,
+    "z": 0.0
+   },
+   "rotZ": 170.2,
+   "scale": 0.803
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 61.907,
+    "y": -30.572,
+    "z": 0.0
+   },
+   "rotZ": 281.4,
+   "scale": 1.246
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -24.92,
+    "y": 71.413,
+    "z": 0.0
+   },
+   "rotZ": 291.4,
+   "scale": 1.221
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -6.858,
+    "y": -11.466,
+    "z": 0.0
+   },
+   "rotZ": 226.1,
+   "scale": 0.89
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -37.563,
+    "y": 31.378,
+    "z": 0.0
+   },
+   "rotZ": 108.5,
+   "scale": 1.474
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 53.485,
+    "y": 44.785,
+    "z": 0.0
+   },
+   "rotZ": 218.1,
+   "scale": 0.862
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 24.143,
+    "y": -30.358,
+    "z": 0.0
+   },
+   "rotZ": 240.3,
+   "scale": 1.5
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -47.822,
+    "y": 17.046,
+    "z": 0.0
+   },
+   "rotZ": 44.0,
+   "scale": 1.023
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -47.778,
+    "y": -92.224,
+    "z": 0.0
+   },
+   "rotZ": 225.7,
+   "scale": 0.904
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 70.809,
+    "y": 57.61,
+    "z": 0.0
+   },
+   "rotZ": 99.2,
+   "scale": 1.237
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -5.805,
+    "y": 50.711,
+    "z": 0.0
+   },
+   "rotZ": 37.4,
+   "scale": 0.893
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -15.712,
+    "y": 75.658,
+    "z": 0.0
+   },
+   "rotZ": 165.4,
+   "scale": 1.467
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 53.064,
+    "y": -15.406,
+    "z": 0.0
+   },
+   "rotZ": 183.2,
+   "scale": 1.36
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -16.919,
+    "y": -49.96,
+    "z": 0.0
+   },
+   "rotZ": 153.7,
+   "scale": 1.152
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -14.485,
+    "y": 73.255,
+    "z": 0.0
+   },
+   "rotZ": 127.9,
+   "scale": 0.941
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -30.116,
+    "y": 8.62,
+    "z": 0.0
+   },
+   "rotZ": 293.0,
+   "scale": 1.245
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 44.827,
+    "y": 69.147,
+    "z": 0.0
+   },
+   "rotZ": 247.2,
+   "scale": 0.806
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -30.303,
+    "y": -111.566,
+    "z": 0.0
+   },
+   "rotZ": 192.0,
+   "scale": 0.914
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 31.013,
+    "y": 86.437,
+    "z": 0.0
+   },
+   "rotZ": 118.0,
+   "scale": 1.235
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 71.219,
+    "y": 10.226,
+    "z": 0.0
+   },
+   "rotZ": 56.4,
+   "scale": 0.891
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -31.913,
+    "y": 83.811,
+    "z": 0.0
+   },
+   "rotZ": 38.7,
+   "scale": 0.819
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 34.093,
+    "y": 31.029,
+    "z": 0.0
+   },
+   "rotZ": 166.7,
+   "scale": 1.281
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 30.858,
+    "y": 111.151,
+    "z": 0.0
+   },
+   "rotZ": 92.5,
+   "scale": 1.476
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -0.282,
+    "y": -79.356,
+    "z": 0.0
+   },
+   "rotZ": 127.7,
+   "scale": 0.801
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 29.011,
+    "y": 52.566,
+    "z": 0.0
+   },
+   "rotZ": 63.4,
+   "scale": 1.167
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": 68.918,
+    "y": -25.862,
+    "z": 0.0
+   },
+   "rotZ": 317.1,
+   "scale": 1.491
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -61.919,
+    "y": 88.751,
+    "z": 0.0
+   },
+   "rotZ": 349.4,
+   "scale": 1.457
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -99.447,
+    "y": 12.168,
+    "z": 0.0
+   },
+   "rotZ": 270.1,
+   "scale": 0.993
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 58.034,
+    "y": 13.322,
+    "z": 0.0
+   },
+   "rotZ": 164.5,
+   "scale": 1.345
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -26.363,
+    "y": 4.469,
+    "z": 0.0
+   },
+   "rotZ": 308.4,
+   "scale": 1.032
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -35.36,
+    "y": -89.073,
+    "z": 0.0
+   },
+   "rotZ": 293.3,
+   "scale": 1.115
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -8.71,
+    "y": -0.221,
+    "z": 0.0
+   },
+   "rotZ": 170.6,
+   "scale": 1.272
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -20.272,
+    "y": 47.543,
+    "z": 0.0
+   },
+   "rotZ": 97.7,
+   "scale": 0.869
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -71.81,
+    "y": 50.842,
+    "z": 0.0
+   },
+   "rotZ": 39.3,
+   "scale": 0.953
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -54.71,
+    "y": 10.398,
+    "z": 0.0
+   },
+   "rotZ": 249.8,
+   "scale": 1.175
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 22.354,
+    "y": -49.512,
+    "z": 0.0
+   },
+   "rotZ": 161.5,
+   "scale": 1.281
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -110.318,
+    "y": 1.325,
+    "z": 0.0
+   },
+   "rotZ": 175.8,
+   "scale": 0.935
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 72.916,
+    "y": 30.1,
+    "z": 0.0
+   },
+   "rotZ": 202.6,
+   "scale": 0.923
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -61.249,
+    "y": 46.865,
+    "z": 0.0
+   },
+   "rotZ": 147.6,
+   "scale": 0.845
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": -3.387,
+    "y": 112.115,
+    "z": 0.0
+   },
+   "rotZ": 58.7,
+   "scale": 1.438
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 26.768,
+    "y": 99.468,
+    "z": 0.0
+   },
+   "rotZ": 90.5,
+   "scale": 1.01
+  },
+  {
+   "mesh": "SM_Forest_Grass_02_100x100x60",
+   "pos": {
+    "x": 54.613,
+    "y": 62.494,
+    "z": 0.0
+   },
+   "rotZ": 82.9,
+   "scale": 1.26
+  },
+  {
+   "mesh": "SM_Forest_Grass_01_70x70x40",
+   "pos": {
+    "x": -76.261,
+    "y": -57.45,
+    "z": 0.0
+   },
+   "rotZ": 262.1,
+   "scale": 1.166
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": 104.364,
+    "y": 4.449,
+    "z": 0.0
+   },
+   "rotZ": 23.3,
+   "scale": 1.011
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": -60.631,
+    "y": 55.955,
+    "z": 0.0
+   },
+   "rotZ": 171.6,
+   "scale": 1.1
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": 48.479,
+    "y": -16.859,
+    "z": 0.0
+   },
+   "rotZ": 108.1,
+   "scale": 1.27
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": -107.164,
+    "y": -25.557,
+    "z": 0.0
+   },
+   "rotZ": 328.8,
+   "scale": 0.947
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": 32.491,
+    "y": 21.858,
+    "z": 0.0
+   },
+   "rotZ": 98.8,
+   "scale": 1.076
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": -71.928,
+    "y": 37.542,
+    "z": 0.0
+   },
+   "rotZ": 153.9,
+   "scale": 0.96
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": 91.875,
+    "y": -7.764,
+    "z": 0.0
+   },
+   "rotZ": 321.7,
+   "scale": 1.172
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": -34.818,
+    "y": 96.717,
+    "z": 0.0
+   },
+   "rotZ": 104.2,
+   "scale": 1.077
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": 4.312,
+    "y": 103.977,
+    "z": 0.0
+   },
+   "rotZ": 259.1,
+   "scale": 1.091
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": 36.486,
+    "y": 38.851,
+    "z": 0.0
+   },
+   "rotZ": 38.4,
+   "scale": 1.068
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": 33.018,
+    "y": 107.689,
+    "z": 0.0
+   },
+   "rotZ": 79.9,
+   "scale": 1.262
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": -39.723,
+    "y": 85.439,
+    "z": 0.0
+   },
+   "rotZ": 51.7,
+   "scale": 1.246
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": -56.614,
+    "y": -93.273,
+    "z": 0.0
+   },
+   "rotZ": 60.4,
+   "scale": 0.99
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": 103.817,
+    "y": -13.46,
+    "z": 0.0
+   },
+   "rotZ": 58.7,
+   "scale": 0.975
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": 24.985,
+    "y": -66.963,
+    "z": 0.0
+   },
+   "rotZ": 281.1,
+   "scale": 1.054
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": 40.147,
+    "y": 85.438,
+    "z": 0.0
+   },
+   "rotZ": 282.9,
+   "scale": 1.132
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": -23.247,
+    "y": -12.293,
+    "z": 0.0
+   },
+   "rotZ": 54.4,
+   "scale": 0.943
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": -44.876,
+    "y": 74.429,
+    "z": 0.0
+   },
+   "rotZ": 304.0,
+   "scale": 0.973
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": -35.99,
+    "y": 64.354,
+    "z": 0.0
+   },
+   "rotZ": 75.4,
+   "scale": 1.083
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": 10.044,
+    "y": 109.895,
+    "z": 0.0
+   },
+   "rotZ": 132.0,
+   "scale": 1.237
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": 24.076,
+    "y": 94.344,
+    "z": 0.0
+   },
+   "rotZ": 63.7,
+   "scale": 1.225
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": -113.736,
+    "y": 21.192,
+    "z": 0.0
+   },
+   "rotZ": 188.8,
+   "scale": 1.143
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": 74.221,
+    "y": 49.583,
+    "z": 0.0
+   },
+   "rotZ": 312.2,
+   "scale": 1.135
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": -26.479,
+    "y": 16.801,
+    "z": 0.0
+   },
+   "rotZ": 239.6,
+   "scale": 1.279
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": 31.519,
+    "y": 21.851,
+    "z": 0.0
+   },
+   "rotZ": 166.9,
+   "scale": 1.037
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": -30.05,
+    "y": -84.731,
+    "z": 0.0
+   },
+   "rotZ": 322.3,
+   "scale": 1.296
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": -46.75,
+    "y": -95.675,
+    "z": 0.0
+   },
+   "rotZ": 323.3,
+   "scale": 1.133
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": -87.605,
+    "y": 65.277,
+    "z": 0.0
+   },
+   "rotZ": 300.7,
+   "scale": 1.126
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": -63.529,
+    "y": -0.564,
+    "z": 0.0
+   },
+   "rotZ": 308.5,
+   "scale": 1.255
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": 30.861,
+    "y": -56.148,
+    "z": 0.0
+   },
+   "rotZ": 24.8,
+   "scale": 1.21
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": 70.74,
+    "y": 68.815,
+    "z": 0.0
+   },
+   "rotZ": 46.0,
+   "scale": 1.113
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": -26.221,
+    "y": 47.001,
+    "z": 0.0
+   },
+   "rotZ": 281.6,
+   "scale": 1.219
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": -2.437,
+    "y": 49.686,
+    "z": 0.0
+   },
+   "rotZ": 231.8,
+   "scale": 1.199
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": -25.569,
+    "y": -33.594,
+    "z": 0.0
+   },
+   "rotZ": 113.9,
+   "scale": 0.908
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": 83.481,
+    "y": 20.222,
+    "z": 0.0
+   },
+   "rotZ": 79.6,
+   "scale": 0.99
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": -23.404,
+    "y": -94.29,
+    "z": 0.0
+   },
+   "rotZ": 248.6,
+   "scale": 1.158
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": 93.584,
+    "y": -65.042,
+    "z": 0.0
+   },
+   "rotZ": 178.9,
+   "scale": 0.933
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": -96.665,
+    "y": -11.415,
+    "z": 0.0
+   },
+   "rotZ": 329.8,
+   "scale": 1.198
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": -96.729,
+    "y": 6.046,
+    "z": 0.0
+   },
+   "rotZ": 89.4,
+   "scale": 1.225
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": -44.999,
+    "y": -41.303,
+    "z": 0.0
+   },
+   "rotZ": 316.9,
+   "scale": 1.269
+  },
+  {
+   "mesh": "SM_Forest_Rock_L_300x240x110",
+   "pos": {
+    "x": -54.122,
+    "y": -5.428,
+    "z": 0.0
+   },
+   "rotZ": 124.5,
+   "scale": 1.084
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": -90.671,
+    "y": -51.466,
+    "z": 0.0
+   },
+   "rotZ": 301.5,
+   "scale": 1.298
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": -29.599,
+    "y": -106.864,
+    "z": 0.0
+   },
+   "rotZ": 161.1,
+   "scale": 0.901
+  },
+  {
+   "mesh": "SM_Forest_Rock_M_120x100x60",
+   "pos": {
+    "x": 47.134,
+    "y": 20.894,
+    "z": 0.0
+   },
+   "rotZ": 80.0,
+   "scale": 1.265
+  },
+  {
+   "mesh": "SM_Forest_Rock_S_40x40x20",
+   "pos": {
+    "x": 63.653,
+    "y": 67.768,
+    "z": 0.0
+   },
+   "rotZ": 34.0,
+   "scale": 1.148
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": -85.125,
+    "y": -34.317,
+    "z": 0.0
+   },
+   "rotZ": 166.3,
+   "scale": 1.154
+  },
+  {
+   "mesh": "SM_Forest_Log_Fallen_600x90x120",
+   "pos": {
+    "x": -90.996,
+    "y": 21.24,
+    "z": 0.0
+   },
+   "rotZ": 49.3,
+   "scale": 0.945
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": -43.907,
+    "y": -69.765,
+    "z": 0.0
+   },
+   "rotZ": 38.2,
+   "scale": 1.072
+  },
+  {
+   "mesh": "SM_Forest_Stump_A_200x200x90",
+   "pos": {
+    "x": 53.271,
+    "y": 21.708,
+    "z": 0.0
+   },
+   "rotZ": 124.2,
+   "scale": 1.109
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": -93.102,
+    "y": -22.069,
+    "z": 0.0
+   },
+   "rotZ": 333.9,
+   "scale": 0.978
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": -74.039,
+    "y": -21.249,
+    "z": 0.0
+   },
+   "rotZ": 117.3,
+   "scale": 0.93
+  },
+  {
+   "mesh": "SM_Forest_Stump_A_200x200x90",
+   "pos": {
+    "x": 16.612,
+    "y": 34.624,
+    "z": 0.0
+   },
+   "rotZ": 76.4,
+   "scale": 1.193
+  },
+  {
+   "mesh": "SM_Forest_Log_Fallen_600x90x120",
+   "pos": {
+    "x": 51.421,
+    "y": 15.835,
+    "z": 0.0
+   },
+   "rotZ": 63.1,
+   "scale": 1.14
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": -74.116,
+    "y": -36.76,
+    "z": 0.0
+   },
+   "rotZ": 359.8,
+   "scale": 1.191
+  },
+  {
+   "mesh": "SM_Forest_Stump_A_200x200x90",
+   "pos": {
+    "x": -67.135,
+    "y": 59.573,
+    "z": 0.0
+   },
+   "rotZ": 197.7,
+   "scale": 1.148
+  },
+  {
+   "mesh": "SM_Forest_Stump_A_200x200x90",
+   "pos": {
+    "x": -41.063,
+    "y": -77.047,
+    "z": 0.0
+   },
+   "rotZ": 132.3,
+   "scale": 1.127
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": 37.344,
+    "y": -39.026,
+    "z": 0.0
+   },
+   "rotZ": 227.0,
+   "scale": 0.996
+  },
+  {
+   "mesh": "SM_Forest_Stump_A_200x200x90",
+   "pos": {
+    "x": 45.75,
+    "y": -71.287,
+    "z": 0.0
+   },
+   "rotZ": 164.4,
+   "scale": 1.072
+  },
+  {
+   "mesh": "SM_Forest_Log_Fallen_600x90x120",
+   "pos": {
+    "x": 73.946,
+    "y": 5.441,
+    "z": 0.0
+   },
+   "rotZ": 257.7,
+   "scale": 1.093
+  },
+  {
+   "mesh": "SM_Forest_Stump_A_200x200x90",
+   "pos": {
+    "x": -22.617,
+    "y": 6.597,
+    "z": 0.0
+   },
+   "rotZ": 274.4,
+   "scale": 1.026
+  },
+  {
+   "mesh": "SM_Forest_Log_Fallen_600x90x120",
+   "pos": {
+    "x": 69.02,
+    "y": 52.427,
+    "z": 0.0
+   },
+   "rotZ": 164.7,
+   "scale": 1.047
+  },
+  {
+   "mesh": "SM_Forest_Log_Fallen_600x90x120",
+   "pos": {
+    "x": 73.97,
+    "y": 22.834,
+    "z": 0.0
+   },
+   "rotZ": 314.2,
+   "scale": 0.913
+  },
+  {
+   "mesh": "SM_Forest_Log_Fallen_600x90x120",
+   "pos": {
+    "x": -18.962,
+    "y": -55.164,
+    "z": 0.0
+   },
+   "rotZ": 222.5,
+   "scale": 0.932
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": 5.162,
+    "y": -20.958,
+    "z": 0.0
+   },
+   "rotZ": 256.0,
+   "scale": 1.082
+  },
+  {
+   "mesh": "SM_Forest_Log_Fallen_600x90x120",
+   "pos": {
+    "x": -17.425,
+    "y": -22.194,
+    "z": 0.0
+   },
+   "rotZ": 175.2,
+   "scale": 1.063
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": -77.141,
+    "y": 14.425,
+    "z": 0.0
+   },
+   "rotZ": 193.0,
+   "scale": 1.176
+  },
+  {
+   "mesh": "SM_Forest_Stump_A_200x200x90",
+   "pos": {
+    "x": -55.187,
+    "y": -41.117,
+    "z": 0.0
+   },
+   "rotZ": 65.9,
+   "scale": 0.976
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": 42.57,
+    "y": 56.091,
+    "z": 0.0
+   },
+   "rotZ": 213.9,
+   "scale": 0.921
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": 35.142,
+    "y": -7.736,
+    "z": 0.0
+   },
+   "rotZ": 263.4,
+   "scale": 1.063
+  },
+  {
+   "mesh": "SM_Forest_Log_Fallen_600x90x120",
+   "pos": {
+    "x": -70.157,
+    "y": 40.376,
+    "z": 0.0
+   },
+   "rotZ": 10.4,
+   "scale": 1.191
+  },
+  {
+   "mesh": "SM_Forest_RootCluster_A_210x190x40",
+   "pos": {
+    "x": -73.147,
+    "y": 60.319,
+    "z": 0.0
+   },
+   "rotZ": 105.1,
+   "scale": 1.048
+  },
+  {
+   "mesh": "SM_Forest_Chair_Ritual_40x40x90",
+   "pos": {
+    "x": -0.55,
+    "y": -9.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "scale": 1.0
+  },
+  {
+   "mesh": "SM_Forest_Chair_Ritual_40x40x90",
+   "pos": {
+    "x": 0.55,
+    "y": -9.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "scale": 1.0
+  },
+  {
+   "mesh": "SM_Forest_Chair_Ritual_40x40x90",
+   "pos": {
+    "x": 1.7,
+    "y": -10.7,
+    "z": 0.0
+   },
+   "rotZ": 200.0,
+   "scale": 1.0,
+   "interact": {
+    "type": "chair",
+    "seat": {
+     "x": 1.768,
+     "y": -10.888,
+     "z": 0.0
+    },
+    "look": {
+     "x": -3.933,
+     "y": -1.763,
+     "z": 3.437
+    }
+   }
+  }
+ ],
+ "boxes": [
+  {
+   "name": "Woman_Thighs",
+   "pos": {
+    "x": -0.55,
+    "y": -8.86,
+    "z": 0.4
+   },
+   "size": {
+    "x": 0.34,
+    "y": 0.48,
+    "z": 0.12
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.294,
+    "g": 0.29,
+    "b": 0.322,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Woman_Torso",
+   "pos": {
+    "x": -0.55,
+    "y": -9.28,
+    "z": 0.45
+   },
+   "size": {
+    "x": 0.42,
+    "y": 0.3,
+    "z": 0.62
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.294,
+    "g": 0.29,
+    "b": 0.322,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Woman_Head",
+   "pos": {
+    "x": -0.55,
+    "y": -9.28,
+    "z": 1.07
+   },
+   "size": {
+    "x": 0.22,
+    "y": 0.22,
+    "z": 0.26
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.541,
+    "g": 0.502,
+    "b": 0.463,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Child_Thighs",
+   "pos": {
+    "x": 0.55,
+    "y": -8.94,
+    "z": 0.4
+   },
+   "size": {
+    "x": 0.26,
+    "y": 0.36,
+    "z": 0.11
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.333,
+    "g": 0.325,
+    "b": 0.361,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Child_Torso",
+   "pos": {
+    "x": 0.55,
+    "y": -9.28,
+    "z": 0.45
+   },
+   "size": {
+    "x": 0.3,
+    "y": 0.24,
+    "z": 0.42
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.333,
+    "g": 0.325,
+    "b": 0.361,
+    "a": 1.0
+   }
+  },
+  {
+   "name": "Child_Head",
+   "pos": {
+    "x": 0.55,
+    "y": -9.28,
+    "z": 0.87
+   },
+   "size": {
+    "x": 0.19,
+    "y": 0.19,
+    "z": 0.22
+   },
+   "rotZ": 0.0,
+   "color": {
+    "r": 0.541,
+    "g": 0.502,
+    "b": 0.463,
+    "a": 1.0
+   }
+  }
+ ],
+ "ground": {
+  "size": 420.0,
+  "color": {
+   "r": 0.337,
+   "g": 0.357,
+   "b": 0.322,
+   "a": 1.0
+  }
+ },
+ "environment": {
+  "solidSky": true,
+  "fogMode": "Linear",
+  "fogStart": 22.0,
+  "fogEnd": 165.0,
+  "fogDensity": 0.0,
+  "fogColor": {
+   "r": 0.62,
+   "g": 0.627,
+   "b": 0.627,
+   "a": 1.0
+  },
+  "ambient": {
+   "r": 0.353,
+   "g": 0.373,
+   "b": 0.38,
+   "a": 1.0
+  },
+  "background": {
+   "r": 0.651,
+   "g": 0.659,
+   "b": 0.655,
+   "a": 1.0
+  },
+  "sunDirection": {
+   "x": 0.25,
+   "y": 0.45,
+   "z": -0.86
+  },
+  "sunColor": {
+   "r": 0.839,
+   "g": 0.851,
+   "b": 0.863,
+   "a": 1.0
+  },
+  "sunIntensity": 0.55
+ },
+ "camera": {
+  "pos": {
+   "x": 0.0,
+   "y": -73.5,
+   "z": 1.68
+  },
+  "target": {
+   "x": 0.0,
+   "y": 18.0,
+   "z": 26.0
+  },
+  "fov": 60.0
+ },
+ "playerStarts": [
+  {
+   "pos": {
+    "x": 0.0,
+    "y": -72.0,
+    "z": 0.05
+   },
+   "target": {
+    "x": 0.0,
+    "y": 18.0,
+    "z": 26.0
+   },
+   "fov": 0.0
+  }
+ ]
+}

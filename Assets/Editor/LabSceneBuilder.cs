@@ -60,7 +60,7 @@ public static class LabSceneBuilder
     // Prefab name in CreatureBuilder.PrefabDir; walkers get the layout's terrain as their ground.
     [Serializable] class CreatureDef { public string prefab; public Vector3 pos; public float rotZ; public float scale; }
     [Serializable] class MaterialDef { public string name; public string atlas; public bool cutout; public string shader; } // shader empty = Simple Lit
-    [Serializable] class Module { public string mesh; public Vector3 pos; public float rotZ; public float scale; } // scale 0 means 1
+    [Serializable] class Module { public string mesh; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; } // scale 0 means 1
     // Empty target: a door that swings on its hinge. Otherwise it stays shut and teleports the player to that spawn.
     [Serializable] class DoorDef { public string leaf; public string[] parts; public Vector3 pos; public float rotZ; public bool locked; public string target; }
     // Arrival point for transition doors, turned (yaw only) toward target.
@@ -69,8 +69,8 @@ public static class LabSceneBuilder
     [Serializable] class BoxDef { public string name; public Vector3 pos; public Vector3 size; public float rotZ; public Color color; public InteractDef interact; }
     // A prefab placed as-is, e.g. the lobby NPC.
     [Serializable] class PrefabDef { public string name; public string prefab; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; }
-    // What using a box or prop does. type "bed" sleeps into tonight's dream; "npc" plays `dialogue` (a .dialogue asset path).
-    [Serializable] class InteractDef { public string type; public string dialogue; }
+    // What using a box or prop does. type "bed" sleeps into tonight's dream; "npc" plays `dialogue` (a .dialogue asset path); "chair" sits with look direction.
+    [Serializable] class InteractDef { public string type; public string dialogue; public Vector3 seat; public Vector3 look; }
     [Serializable] class LightDef { public Vector3 pos; public Color color; public float intensity; public float range; }
     [Serializable] class ViewDef { public Vector3 pos; public Vector3 target; public float fov; }
     [Serializable] class GroundDef { public float size; public Color color; }
@@ -83,6 +83,7 @@ public static class LabSceneBuilder
         public Vector3 sunDirection;
         public Color sunColor;
         public float sunIntensity;
+        public bool solidSky;
     }
 
     class Kit { public string MeshDir, PrefabDir; public Material Material; public Dictionary<string, Material> Materials; }
@@ -223,6 +224,7 @@ public static class LabSceneBuilder
             var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, room);
             go.transform.SetPositionAndRotation(ToUnity(m.pos), Yaw(m.rotZ));
             if (m.scale > 0f) go.transform.localScale = Vector3.one * m.scale;
+            AttachInteract(go, m.interact);
         }
 
         var spawns = BuildSpawns(layout.spawns ?? Array.Empty<SpawnDef>());
@@ -450,6 +452,29 @@ public static class LabSceneBuilder
                 if (dialogue == null) Debug.LogError($"[LabSceneBuilder] {go.name}: dialogue not found: {def.dialogue}");
                 var so = new SerializedObject(npc);
                 so.FindProperty("dialogue").objectReferenceValue = dialogue;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            case "chair":
+            {
+                var chair = go.AddComponent<ChairInteractable>();
+                var seatWorldPos = ToUnity(def.seat);
+                var lookWorldPos = ToUnity(def.look);
+                // SeatPosition: yaw only (horizontal rotation toward look)
+                var seatGo = new GameObject("SeatPosition");
+                seatGo.transform.SetParent(go.transform, false);
+                var lookDir = lookWorldPos - seatWorldPos;
+                lookDir.y = 0f;
+                var yawRotation = lookDir.sqrMagnitude > 1e-6f ? Quaternion.LookRotation(lookDir) : Quaternion.identity;
+                seatGo.transform.SetPositionAndRotation(seatWorldPos, yawRotation);
+                // CameraTarget: world position
+                var camGo = new GameObject("CameraTarget");
+                camGo.transform.SetParent(go.transform, false);
+                camGo.transform.position = lookWorldPos;
+                // Set references via SerializedObject
+                var so = new SerializedObject(chair);
+                so.FindProperty("seatPosition").objectReferenceValue = seatGo.transform;
+                so.FindProperty("cameraLookTarget").objectReferenceValue = camGo.transform;
                 so.ApplyModifiedPropertiesWithoutUndo();
                 break;
             }
@@ -700,16 +725,18 @@ public static class LabSceneBuilder
             RenderSettings.fogDensity = 0.06f;
             return;
         }
-        RenderSettings.skybox = GetOrCreateForestSkybox();
+        // Outdoor: common settings
         RenderSettings.ambientLight = env.ambient;
         RenderSettings.fogMode = Enum.TryParse<FogMode>(env.fogMode, out var mode) ? mode : FogMode.Linear;
         RenderSettings.fogColor = env.fogColor;
         RenderSettings.fogStartDistance = env.fogStart;
         RenderSettings.fogEndDistance = env.fogEnd;
         RenderSettings.fogDensity = env.fogDensity;
-
+        // Sky mode differs
+        var clearMode = env.solidSky ? CameraClearFlags.SolidColor : CameraClearFlags.Skybox;
+        if (!env.solidSky) RenderSettings.skybox = GetOrCreateForestSkybox();
         foreach (var camera in UnityEngine.Object.FindObjectsByType<Camera>(FindObjectsInactive.Include, FindObjectsSortMode.None))
-            camera.clearFlags = CameraClearFlags.Skybox;
+            camera.clearFlags = clearMode;
     }
 
     static Material GetOrCreateForestSkybox()
