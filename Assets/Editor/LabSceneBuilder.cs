@@ -62,18 +62,31 @@ public static class LabSceneBuilder
     // Prefab name in CreatureBuilder.PrefabDir; walkers get the layout's terrain as their ground.
     [Serializable] class CreatureDef { public string prefab; public Vector3 pos; public float rotZ; public float scale; }
     [Serializable] class MaterialDef { public string name; public string atlas; public bool cutout; public string shader; public string kit; } // shader empty = Simple Lit, kit empty = use kitRoot
-    [Serializable] class Module { public string mesh; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; public string kit; } // scale 0 means 1, kit empty = kitRoot/Meshes
+    // Conditional object gate: exists only if all conditions are met (minDay/maxDay, requiredFlag, requiredItem, etc.)
+    [Serializable] class ConditionalObjectWhen
+    {
+        public int minDay = -1, maxDay = -1;
+        public string requiredFlag = "", forbiddenFlag = "", requiredItem = "", forbiddenItem = "";
+
+        // Returns true if any condition was explicitly specified in JSON
+        public bool IsSpecified() =>
+            minDay != -1 || maxDay != -1 ||
+            !string.IsNullOrEmpty(requiredFlag) || !string.IsNullOrEmpty(forbiddenFlag) ||
+            !string.IsNullOrEmpty(requiredItem) || !string.IsNullOrEmpty(forbiddenItem);
+    }
+    [Serializable] class Module { public string mesh; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; public string kit; public ConditionalObjectWhen when; } // scale 0 means 1, kit empty = kitRoot/Meshes
     // Empty target: a door that swings on its hinge. Otherwise it stays shut and teleports the player to that spawn.
-    [Serializable] class DoorDef { public string leaf; public string[] parts; public Vector3 pos; public float rotZ; public bool locked; public string target; }
+    // Doors gate by locking (unlockFlag), not by existence (when). A visible locked door tells the player "that's the goal".
+    [Serializable] class DoorDef { public string leaf; public string[] parts; public Vector3 pos; public float rotZ; public bool locked; public string target; public string unlockFlag; } // unlockFlag gates door opening (separate from existence gate)
     // Arrival point for transition doors, turned (yaw only) toward target.
     [Serializable] class SpawnDef { public string name; public Vector3 pos; public Vector3 target; }
     // Temporary furniture. pos is the center of the face touching the floor; size is (width, depth, height) in meters.
-    [Serializable] class BoxDef { public string name; public Vector3 pos; public Vector3 size; public float rotZ; public Color color; public InteractDef interact; }
+    [Serializable] class BoxDef { public string name; public Vector3 pos; public Vector3 size; public float rotZ; public Color color; public InteractDef interact; public ConditionalObjectWhen when; }
     // A prefab placed as-is, e.g. the lobby NPC.
-    [Serializable] class PrefabDef { public string name; public string prefab; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; }
+    [Serializable] class PrefabDef { public string name; public string prefab; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; public ConditionalObjectWhen when; }
     // What using a box or prop does. type "bed" sleeps into tonight's dream; "npc" plays `dialogue` (a .dialogue asset path); "chair" sits with look direction.
     [Serializable] class InteractDef { public string type; public string dialogue; public Vector3 seat; public Vector3 look; public Vector3 stand; public Vector3 standLook; }
-    [Serializable] class LightDef { public Vector3 pos; public Color color; public float intensity; public float range; }
+    [Serializable] class LightDef { public Vector3 pos; public Color color; public float intensity; public float range; public ConditionalObjectWhen when; }
     [Serializable] class ViewDef { public Vector3 pos; public Vector3 target; public float fov; }
     [Serializable] class GroundDef { public float size; public Color color; }
     // Audio: ambient loop or random one-shot emitter
@@ -90,6 +103,7 @@ public static class LabSceneBuilder
         public float intervalMin; // random, default 0
         public float intervalMax; // random, default 0
         public float radius; // random, 0=fixed, >0=random in radius
+        public ConditionalObjectWhen when; // conditional existence gate
     }
     // Outdoor settings. An empty fogMode keeps the dark indoor defaults. sunDirection is in Blender space.
     [Serializable] class EnvDef
@@ -238,6 +252,9 @@ public static class LabSceneBuilder
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
         var room = new GameObject(sceneName).transform;
         var modules = layout.modules ?? Array.Empty<Module>();
+        // IMPORTANT: Save all objects in ACTIVE state. ConditionalObject subscribes to GameState.Changed in Awake,
+        // which is never called if the object is inactive at scene load. Runtime evaluation will then never occur,
+        // and objects remain invisible forever even when conditions are met. Never call SetActive(false) during build.
         foreach (var m in modules)
         {
             var prefab = GetPrefab(m.mesh, kit, m.kit, kitRoot, layout.prefabDir, kit.Materials, prefabs);
@@ -246,6 +263,7 @@ public static class LabSceneBuilder
             go.transform.SetPositionAndRotation(ToUnity(m.pos), Yaw(m.rotZ));
             if (m.scale > 0f) go.transform.localScale = Vector3.one * m.scale;
             AttachInteract(go, m.interact, m.mesh);
+            AttachConditionalObject(go, m.when);
 
             // Rigged non-NPC figures (e.g. seated figures with Idle animation): auto-detect and attach animator
             if ((m.interact == null || string.IsNullOrEmpty(m.interact?.type)) &&
@@ -293,6 +311,7 @@ public static class LabSceneBuilder
             light.intensity = l.intensity;
             light.range = l.range;
             light.shadows = LightShadows.Hard;
+            AttachConditionalObject(go, l.when);
         }
 
         var env = layout.environment;
@@ -334,6 +353,8 @@ public static class LabSceneBuilder
         }
         Debug.Log($"[LabSceneBuilder] built {sceneName}: {modules.Length} modules, {doors.Length} doors, " +
                   $"{boxes.Length} boxes, {propDefs.Length} prefabs, capture {capture}");
+
+        ValidateSceneFlags(sceneName, modules, doors, boxes, propDefs, layout.lights ?? Array.Empty<LightDef>(), sounds);
         return scenePath;
     }
 
@@ -429,6 +450,7 @@ public static class LabSceneBuilder
 
                 so.ApplyModifiedPropertiesWithoutUndo();
             }
+            AttachConditionalObject(go, s.when);
         }
         Debug.Log($"[LabSceneBuilder] {sounds.Length} audio sources");
     }
@@ -482,6 +504,7 @@ public static class LabSceneBuilder
             var so = new SerializedObject(door);
             so.FindProperty("destination").objectReferenceValue = spawn;
             so.FindProperty("locked").boolValue = d.locked;
+            so.FindProperty("requiredFlag").stringValue = d.unlockFlag ?? "";
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
@@ -509,6 +532,7 @@ public static class LabSceneBuilder
             go.transform.localScale = new Vector3(b.size.x, b.size.z, b.size.y);
             go.GetComponent<MeshRenderer>().sharedMaterial = GetOrCreatePlaceholderMaterial(kitRoot, b.color);
             AttachInteract(go, b.interact);
+            AttachConditionalObject(go, b.when);
         }
     }
 
@@ -546,7 +570,30 @@ public static class LabSceneBuilder
             go.transform.SetPositionAndRotation(ToUnity(p.pos), Yaw(p.rotZ));
             if (p.scale > 0f) go.transform.localScale = Vector3.one * p.scale;
             AttachInteract(go, p.interact);
+            AttachConditionalObject(go, p.when);
         }
+    }
+
+    // Attach ConditionalObject component if when conditions are specified
+    static void AttachConditionalObject(GameObject go, ConditionalObjectWhen when)
+    {
+        if (when == null || !when.IsSpecified()) return;
+
+        var conditional = go.AddComponent<ConditionalObject>();
+        if (conditional == null)
+        {
+            Debug.LogWarning($"[LabSceneBuilder] {go.name}: failed to attach ConditionalObject");
+            return;
+        }
+
+        var so = new SerializedObject(conditional);
+        so.FindProperty("minDay").intValue = when.minDay;
+        so.FindProperty("maxDay").intValue = when.maxDay;
+        so.FindProperty("requiredFlag").stringValue = when.requiredFlag ?? "";
+        so.FindProperty("forbiddenFlag").stringValue = when.forbiddenFlag ?? "";
+        so.FindProperty("requiredItem").stringValue = when.requiredItem ?? "";
+        so.FindProperty("forbiddenItem").stringValue = when.forbiddenItem ?? "";
+        so.ApplyModifiedPropertiesWithoutUndo();
     }
 
     // JsonUtility fills a missing `interact` with an empty object, so an empty type means none.
@@ -1021,5 +1068,45 @@ public static class LabSceneBuilder
         var parent = Path.GetDirectoryName(path).Replace('\\', '/');
         EnsureFolder(parent);
         AssetDatabase.CreateFolder(parent, Path.GetFileName(path));
+    }
+
+    static void ValidateSceneFlags(string scene, Module[] modules, DoorDef[] doors, BoxDef[] boxes,
+                                   PrefabDef[] prefabs, LightDef[] lights, SoundDef[] sounds)
+    {
+        var usedFlags = new Dictionary<string, string>();  // flag name → source (first occurrence)
+        var usedItems = new Dictionary<string, string>();  // item name → source
+
+        Action<ConditionalObjectWhen, string> addWhen = (when, source) =>
+        {
+            if (when == null) return;
+            if (!string.IsNullOrEmpty(when.requiredFlag) && !usedFlags.ContainsKey(when.requiredFlag)) usedFlags[when.requiredFlag] = source;
+            if (!string.IsNullOrEmpty(when.forbiddenFlag) && !usedFlags.ContainsKey(when.forbiddenFlag)) usedFlags[when.forbiddenFlag] = source;
+            if (!string.IsNullOrEmpty(when.requiredItem) && !usedItems.ContainsKey(when.requiredItem)) usedItems[when.requiredItem] = source;
+            if (!string.IsNullOrEmpty(when.forbiddenItem) && !usedItems.ContainsKey(when.forbiddenItem)) usedItems[when.forbiddenItem] = source;
+        };
+
+        foreach (var m in modules ?? Array.Empty<Module>()) addWhen(m.when, "module " + m.mesh);
+        foreach (var d in doors ?? Array.Empty<DoorDef>())
+        {
+            if (!string.IsNullOrEmpty(d.unlockFlag) && !usedFlags.ContainsKey(d.unlockFlag)) usedFlags[d.unlockFlag] = "door " + d.leaf;
+        }
+        foreach (var b in boxes ?? Array.Empty<BoxDef>()) addWhen(b.when, "box " + b.name);
+        foreach (var p in prefabs ?? Array.Empty<PrefabDef>()) addWhen(p.when, "prefab " + p.name);
+        foreach (var l in lights ?? Array.Empty<LightDef>()) addWhen(l.when, "light");
+        foreach (var s in sounds ?? Array.Empty<SoundDef>()) addWhen(s.when, "sound " + s.name);
+
+        var definedFlags = new HashSet<string>(typeof(GameFlags).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)
+            .Where(f => f.FieldType == typeof(string))
+            .Select(f => (string)f.GetValue(null)));
+
+        var definedItems = new HashSet<string>(typeof(GameItems).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)
+            .Where(f => f.FieldType == typeof(string))
+            .Select(f => (string)f.GetValue(null)));
+
+        foreach (var kvp in usedFlags.Where(kvp => !definedFlags.Contains(kvp.Key)))
+            Debug.LogWarning($"[LabSceneBuilder] {scene}: flag '{kvp.Key}' (used in {kvp.Value}) is not defined in GameFlags");
+
+        foreach (var kvp in usedItems.Where(kvp => !definedItems.Contains(kvp.Key)))
+            Debug.LogWarning($"[LabSceneBuilder] {scene}: item '{kvp.Key}' (used in {kvp.Value}) is not defined in GameItems");
     }
 }
