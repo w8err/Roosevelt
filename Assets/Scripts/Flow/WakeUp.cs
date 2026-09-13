@@ -37,10 +37,11 @@ public static class WakeUp
         if (ScreenTransition.IsRunning) return;
         var bed = Object.FindAnyObjectByType<BedInteractable>();
         if (bed == null || !bed.HasWakeAnchors) return;
-        // Play starts already showing Reality; snap black first so the standing scene never
-        // flashes on screen before ScreenTransition's own fade-out (which starts from whatever
-        // alpha this already is, so it stays black the whole time).
+        // Play starts already showing Reality; snap black (and silent) first so neither the
+        // standing scene nor its ambience flashes/plays before ScreenTransition's own fade-out
+        // (which then starts from whatever this already is, so both stay at 0 the whole time).
         ScreenFader.Instance.SnapToBlack();
+        Ambience.SnapTo(0f);
         ScreenTransition.Run(TransitionKind.Wake, PoseLyingRoutine, StartStandingUp);
     }
 

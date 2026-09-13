@@ -9,8 +9,10 @@ public enum TransitionKind { Door, Sleep, Wake }
 // Shared screen-black transition: input lock -> fade to black -> whileBlack -> optional caption
 // -> hold -> fade back in -> unlock -> onDone. Timing per TransitionKind comes from
 // TransitionSettings.Current, re-read every time a transition starts so Inspector edits in Play
-// mode take effect on the next one. TransitionDoor uses Teleport (Door); the dream bed/wake flow
-// uses LoadScene with Sleep/Wake. Only one transition runs at a time.
+// mode take effect on the next one. Ambience ducks to 0 alongside the fade-out and back to 1
+// alongside the fade-in, using the same durations, so environment sound never plays behind a
+// black screen. TransitionDoor uses Teleport (Door); the dream bed/wake flow uses LoadScene with
+// Sleep/Wake. Only one transition runs at a time.
 public static class ScreenTransition
 {
     static readonly object LockKey = new object();
@@ -79,6 +81,7 @@ public static class ScreenTransition
 
         InputLock.Acquire(LockKey);
         var fader = ScreenFader.Instance;
+        Ambience.FadeTo(0f, fadeOut);
         yield return fader.FadeTo(1f, fadeOut);
 
         var inner = whileBlack?.Invoke();
@@ -93,6 +96,7 @@ public static class ScreenTransition
         }
 
         if (hold > 0f) yield return new WaitForSeconds(hold);
+        Ambience.FadeTo(1f, fadeIn);
         yield return fader.FadeTo(0f, fadeIn);
 
         InputLock.Release(LockKey);

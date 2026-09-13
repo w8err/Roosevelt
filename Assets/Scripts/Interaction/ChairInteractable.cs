@@ -13,6 +13,10 @@ public class ChairInteractable : MonoBehaviour, IInteractable
     [SerializeField] float contemplateDuration = 3.5f;
     [Tooltip("Eye height above seatPosition's floor point once seated.")]
     [SerializeField] float seatEyeHeight = 1.15f;
+    [Tooltip("Ambience.Volume target while contemplating the scene (0 = silent, 1 = untouched).")]
+    [Range(0f, 1f)] [SerializeField] float contemplateAmbienceVolume = 0.3f;
+    [Tooltip("Seconds to ease into contemplateAmbienceVolume, within contemplateDuration.")]
+    [SerializeField] float ambienceDuckDuration = 1.5f;
 
     public string GetPrompt() => "앉기";
     public bool CanInteract() => !GameState.HasFlag(GameFlags.DreamSatChair)
@@ -85,7 +89,9 @@ public class ChairInteractable : MonoBehaviour, IInteractable
         controller.SetPitch(endPitch);
         controller.SetPosed(true, seatEyeHeight);
 
-        // Environment audio (drone/wind fading out) isn't in yet; add it here once it exists.
+        // Environment sound (drone/wind) ducks down while the player contemplates the scene;
+        // EndDream's own screen transition takes it the rest of the way to 0 right after.
+        Ambience.FadeTo(contemplateAmbienceVolume, ambienceDuckDuration);
 
         // Hold this view for contemplation. PlayerCameraFeel keeps the standing breathing bob
         // on top of the now-settled seated eye height.
