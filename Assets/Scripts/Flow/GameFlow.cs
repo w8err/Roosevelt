@@ -31,7 +31,7 @@ public sealed class GameFlow : MonoBehaviour
             Debug.Log("[GameFlow] Ignored EnterDream: already in a dream.");
             return;
         }
-        Go(SceneNames.DreamFor(GameState.Day));
+        Go(TransitionKind.Sleep, SceneNames.DreamFor(GameState.Day));
     }
 
     // Waking up starts the next day, and that is the moment the game saves.
@@ -50,7 +50,7 @@ public sealed class GameFlow : MonoBehaviour
         }
         GameState.AdvanceDay();
         SaveSystem.Save();
-        Go(SceneNames.Reality, $"Day {GameState.Day}", wakeUp: true);
+        Go(TransitionKind.Wake, SceneNames.Reality, $"Day {GameState.Day}", wakeUp: true);
     }
 
     public static void ContinueFromSave()
@@ -61,7 +61,7 @@ public sealed class GameFlow : MonoBehaviour
             Debug.LogWarning("[GameFlow] There is no save to continue from.");
             return;
         }
-        Go(SceneNames.Reality, wakeUp: true);
+        Go(TransitionKind.Wake, SceneNames.Reality, wakeUp: true);
     }
 
     // Checked before touching Day or the save, so a request made mid-transition changes nothing.
@@ -72,11 +72,11 @@ public sealed class GameFlow : MonoBehaviour
         return true;
     }
 
-    static void Go(string sceneName, string caption = null, bool wakeUp = false)
+    static void Go(TransitionKind kind, string sceneName, string caption = null, bool wakeUp = false)
     {
         var afterLoad = wakeUp ? (System.Action)WakeUp.PoseLyingInstant : null;
         var onDone = wakeUp ? (System.Action)WakeUp.StartStandingUp : null;
-        if (ScreenTransition.LoadScene(sceneName, afterLoad, caption, onDone)) Debug.Log($"[GameFlow] Day {GameState.Day}: loading {sceneName}");
+        if (ScreenTransition.LoadScene(kind, sceneName, afterLoad, caption, onDone)) Debug.Log($"[GameFlow] Day {GameState.Day}: loading {sceneName}");
         else Debug.Log($"[GameFlow] Could not start loading {sceneName}.");
     }
 }

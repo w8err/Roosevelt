@@ -41,7 +41,7 @@ public static class WakeUp
         // flashes on screen before ScreenTransition's own fade-out (which starts from whatever
         // alpha this already is, so it stays black the whole time).
         ScreenFader.Instance.SnapToBlack();
-        ScreenTransition.Run(PoseLyingRoutine, StartStandingUp);
+        ScreenTransition.Run(TransitionKind.Wake, PoseLyingRoutine, StartStandingUp);
     }
 
     // ScreenTransition afterLoad hook: called while the screen is still black, right after
