@@ -32,13 +32,17 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] float stickSensitivity = 120f;  // degrees per second
     [SerializeField] float maxPitch = 85f;
 
+    [Header("Seating")]
+    [Tooltip("Eye height above the seat's root position while seated. Standing eye height comes from CameraTarget's own local position.")]
+    [SerializeField] float seatEyeHeight = 1.15f;
+
     CharacterController body;
     InputActionMap map;
     InputAction move, look, interact, sprint;
     // speed: the walk/sprint speed the player is heading for. moveSpeed: how fast they actually go along moveDir.
     float pitch, fallSpeed, speed, moveSpeed, stamina = 1f;
     Vector3 moveDir;
-    bool exhausted, wantedSprint;
+    bool exhausted, wantedSprint, seated;
 
     public Transform CameraTarget => cameraTarget;
     // Read by PlayerInteraction; the action sits in the same Player map as movement.
@@ -48,6 +52,9 @@ public class FirstPersonController : MonoBehaviour
     public bool UseStamina => useStamina;
     public float Stamina01 => stamina;
     public bool Exhausted => exhausted;
+    public float Pitch => pitch;
+    public bool IsSeated => seated;
+    public float SeatEyeHeight => seatEyeHeight;
     // Fired once each time the player tries to sprint while exhausted.
     public event System.Action SprintDenied;
 
@@ -81,7 +88,24 @@ public class FirstPersonController : MonoBehaviour
         // Dialogue, transitions and cutscenes hold InputLock. Gravity keeps running so the body stays grounded.
         var locked = InputLock.IsLocked;
         if (!locked) Look();
-        Move(locked);
+        if (!seated) Move(locked);
+    }
+
+    // Enters or leaves seated mode. While seated, Move() (input, gravity, CharacterController.Move)
+    // is skipped entirely and the CharacterController is disabled, so a chair's collider never
+    // pushes the player and ChairInteractable can drive transform.position/rotation directly
+    // during the sit-down lerp. PlayerCameraFeel reads IsSeated/SeatEyeHeight to ease the eye
+    // height between standing and seated.
+    public void SetSeated(bool value)
+    {
+        seated = value;
+        body.enabled = !value;
+        if (!value)
+        {
+            fallSpeed = -1f;
+            moveSpeed = 0f;
+            speed = walkSpeed;
+        }
     }
 
     // Moves the player without CharacterController fighting the teleport, for room
@@ -97,6 +121,14 @@ public class FirstPersonController : MonoBehaviour
         cameraTarget.localRotation = Quaternion.identity;
         fallSpeed = -1f;
         moveSpeed = 0f;
+    }
+
+    // Sets pitch (up/down look) while respecting maxPitch constraints. Used by cutscenes
+    // and special moments to frame the camera correctly without breaking the look system.
+    public void SetPitch(float newPitch)
+    {
+        pitch = Mathf.Clamp(newPitch, -maxPitch, maxPitch);
+        cameraTarget.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 
     void Look()

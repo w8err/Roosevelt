@@ -24,10 +24,15 @@ public class PlayerCameraFeel : MonoBehaviour
     [Tooltip("Bobs per second at frequency gain 1. Speeds up and slows down with the frequency gains above.")]
     [SerializeField] float bobRate = 2f;
 
+    [Header("Seating")]
+    [Tooltip("Seconds to ease the eye height between standing and FirstPersonController.SeatEyeHeight.")]
+    [SerializeField] float seatEyeTransitionTime = 1.2f;
+
     CharacterController body;
     FirstPersonController controller;
     Transform eye;
     Vector3 eyeRest;
+    float standEyeHeight;
     float moveBlend; // 0 = standing, 1 = walking, 2 = sprinting
     float bobPhase;
 
@@ -37,16 +42,23 @@ public class PlayerCameraFeel : MonoBehaviour
         controller = GetComponent<FirstPersonController>();
         eye = controller.CameraTarget;
         eyeRest = eye.localPosition;
+        standEyeHeight = eyeRest.y;
     }
 
     void Update()
     {
-        var planar = body.velocity;
+        var seated = controller.IsSeated;
+        var planar = seated ? Vector3.zero : body.velocity;
         planar.y = 0f;
-        var target = body.isGrounded ? SpeedToBlend(planar.magnitude) : 0f;
+        var target = !seated && body.isGrounded ? SpeedToBlend(planar.magnitude) : 0f;
         moveBlend = Mathf.MoveTowards(moveBlend, target, Time.deltaTime * blendSpeed);
         noise.AmplitudeGain = Blend(amplitude.x, amplitude.y, sprintAmplitude);
         noise.FrequencyGain = Blend(frequency.x, frequency.y, sprintFrequency);
+
+        // Seating lowers CameraTarget's rest height; the standing breathing bob below still applies on top.
+        var targetEyeY = seated ? controller.SeatEyeHeight : standEyeHeight;
+        var eyeRate = Mathf.Abs(standEyeHeight - controller.SeatEyeHeight) / seatEyeTransitionTime;
+        eyeRest.y = Mathf.MoveTowards(eyeRest.y, targetEyeY, eyeRate * Time.deltaTime);
 
         bobPhase = Mathf.Repeat(bobPhase + Time.deltaTime * bobRate * noise.FrequencyGain, 1f);
         var height = Blend(bobHeight.x, bobHeight.y, bobHeight.z);

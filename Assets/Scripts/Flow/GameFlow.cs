@@ -46,7 +46,7 @@ public sealed class GameFlow : MonoBehaviour
         }
         GameState.AdvanceDay();
         SaveSystem.Save();
-        Go(SceneNames.Reality);
+        Go(SceneNames.Reality, $"Day {GameState.Day}");
     }
 
     public static void ContinueFromSave()
@@ -68,9 +68,9 @@ public sealed class GameFlow : MonoBehaviour
         return true;
     }
 
-    static void Go(string sceneName)
+    static void Go(string sceneName, string caption = null)
     {
-        if (ScreenTransition.LoadScene(sceneName)) Debug.Log($"[GameFlow] Day {GameState.Day}: loading {sceneName}");
+        if (ScreenTransition.LoadScene(sceneName, caption: caption)) Debug.Log($"[GameFlow] Day {GameState.Day}: loading {sceneName}");
         else Debug.Log($"[GameFlow] Could not start loading {sceneName}.");
     }
 }

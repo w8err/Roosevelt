@@ -10,6 +10,8 @@ public static class ScreenTransition
     const float FadeOutSeconds = 0.35f;
     const float HoldSeconds = 0.15f;
     const float FadeInSeconds = 0.35f;
+    // How long a title card (e.g. "Day 1") sits on the fully black screen before the normal hold+fade-in.
+    const float CaptionSeconds = 1.75f;
 
     static readonly object LockKey = new object();
     static Runner runner;
@@ -27,13 +29,13 @@ public static class ScreenTransition
     }
 
     // Locks input, fades to black, runs whileBlack while the screen is black (may be null),
-    // holds briefly, fades back in, unlocks, then calls onDone. Returns false without doing
-    // anything if a transition is already running.
-    public static bool Run(Func<IEnumerator> whileBlack, Action onDone = null)
+    // optionally holds on a caption title card, holds briefly, fades back in, unlocks, then
+    // calls onDone. Returns false without doing anything if a transition is already running.
+    public static bool Run(Func<IEnumerator> whileBlack, Action onDone = null, string caption = null)
     {
         if (IsRunning) return false;
         IsRunning = true;
-        EnsureRunner().StartCoroutine(RunRoutine(whileBlack, onDone));
+        EnsureRunner().StartCoroutine(RunRoutine(whileBlack, onDone, caption));
         return true;
     }
 
@@ -43,11 +45,12 @@ public static class ScreenTransition
         return Run(() => TeleportRoutine(player, destination));
     }
 
-    // Loads sceneName while the screen is black; afterLoad runs once it's in, then the screen fades back in.
-    public static bool LoadScene(string sceneName, Action afterLoad = null)
+    // Loads sceneName while the screen is black; afterLoad runs once it's in. If caption is set,
+    // it shows as a title card on the black screen before the screen fades back in.
+    public static bool LoadScene(string sceneName, Action afterLoad = null, string caption = null)
     {
         if (string.IsNullOrEmpty(sceneName)) return false;
-        return Run(() => LoadSceneRoutine(sceneName, afterLoad));
+        return Run(() => LoadSceneRoutine(sceneName, afterLoad), null, caption);
     }
 
     static IEnumerator TeleportRoutine(FirstPersonController player, Transform destination)
@@ -65,7 +68,7 @@ public static class ScreenTransition
         afterLoad?.Invoke();
     }
 
-    static IEnumerator RunRoutine(Func<IEnumerator> whileBlack, Action onDone)
+    static IEnumerator RunRoutine(Func<IEnumerator> whileBlack, Action onDone, string caption)
     {
         InputLock.Acquire(LockKey);
         var fader = ScreenFader.Instance;
@@ -73,6 +76,14 @@ public static class ScreenTransition
 
         var inner = whileBlack?.Invoke();
         if (inner != null) yield return inner;
+
+        if (!string.IsNullOrEmpty(caption))
+        {
+            fader.Caption.text = caption;
+            fader.Caption.gameObject.SetActive(true);
+            yield return new WaitForSeconds(CaptionSeconds);
+            fader.Caption.gameObject.SetActive(false);
+        }
 
         if (HoldSeconds > 0f) yield return new WaitForSeconds(HoldSeconds);
         yield return fader.FadeTo(0f, FadeInSeconds);

@@ -11,6 +11,7 @@ public class ScreenFader : MonoBehaviour
 
     static ScreenFader instance;
     CanvasGroup group;
+    Text captionText;
 
     public static ScreenFader Instance
     {
@@ -19,6 +20,27 @@ public class ScreenFader : MonoBehaviour
             if (instance == null) Build();
             return instance;
         }
+    }
+
+    // Title-card text (e.g. "Day 1") shown while the screen is fully black. Hidden by default;
+    // ScreenTransition activates it only for transitions that pass a caption.
+    public Text Caption
+    {
+        get
+        {
+            if (captionText == null) BuildCaption();
+            return captionText;
+        }
+    }
+
+    void BuildCaption()
+    {
+        captionText = PixelUI.CreateText("Caption", transform);
+        captionText.fontSize = PixelUI.FontSize * 2;
+        var rect = (RectTransform)captionText.transform;
+        rect.sizeDelta = new Vector2(320f, captionText.fontSize + 4f);
+        rect.anchoredPosition = new Vector2(0f, rect.sizeDelta.y * 0.5f);
+        captionText.gameObject.SetActive(false);
     }
 
     // Play mode starts without a domain reload in this project, so a stale reference to a
