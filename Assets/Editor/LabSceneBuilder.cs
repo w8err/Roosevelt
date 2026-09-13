@@ -70,7 +70,7 @@ public static class LabSceneBuilder
     // A prefab placed as-is, e.g. the lobby NPC.
     [Serializable] class PrefabDef { public string name; public string prefab; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; }
     // What using a box or prop does. type "bed" sleeps into tonight's dream; "npc" plays `dialogue` (a .dialogue asset path); "chair" sits with look direction.
-    [Serializable] class InteractDef { public string type; public string dialogue; public Vector3 seat; public Vector3 look; }
+    [Serializable] class InteractDef { public string type; public string dialogue; public Vector3 seat; public Vector3 look; public Vector3 stand; public Vector3 standLook; }
     [Serializable] class LightDef { public Vector3 pos; public Color color; public float intensity; public float range; }
     [Serializable] class ViewDef { public Vector3 pos; public Vector3 target; public float fov; }
     [Serializable] class GroundDef { public float size; public Color color; }
@@ -437,9 +437,6 @@ public static class LabSceneBuilder
         if (def == null || string.IsNullOrEmpty(def.type)) return;
         switch (def.type)
         {
-            case "bed":
-                go.AddComponent<BedInteractable>();
-                break;
             case "npc":
             {
                 // RequireComponent adds the capsule; size it to a standing person so the view ray finds them.
@@ -475,6 +472,41 @@ public static class LabSceneBuilder
                 var so = new SerializedObject(chair);
                 so.FindProperty("seatPosition").objectReferenceValue = seatGo.transform;
                 so.FindProperty("cameraLookTarget").objectReferenceValue = camGo.transform;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            case "bed":
+            {
+                // NOTE: requires BedInteractable fields from roosevelt-b1
+                if (def.seat == Vector3.zero) return; // Old JSON without lying data
+                var bed = go.AddComponent<BedInteractable>();
+                var lieEyeWorldPos = ToUnity(def.seat);
+                var lieLookWorldPos = ToUnity(def.look);
+                var standWorldPos = ToUnity(def.stand);
+                var standLookWorldPos = ToUnity(def.standLook);
+                // LieEye: lying camera position, yaw toward look direction
+                var lieEyeGo = new GameObject("LieEye");
+                lieEyeGo.transform.SetParent(go.transform, false);
+                var lieLookDir = lieLookWorldPos - lieEyeWorldPos;
+                lieLookDir.y = 0f;
+                var lieYaw = lieLookDir.sqrMagnitude > 1e-6f ? Quaternion.LookRotation(lieLookDir) : Quaternion.identity;
+                lieEyeGo.transform.SetPositionAndRotation(lieEyeWorldPos, lieYaw);
+                // LieLook: lying gaze target
+                var lieLookGo = new GameObject("LieLook");
+                lieLookGo.transform.SetParent(go.transform, false);
+                lieLookGo.transform.position = lieLookWorldPos;
+                // StandPosition: standing location, yaw toward stand look direction
+                var standGo = new GameObject("StandPosition");
+                standGo.transform.SetParent(go.transform, false);
+                var standDir = standLookWorldPos - standWorldPos;
+                standDir.y = 0f;
+                var standYaw = standDir.sqrMagnitude > 1e-6f ? Quaternion.LookRotation(standDir) : Quaternion.identity;
+                standGo.transform.SetPositionAndRotation(standWorldPos, standYaw);
+                // Set references via SerializedObject
+                var so = new SerializedObject(bed);
+                so.FindProperty("lieEye").objectReferenceValue = lieEyeGo.transform;
+                so.FindProperty("lieLook").objectReferenceValue = lieLookGo.transform;
+                so.FindProperty("standPosition").objectReferenceValue = standGo.transform;
                 so.ApplyModifiedPropertiesWithoutUndo();
                 break;
             }
