@@ -24,10 +24,6 @@ public class PlayerCameraFeel : MonoBehaviour
     [Tooltip("Bobs per second at frequency gain 1. Speeds up and slows down with the frequency gains above.")]
     [SerializeField] float bobRate = 2f;
 
-    [Header("Seating")]
-    [Tooltip("Seconds to ease the eye height between standing and FirstPersonController.SeatEyeHeight.")]
-    [SerializeField] float seatEyeTransitionTime = 1.2f;
-
     CharacterController body;
     FirstPersonController controller;
     Transform eye;
@@ -35,6 +31,15 @@ public class PlayerCameraFeel : MonoBehaviour
     float standEyeHeight;
     float moveBlend; // 0 = standing, 1 = walking, 2 = sprinting
     float bobPhase;
+
+    // CameraTarget's own configured local height, captured once before this component starts
+    // overwriting it each frame. Interactables (Chair/Bed/WakeUp) read this as the "standing"
+    // end of their own eye-height lerp.
+    public float StandEyeHeight => standEyeHeight;
+    // The eye's current rest height (no bob), whatever state it's in. Interactables read this
+    // as the starting point of their own eye-height lerp, so entering or leaving a posture never
+    // jumps: it always continues from wherever the eye actually is.
+    public float EyeHeight => eyeRest.y;
 
     void Awake()
     {
@@ -47,18 +52,20 @@ public class PlayerCameraFeel : MonoBehaviour
 
     void Update()
     {
-        var seated = controller.IsSeated;
-        var planar = seated ? Vector3.zero : body.velocity;
+        var posed = controller.IsPosed;
+        var planar = posed ? Vector3.zero : body.velocity;
         planar.y = 0f;
-        var target = !seated && body.isGrounded ? SpeedToBlend(planar.magnitude) : 0f;
+        var target = !posed && body.isGrounded ? SpeedToBlend(planar.magnitude) : 0f;
         moveBlend = Mathf.MoveTowards(moveBlend, target, Time.deltaTime * blendSpeed);
         noise.AmplitudeGain = Blend(amplitude.x, amplitude.y, sprintAmplitude);
         noise.FrequencyGain = Blend(frequency.x, frequency.y, sprintFrequency);
 
-        // Seating lowers CameraTarget's rest height; the standing breathing bob below still applies on top.
-        var targetEyeY = seated ? controller.SeatEyeHeight : standEyeHeight;
-        var eyeRate = Mathf.Abs(standEyeHeight - controller.SeatEyeHeight) / seatEyeTransitionTime;
-        eyeRest.y = Mathf.MoveTowards(eyeRest.y, targetEyeY, eyeRate * Time.deltaTime);
+        // While posed, the eye follows PoseEyeHeight directly rather than easing toward it here:
+        // the interactable driving the posture (Chair/Bed/WakeUp) already lerps PoseEyeHeight
+        // itself in lockstep with its own position/pitch lerp, so the eye's world height moves
+        // continuously through entering, holding and leaving a posture. The standing breathing
+        // bob below still applies on top, in both states.
+        eyeRest.y = posed ? controller.PoseEyeHeight : standEyeHeight;
 
         bobPhase = Mathf.Repeat(bobPhase + Time.deltaTime * bobRate * noise.FrequencyGain, 1f);
         var height = Blend(bobHeight.x, bobHeight.y, bobHeight.z);

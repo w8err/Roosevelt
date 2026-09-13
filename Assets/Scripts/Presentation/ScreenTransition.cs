@@ -46,11 +46,13 @@ public static class ScreenTransition
     }
 
     // Loads sceneName while the screen is black; afterLoad runs once it's in. If caption is set,
-    // it shows as a title card on the black screen before the screen fades back in.
-    public static bool LoadScene(string sceneName, Action afterLoad = null, string caption = null)
+    // it shows as a title card on the black screen before the screen fades back in. onDone runs
+    // after the screen is fully visible again and this transition's own input lock is released
+    // (a caller that needs to keep control past that point, like WakeUp, takes its own lock).
+    public static bool LoadScene(string sceneName, Action afterLoad = null, string caption = null, Action onDone = null)
     {
         if (string.IsNullOrEmpty(sceneName)) return false;
-        return Run(() => LoadSceneRoutine(sceneName, afterLoad), null, caption);
+        return Run(() => LoadSceneRoutine(sceneName, afterLoad), onDone, caption);
     }
 
     static IEnumerator TeleportRoutine(FirstPersonController player, Transform destination)

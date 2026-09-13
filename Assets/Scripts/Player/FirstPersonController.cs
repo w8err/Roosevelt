@@ -32,17 +32,14 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] float stickSensitivity = 120f;  // degrees per second
     [SerializeField] float maxPitch = 85f;
 
-    [Header("Seating")]
-    [Tooltip("Eye height above the seat's root position while seated. Standing eye height comes from CameraTarget's own local position.")]
-    [SerializeField] float seatEyeHeight = 1.15f;
-
     CharacterController body;
     InputActionMap map;
     InputAction move, look, interact, sprint;
     // speed: the walk/sprint speed the player is heading for. moveSpeed: how fast they actually go along moveDir.
     float pitch, fallSpeed, speed, moveSpeed, stamina = 1f;
+    float poseEyeHeight;
     Vector3 moveDir;
-    bool exhausted, wantedSprint, seated;
+    bool exhausted, wantedSprint, posed;
 
     public Transform CameraTarget => cameraTarget;
     // Read by PlayerInteraction; the action sits in the same Player map as movement.
@@ -53,8 +50,9 @@ public class FirstPersonController : MonoBehaviour
     public float Stamina01 => stamina;
     public bool Exhausted => exhausted;
     public float Pitch => pitch;
-    public bool IsSeated => seated;
-    public float SeatEyeHeight => seatEyeHeight;
+    // A fixed-camera posture (sitting, lying) driven by a chair/bed interactable. See SetPosed.
+    public bool IsPosed => posed;
+    public float PoseEyeHeight => poseEyeHeight;
     // Fired once each time the player tries to sprint while exhausted.
     public event System.Action SprintDenied;
 
@@ -88,17 +86,21 @@ public class FirstPersonController : MonoBehaviour
         // Dialogue, transitions and cutscenes hold InputLock. Gravity keeps running so the body stays grounded.
         var locked = InputLock.IsLocked;
         if (!locked) Look();
-        if (!seated) Move(locked);
+        if (!posed) Move(locked);
     }
 
-    // Enters or leaves seated mode. While seated, Move() (input, gravity, CharacterController.Move)
-    // is skipped entirely and the CharacterController is disabled, so a chair's collider never
-    // pushes the player and ChairInteractable can drive transform.position/rotation directly
-    // during the sit-down lerp. PlayerCameraFeel reads IsSeated/SeatEyeHeight to ease the eye
-    // height between standing and seated.
-    public void SetSeated(bool value)
+    // Enters or leaves a fixed-camera posture (sitting in a chair, lying in bed, ...). While
+    // posed, Move() (input, gravity, CharacterController.Move) is skipped entirely and the
+    // CharacterController is disabled, so a chair/bed's collider never pushes the player and
+    // the caller (ChairInteractable, BedInteractable, WakeUp) can drive transform.position/
+    // rotation directly during its own lerp. eyeHeight is the eye's local height above the root
+    // transform while posed (sitting: the seat's eye height; lying: 0, since the root itself is
+    // placed exactly at eye level there); ignored when leaving posture. PlayerCameraFeel reads
+    // IsPosed/PoseEyeHeight to ease CameraTarget between standing and this height.
+    public void SetPosed(bool value, float eyeHeight = 0f)
     {
-        seated = value;
+        posed = value;
+        poseEyeHeight = eyeHeight;
         body.enabled = !value;
         if (!value)
         {

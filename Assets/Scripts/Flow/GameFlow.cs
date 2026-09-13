@@ -15,6 +15,10 @@ public sealed class GameFlow : MonoBehaviour
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         go.AddComponent<DebugPanel>();
 #endif
+        // Starting Play directly in Reality (0-day, or any test) skips the usual scene-load
+        // path, so nothing else would trigger the "waking up" beat. WakeUp no-ops if the scene
+        // has no bed.
+        if (SceneManager.GetActiveScene().name == SceneNames.Reality) WakeUp.PlayOnBoot();
     }
 
     static bool Dreaming => SceneNames.IsDream(SceneManager.GetActiveScene().name);
@@ -46,7 +50,7 @@ public sealed class GameFlow : MonoBehaviour
         }
         GameState.AdvanceDay();
         SaveSystem.Save();
-        Go(SceneNames.Reality, $"Day {GameState.Day}");
+        Go(SceneNames.Reality, $"Day {GameState.Day}", wakeUp: true);
     }
 
     public static void ContinueFromSave()
@@ -57,7 +61,7 @@ public sealed class GameFlow : MonoBehaviour
             Debug.LogWarning("[GameFlow] There is no save to continue from.");
             return;
         }
-        Go(SceneNames.Reality);
+        Go(SceneNames.Reality, wakeUp: true);
     }
 
     // Checked before touching Day or the save, so a request made mid-transition changes nothing.
@@ -68,9 +72,11 @@ public sealed class GameFlow : MonoBehaviour
         return true;
     }
 
-    static void Go(string sceneName, string caption = null)
+    static void Go(string sceneName, string caption = null, bool wakeUp = false)
     {
-        if (ScreenTransition.LoadScene(sceneName, caption: caption)) Debug.Log($"[GameFlow] Day {GameState.Day}: loading {sceneName}");
+        var afterLoad = wakeUp ? (System.Action)WakeUp.PoseLyingInstant : null;
+        var onDone = wakeUp ? (System.Action)WakeUp.StartStandingUp : null;
+        if (ScreenTransition.LoadScene(sceneName, afterLoad, caption, onDone)) Debug.Log($"[GameFlow] Day {GameState.Day}: loading {sceneName}");
         else Debug.Log($"[GameFlow] Could not start loading {sceneName}.");
     }
 }

@@ -71,6 +71,11 @@ public class ScreenFader : MonoBehaviour
         instance.group.interactable = false;
     }
 
+    // Sets full black instantly, with no fade. Used when a sequence needs to start already
+    // black (e.g. WakeUp.PlayOnBoot, so Play starting in Reality never shows the standing
+    // scene before the wake-up's own fade-out begins).
+    public void SnapToBlack() => group.alpha = 1f;
+
     public IEnumerator FadeTo(float target, float seconds)
     {
         var start = group.alpha;

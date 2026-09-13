@@ -11,6 +11,8 @@ public class ChairInteractable : MonoBehaviour, IInteractable
     [Tooltip("Seconds to lerp position, yaw and pitch into the seat.")]
     [SerializeField] float sitTransitionDuration = 1.2f;
     [SerializeField] float contemplateDuration = 3.5f;
+    [Tooltip("Eye height above seatPosition's floor point once seated.")]
+    [SerializeField] float seatEyeHeight = 1.15f;
 
     public string GetPrompt() => "앉기";
     public bool CanInteract() => !GameState.HasFlag(GameFlags.DreamSatChair)
@@ -47,7 +49,10 @@ public class ChairInteractable : MonoBehaviour, IInteractable
         InputLock.Acquire(this);
         // Disables the CharacterController and Move() for the whole sequence, so the chair's
         // collider can never push the player and we can drive transform/pitch directly below.
-        controller.SetSeated(true);
+        // Eye height starts from wherever it actually is (standing) so entering posture is seamless.
+        var feel = controller.GetComponent<PlayerCameraFeel>();
+        var startEyeHeight = feel != null ? feel.EyeHeight : seatEyeHeight;
+        controller.SetPosed(true, startEyeHeight);
 
         var body = controller.transform;
         var startPosition = body.position;
@@ -57,7 +62,7 @@ public class ChairInteractable : MonoBehaviour, IInteractable
         // Aim from the actual seated eye position rather than trusting seatPosition's own
         // rotation, so yaw and pitch both land exactly on cameraLookTarget.
         var endPosition = seatPosition.position;
-        var eyeAtSeat = endPosition + Vector3.up * controller.SeatEyeHeight;
+        var eyeAtSeat = endPosition + Vector3.up * seatEyeHeight;
         var toLook = cameraLookTarget.position - eyeAtSeat;
         var horizontal = new Vector3(toLook.x, 0f, toLook.z);
         var endRotation = horizontal.sqrMagnitude > 1e-6f
@@ -72,15 +77,18 @@ public class ChairInteractable : MonoBehaviour, IInteractable
             var t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / sitTransitionDuration));
             body.SetPositionAndRotation(Vector3.Lerp(startPosition, endPosition, t), Quaternion.Slerp(startRotation, endRotation, t));
             controller.SetPitch(Mathf.Lerp(startPitch, endPitch, t));
+            // Same t as the position/pitch lerp above, so the eye's world height moves continuously.
+            controller.SetPosed(true, Mathf.Lerp(startEyeHeight, seatEyeHeight, t));
             yield return null;
         }
         body.SetPositionAndRotation(endPosition, endRotation);
         controller.SetPitch(endPitch);
+        controller.SetPosed(true, seatEyeHeight);
 
         // Environment audio (drone/wind fading out) isn't in yet; add it here once it exists.
 
         // Hold this view for contemplation. PlayerCameraFeel keeps the standing breathing bob
-        // and eases CameraTarget down to the seated eye height on its own.
+        // on top of the now-settled seated eye height.
         yield return new WaitForSeconds(contemplateDuration);
 
         // Mark that player experienced the moment (before transition, safer if interrupted)
