@@ -138,7 +138,7 @@ public static class CreatureBuilder
 
         var model = AssetDatabase.LoadAssetAtPath<GameObject>(modelPath);
         var key = model.name.Substring(ModelPrefix.Length);
-        // Unpacked like CharacterAssembler: the prefab is rebuilt after every export anyway.
+        // Unpacked from the model: the prefab is rebuilt after every export anyway.
         var go = (GameObject)PrefabUtility.InstantiatePrefab(model);
         PrefabUtility.UnpackPrefabInstance(go, PrefabUnpackMode.Completely, InteractionMode.AutomatedAction);
         go.name = "PF_Creature_Stalk_" + key;
