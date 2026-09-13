@@ -2,9 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-// Bottom-of-screen dialogue box: speaker name, a typed-out line of text, and — when the
-// current node offers any — a numbered choice list below it. Built once at runtime like
-// ScreenFader and kept alive across scene loads.
+// Bottom-of-screen dialogue box: a typed-out line of text and — when the current node offers
+// any — a numbered choice list below it. Built once at runtime like ScreenFader and kept alive
+// across scene loads. The node's speaker stays in the data for identification but is never
+// shown: the player is not told who anyone is.
 public class DialogueView : MonoBehaviour
 {
     // Above the gameplay HUD (10), below the transition fader (1000).
@@ -31,7 +32,7 @@ public class DialogueView : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetOnPlay() => instance = null;
 
-    Text speakerText, bodyText, choicesText;
+    Text bodyText, choicesText;
     Color choicesColor;
     DialogueRunner runner;
     InputAction interact;
@@ -64,7 +65,6 @@ public class DialogueView : MonoBehaviour
     void DisplayCurrent()
     {
         var node = runner.Current;
-        speakerText.text = node.speaker;
         fullBody = node.text ?? "";
         revealedChars = 0;
         revealTimer = 0f;
@@ -208,11 +208,9 @@ public class DialogueView : MonoBehaviour
         background.color = new Color(0f, 0f, 0f, 0.75f);
         background.raycastTarget = false;
 
-        instance.speakerText = PixelUI.CreateText("Speaker", panel.transform);
-        Place(instance.speakerText, new Vector2(6f, -4f), 18f, TextAnchor.UpperLeft);
-
+        // No speaker line, so the body starts at the top of the box.
         instance.bodyText = PixelUI.CreateText("Body", panel.transform);
-        Place(instance.bodyText, new Vector2(6f, -22f), 56f, TextAnchor.UpperLeft);
+        Place(instance.bodyText, new Vector2(6f, -6f), 72f, TextAnchor.UpperLeft);
         instance.bodyText.horizontalOverflow = HorizontalWrapMode.Wrap;
 
         instance.choicesText = PixelUI.CreateText("Choices", panel.transform);
