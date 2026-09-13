@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Unity.Cinemachine;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,6 +24,7 @@ public static class LabSceneBuilder
     const string HandheldNoisePath = "Packages/com.unity.cinemachine/Presets/Noise/Handheld_normal_mild.asset";
     const string WalkNoisePath = "Assets/Settings/Cinemachine/Noise_WalkBob.asset";
     const string SceneDir = "Assets/Scenes";
+    const string NpcControllerPath = "Assets/Animation/Controllers/AC_Npc.controller";
     // Creating this file (e.g. from an external tool) requests a build without opening the menu.
     const string RequestPath = "Temp/LabSceneBuilder.request";
     const string ForestRequestPath = "Temp/ForestSkyboxReview.request";
@@ -538,7 +540,7 @@ public static class LabSceneBuilder
                 foreach (var box in go.GetComponentsInChildren<BoxCollider>())
                     UnityEngine.Object.DestroyImmediate(box);
 
-                var npc = go.AddComponent<NpcInteractable>();
+                var npc = go.GetComponent<NpcInteractable>() ?? go.AddComponent<NpcInteractable>();
                 var capsule = go.GetComponent<CapsuleCollider>();
 
                 // Size capsule from combined mesh renderer bounds (includes children like CreatePrefab does)
@@ -562,6 +564,21 @@ public static class LabSceneBuilder
                     capsule.radius = 0.35f;
                 }
 
+                // Attach Animator and animation controller (or reuse existing)
+                var animator = go.GetComponent<Animator>() ?? go.AddComponent<Animator>();
+                var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(NpcControllerPath);
+                if (controller != null)
+                {
+                    animator.runtimeAnimatorController = controller;
+                }
+                else
+                {
+                    Debug.LogWarning($"[LabSceneBuilder] {go.name}: animation controller not found at {NpcControllerPath}");
+                }
+
+                // Attach CharacterAnimator script (or reuse existing)
+                if (go.GetComponent<CharacterAnimator>() == null) go.AddComponent<CharacterAnimator>();
+
                 var dialogue = AssetDatabase.LoadAssetAtPath<DialogueData>(def.dialogue);
                 if (dialogue == null) Debug.LogError($"[LabSceneBuilder] {go.name}: dialogue not found: {def.dialogue}");
                 var so = new SerializedObject(npc);
@@ -571,7 +588,7 @@ public static class LabSceneBuilder
             }
             case "chair":
             {
-                var chair = go.AddComponent<ChairInteractable>();
+                var chair = go.GetComponent<ChairInteractable>() ?? go.AddComponent<ChairInteractable>();
                 var seatWorldPos = ToUnity(def.seat);
                 var lookWorldPos = ToUnity(def.look);
                 // SeatPosition: yaw only (horizontal rotation toward look)
@@ -596,7 +613,7 @@ public static class LabSceneBuilder
             {
                 // NOTE: requires BedInteractable fields from roosevelt-b1
                 if (def.seat == Vector3.zero) return; // Old JSON without lying data
-                var bed = go.AddComponent<BedInteractable>();
+                var bed = go.GetComponent<BedInteractable>() ?? go.AddComponent<BedInteractable>();
                 var lieEyeWorldPos = ToUnity(def.seat);
                 var lieLookWorldPos = ToUnity(def.look);
                 var standWorldPos = ToUnity(def.stand);
@@ -841,7 +858,8 @@ public static class LabSceneBuilder
         var go = (GameObject)PrefabUtility.InstantiatePrefab(model);
         var bounds = new Bounds();
         var first = true;
-        foreach (var r in go.GetComponentsInChildren<MeshRenderer>())
+        // Handle both MeshRenderer and SkinnedMeshRenderer (rigged models)
+        foreach (var r in go.GetComponentsInChildren<Renderer>())
         {
             r.sharedMaterials = r.sharedMaterials.Select(m => SlotMaterial(m, kit, meshName)).ToArray();
             if (first) { bounds = r.bounds; first = false; }
@@ -849,6 +867,7 @@ public static class LabSceneBuilder
         }
         if (MeshColliderTags.Any(meshName.Contains))
         {
+            // Note: MeshFilter only exists on static meshes, not on SkinnedMeshRenderer (rigged models)
             foreach (var mf in go.GetComponentsInChildren<MeshFilter>())
                 mf.gameObject.AddComponent<MeshCollider>().sharedMesh = mf.sharedMesh;
         }
