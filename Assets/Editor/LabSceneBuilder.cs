@@ -35,9 +35,15 @@ public static class LabSceneBuilder
 
     // Collision by name tag. Ground and lumpy solids collide with their own mesh (a bounding box would seal a
     // doorway or wall off a whole tree crown), thin or see-through dressing gets nothing, everything else a box.
+    // _Stair_ climbs on its own treads: a box over a staircase is a ramp the CharacterController cannot step onto,
+    // and a ramp collider would make the machine room's catwalk stair feel like an escalator.
     static readonly string[] MeshColliderTags = { "_Wall_Door", "_Terrain_", "_Tree_", "_ChoirTotem_", "_Rock_", "_Log_", "_Stump_",
-                                                  "_RootCluster_", "_ServiceDoor_", "_Horizon_" };
-    static readonly string[] NoColliderTags = { "_DoorPart_", "_Shrub_", "_Grass_", "_Backdrop_", "_Path_", "_WarningLight_", "_CCTV_" };
+                                                  "_RootCluster_", "_ServiceDoor_", "_Horizon_", "_Stair_" };
+    // _CableTray_ hangs at 2.4 m and above -- overhead dressing the player can never reach, so a box
+    // there is collision the physics system pays for and nobody ever touches. Pipe runs keep theirs:
+    // they cross the walkway at knee height and are meant to be walked around, not through.
+    static readonly string[] NoColliderTags = { "_DoorPart_", "_Shrub_", "_Grass_", "_Backdrop_", "_Path_", "_WarningLight_", "_CCTV_",
+                                                "_CableTray_" };
 
     [Serializable] class Layout
     {
@@ -54,6 +60,7 @@ public static class LabSceneBuilder
         public LightDef[] lights;
         public ViewDef camera;
         public ViewDef[] playerStarts;
+        public ViewDef[] views;   // extra review captures, written as <scene>_view1.png, _view2.png, ...
         public GroundDef ground;
         public EnvDef environment;
         public CreatureDef[] creatures;
@@ -345,6 +352,20 @@ public static class LabSceneBuilder
         EditorSceneManager.SaveScene(scene, scenePath);
 
         var capture = Capture(cam, sceneName);
+
+        // Extra review vantages. One capture only ever proves the one spot it was pointed at, and a
+        // room whose whole idea is a second storey cannot be signed off from the floor: the machine
+        // room's catwalk needs its own frame or nothing ever looks at the deck the player walks on.
+        // Each view reuses the review camera so it inherits the same clear flags and clip planes.
+        var views = layout.views ?? Array.Empty<ViewDef>();
+        for (int i = 0; i < views.Length; i++)
+        {
+            cam.transform.position = ToUnity(views[i].pos);
+            cam.transform.LookAt(ToUnity(views[i].target));
+            if (views[i].fov > 0) cam.fieldOfView = views[i].fov;
+            Capture(cam, $"{sceneName}_view{i + 1}");
+        }
+
         // The review camera only exists for the capture; play mode uses the player's camera.
         if (starts.Length > 0)
         {
@@ -352,7 +373,7 @@ public static class LabSceneBuilder
             EditorSceneManager.SaveScene(scene, scenePath);
         }
         Debug.Log($"[LabSceneBuilder] built {sceneName}: {modules.Length} modules, {doors.Length} doors, " +
-                  $"{boxes.Length} boxes, {propDefs.Length} prefabs, capture {capture}");
+                  $"{boxes.Length} boxes, {propDefs.Length} prefabs, {views.Length} extra views, capture {capture}");
 
         ValidateSceneFlags(sceneName, modules, doors, boxes, propDefs, layout.lights ?? Array.Empty<LightDef>(), sounds);
         return scenePath;

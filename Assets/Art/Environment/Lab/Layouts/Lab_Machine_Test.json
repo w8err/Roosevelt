@@ -1,0 +1,1951 @@
+{
+ "scene": "Lab_Machine_Test",
+ "material": "M_Lab_Atlas",
+ "atlas": "T_Lab_Atlas",
+ "prefabDir": "Assets/Prefabs/Environment/Lab/Modules",
+ "materials": [
+  {
+   "name": "M_Lab_Atlas",
+   "atlas": "T_Lab_Atlas",
+   "cutout": false
+  },
+  {
+   "name": "M_Lab_Machine_Atlas",
+   "atlas": "T_Lab_Machine_Atlas",
+   "cutout": true,
+   "kit": "Machine"
+  },
+  {
+   "name": "M_Lab_Machinery_Atlas",
+   "atlas": "T_Lab_Machinery_Atlas",
+   "cutout": false,
+   "kit": "MachineProps"
+  }
+ ],
+ "modules": [
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Drain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Stained_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Stained_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Stained_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Stained_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Stained_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 270.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Stained_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 270.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Drain_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 270.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Stained_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 270.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Stained_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 270.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 270.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 270.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 270.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 270.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Floor_Concrete_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 270.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Ceiling_Pipes_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_CornerIn_Lower_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_CornerIn_Upper_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 10.0,
+    "z": 3.5
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_200x350",
+   "pos": {
+    "x": 2.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_200x350",
+   "pos": {
+    "x": 2.0,
+    "y": 10.0,
+    "z": 3.5
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_200x350",
+   "pos": {
+    "x": 4.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_200x350",
+   "pos": {
+    "x": 4.0,
+    "y": 10.0,
+    "z": 3.5
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 10.0,
+    "z": 3.5
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_200x350",
+   "pos": {
+    "x": 8.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_200x350",
+   "pos": {
+    "x": 8.0,
+    "y": 10.0,
+    "z": 3.5
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_200x350",
+   "pos": {
+    "x": 10.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_200x350",
+   "pos": {
+    "x": 10.0,
+    "y": 10.0,
+    "z": 3.5
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_200x350",
+   "pos": {
+    "x": 2.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 2.0,
+    "y": 0.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_200x350",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 0.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Door_200x350",
+   "pos": {
+    "x": 8.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 8.0,
+    "y": 0.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_200x350",
+   "pos": {
+    "x": 10.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 10.0,
+    "y": 0.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_CornerIn_Lower_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_CornerIn_Upper_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 0.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_CornerIn_Lower_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_CornerIn_Upper_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 3.5
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_B_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 2.0,
+    "z": 3.5
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_B_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 4.0,
+    "z": 3.5
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_B_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 6.0,
+    "z": 3.5
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_B_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 8.0,
+    "z": 3.5
+   },
+   "rotZ": 90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_B_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 2.0,
+    "z": 3.5
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_B_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 4.0,
+    "z": 3.5
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_B_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Vent_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 6.0,
+    "z": 3.5
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Lower_B_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_Upper_B_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 8.0,
+    "z": 3.5
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_CornerIn_Lower_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Wall_CornerIn_Upper_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 10.0,
+    "z": 3.5
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Catwalk_Grate_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Catwalk_Grate_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Catwalk_Grate_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Catwalk_Grate_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Catwalk_Grate_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Catwalk_Grate_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Catwalk_Grate_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Catwalk_Grate_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Stair_100x400x350",
+   "pos": {
+    "x": 1.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Railing_200x100",
+   "pos": {
+    "x": 2.0,
+    "y": 6.0,
+    "z": 3.5
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Railing_200x100",
+   "pos": {
+    "x": 2.0,
+    "y": 8.0,
+    "z": 3.5
+   },
+   "rotZ": -90.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Railing_200x100",
+   "pos": {
+    "x": 4.0,
+    "y": 8.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Railing_200x100",
+   "pos": {
+    "x": 6.0,
+    "y": 8.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Railing_200x100",
+   "pos": {
+    "x": 8.0,
+    "y": 8.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Railing_200x100",
+   "pos": {
+    "x": 10.0,
+    "y": 8.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_Machine_Railing_200x100",
+   "pos": {
+    "x": 12.0,
+    "y": 8.0,
+    "z": 3.5
+   },
+   "rotZ": 180.0,
+   "kit": "Machine"
+  },
+  {
+   "mesh": "SM_MachProp_Boiler_Main_180x180x300",
+   "pos": {
+    "x": 6.0,
+    "y": 5.2,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Boiler_Main_180x180x300",
+   "pos": {
+    "x": 8.6,
+    "y": 5.2,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Generator_Diesel_240x100x160",
+   "pos": {
+    "x": 10.4,
+    "y": 2.6,
+    "z": 0.0
+   },
+   "rotZ": -90.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Tank_Pressure_80x80x180",
+   "pos": {
+    "x": 3.6,
+    "y": 6.4,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Tank_Pressure_80x80x180",
+   "pos": {
+    "x": 4.5,
+    "y": 6.4,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Pump_Floor_90x60x70",
+   "pos": {
+    "x": 6.0,
+    "y": 2.4,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Pump_Floor_90x60x70",
+   "pos": {
+    "x": 8.6,
+    "y": 2.4,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_PipeRun_Straight_200x30x30",
+   "pos": {
+    "x": 4.85,
+    "y": 3.4,
+    "z": 0.6
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_PipeRun_Straight_200x30x30",
+   "pos": {
+    "x": 7.15,
+    "y": 3.4,
+    "z": 0.6
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_PipeRun_Straight_200x30x30",
+   "pos": {
+    "x": 9.45,
+    "y": 3.4,
+    "z": 0.6
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_PipeRun_Tee_30x30x30",
+   "pos": {
+    "x": 6.0,
+    "y": 3.4,
+    "z": 0.6
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_PipeRun_Tee_30x30x30",
+   "pos": {
+    "x": 8.3,
+    "y": 3.4,
+    "z": 0.6
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_PipeRun_Elbow_30x30x30",
+   "pos": {
+    "x": 10.6,
+    "y": 3.4,
+    "z": 0.6
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_PipeRun_Straight_200x30x30",
+   "pos": {
+    "x": 3.0,
+    "y": 0.2,
+    "z": 2.4
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_PipeRun_Straight_200x30x30",
+   "pos": {
+    "x": 5.0,
+    "y": 0.2,
+    "z": 2.4
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_PipeRun_Straight_200x30x30",
+   "pos": {
+    "x": 7.0,
+    "y": 0.2,
+    "z": 2.4
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_PipeRun_Straight_200x30x30",
+   "pos": {
+    "x": 9.0,
+    "y": 0.2,
+    "z": 2.4
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Valve_Wheel_40x20x40",
+   "pos": {
+    "x": 5.2,
+    "y": 3.4,
+    "z": 0.74
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Valve_Wheel_40x20x40",
+   "pos": {
+    "x": 7.8,
+    "y": 3.4,
+    "z": 0.74
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Panel_Breaker_80x25x120",
+   "pos": {
+    "x": 11.97,
+    "y": 6.6,
+    "z": 1.45
+   },
+   "rotZ": -90.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_CableTray_200x30x10",
+   "pos": {
+    "x": 4.0,
+    "y": 9.97,
+    "z": 2.475
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_CableTray_200x30x10",
+   "pos": {
+    "x": 6.0,
+    "y": 9.97,
+    "z": 2.475
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_CableTray_200x30x10",
+   "pos": {
+    "x": 8.0,
+    "y": 9.97,
+    "z": 2.475
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_CableTray_200x30x10",
+   "pos": {
+    "x": 4.0,
+    "y": 9.97,
+    "z": 5.475
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_CableTray_200x30x10",
+   "pos": {
+    "x": 6.0,
+    "y": 9.97,
+    "z": 5.475
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_CableTray_200x30x10",
+   "pos": {
+    "x": 8.0,
+    "y": 9.97,
+    "z": 5.475
+   },
+   "rotZ": 0.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Duct_Fan_120x120x40",
+   "pos": {
+    "x": 0.03,
+    "y": 3.0,
+    "z": 4.7
+   },
+   "rotZ": 90.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Drum_Barrel_60x60x90",
+   "pos": {
+    "x": 2.9,
+    "y": 1.2,
+    "z": 0.0
+   },
+   "rotZ": 15.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Drum_Barrel_60x60x90",
+   "pos": {
+    "x": 3.5,
+    "y": 1.5,
+    "z": 0.0
+   },
+   "rotZ": -40.0,
+   "kit": "MachineProps"
+  },
+  {
+   "mesh": "SM_MachProp_Drum_Barrel_60x60x90",
+   "pos": {
+    "x": 3.1,
+    "y": 2.1,
+    "z": 0.0
+   },
+   "rotZ": 70.0,
+   "kit": "MachineProps"
+  }
+ ],
+ "doors": [
+  {
+   "leaf": "SM_Lab_DoorLeaf_Standard_98x209",
+   "parts": [
+    "SM_Lab_DoorPart_Lever_16x16"
+   ],
+   "pos": {
+    "x": 7.0,
+    "y": -0.1,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "locked": false,
+   "target": ""
+  }
+ ],
+ "lights": [
+  {
+   "pos": {
+    "x": 7.3,
+    "y": 5.2,
+    "z": 6.2
+   },
+   "color": {
+    "r": 0.9,
+    "g": 0.74,
+    "b": 0.56,
+    "a": 1.0
+   },
+   "intensity": 4.5,
+   "range": 15.0
+  },
+  {
+   "pos": {
+    "x": 7.3,
+    "y": 5.2,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.9,
+    "g": 0.74,
+    "b": 0.56,
+    "a": 1.0
+   },
+   "intensity": 2.4,
+   "range": 8.0
+  },
+  {
+   "pos": {
+    "x": 7.0,
+    "y": 1.2,
+    "z": 3.2
+   },
+   "color": {
+    "r": 0.9,
+    "g": 0.74,
+    "b": 0.56,
+    "a": 1.0
+   },
+   "intensity": 3.2,
+   "range": 10.0
+  },
+  {
+   "pos": {
+    "x": 4.0,
+    "y": 7.6,
+    "z": 3.2
+   },
+   "color": {
+    "r": 0.9,
+    "g": 0.74,
+    "b": 0.56,
+    "a": 1.0
+   },
+   "intensity": 2.8,
+   "range": 9.0
+  },
+  {
+   "pos": {
+    "x": 2.5,
+    "y": 1.4,
+    "z": 2.8
+   },
+   "color": {
+    "r": 0.9,
+    "g": 0.74,
+    "b": 0.56,
+    "a": 1.0
+   },
+   "intensity": 2.6,
+   "range": 9.0
+  },
+  {
+   "pos": {
+    "x": 1.0,
+    "y": 6.2,
+    "z": 5.6
+   },
+   "color": {
+    "r": 0.9,
+    "g": 0.74,
+    "b": 0.56,
+    "a": 1.0
+   },
+   "intensity": 2.2,
+   "range": 8.0
+  },
+  {
+   "pos": {
+    "x": 10.4,
+    "y": 3.4,
+    "z": 3.4
+   },
+   "color": {
+    "r": 0.9,
+    "g": 0.74,
+    "b": 0.56,
+    "a": 1.0
+   },
+   "intensity": 2.6,
+   "range": 9.0
+  },
+  {
+   "pos": {
+    "x": 11.4,
+    "y": 6.6,
+    "z": 2.8
+   },
+   "color": {
+    "r": 0.84,
+    "g": 0.3,
+    "b": 0.29,
+    "a": 1.0
+   },
+   "intensity": 2.0,
+   "range": 6.0
+  },
+  {
+   "pos": {
+    "x": 6.0,
+    "y": 4.6,
+    "z": 0.45
+   },
+   "color": {
+    "r": 0.96,
+    "g": 0.52,
+    "b": 0.26,
+    "a": 1.0
+   },
+   "intensity": 1.8,
+   "range": 5.5
+  },
+  {
+   "pos": {
+    "x": 8.6,
+    "y": 4.6,
+    "z": 0.45
+   },
+   "color": {
+    "r": 0.96,
+    "g": 0.52,
+    "b": 0.26,
+    "a": 1.0
+   },
+   "intensity": 1.8,
+   "range": 5.5
+  },
+  {
+   "pos": {
+    "x": 2.55,
+    "y": 2.0,
+    "z": 2.4
+   },
+   "color": {
+    "r": 0.973,
+    "g": 0.722,
+    "b": 0.608,
+    "a": 1.0
+   },
+   "intensity": 1.8,
+   "range": 5.5
+  }
+ ],
+ "sounds": [
+  {
+   "type": "ambient",
+   "name": "Machinery_Boiler_W",
+   "pos": {
+    "x": 6.0,
+    "y": 5.2,
+    "z": 1.5
+   },
+   "clip": "Machinery_Close",
+   "volume": 0.7,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 14.0
+  },
+  {
+   "type": "ambient",
+   "name": "Machinery_Boiler_E",
+   "pos": {
+    "x": 8.6,
+    "y": 5.2,
+    "z": 1.5
+   },
+   "clip": "Machinery_Close",
+   "volume": 0.7,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 14.0
+  },
+  {
+   "type": "ambient",
+   "name": "Machinery_Room",
+   "pos": {
+    "x": 6.0,
+    "y": 5.0,
+    "z": 0.0
+   },
+   "clip": "Machinery_Distant",
+   "volume": 0.3,
+   "spatial": false,
+   "minDistance": 0.0,
+   "maxDistance": 0.0
+  },
+  {
+   "type": "ambient",
+   "name": "Steam_Leak_Pipe",
+   "pos": {
+    "x": 10.0,
+    "y": 3.4,
+    "z": 0.6
+   },
+   "clip": "Steam_Hiss",
+   "volume": 0.45,
+   "spatial": true,
+   "minDistance": 1.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "ambient",
+   "name": "Steam_Leak_Tank",
+   "pos": {
+    "x": 4.0,
+    "y": 6.4,
+    "z": 1.4
+   },
+   "clip": "Steam_Hiss",
+   "volume": 0.32,
+   "spatial": true,
+   "minDistance": 1.0,
+   "maxDistance": 5.0
+  },
+  {
+   "type": "ambient",
+   "name": "Vent_Machine",
+   "pos": {
+    "x": 12.0,
+    "y": 5.0,
+    "z": 5.0
+   },
+   "clip": "Vent",
+   "volume": 0.3,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 10.0
+  },
+  {
+   "type": "ambient",
+   "name": "Hum_Machine_Boiler",
+   "pos": {
+    "x": 7.3,
+    "y": 5.2,
+    "z": 6.2
+   },
+   "clip": "Hum_Fluorescent",
+   "volume": 0.2,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "ambient",
+   "name": "Hum_Machine_Door",
+   "pos": {
+    "x": 7.0,
+    "y": 1.2,
+    "z": 3.2
+   },
+   "clip": "Hum_Fluorescent",
+   "volume": 0.2,
+   "spatial": true,
+   "minDistance": 2.0,
+   "maxDistance": 6.0
+  },
+  {
+   "type": "random",
+   "name": "Groan_Structure",
+   "pos": {
+    "x": 6.0,
+    "y": 6.0,
+    "z": 4.5
+   },
+   "clip": "Metal_Groan",
+   "volume": 0.55,
+   "minDistance": 4.0,
+   "maxDistance": 18.0,
+   "intervalMin": 25.0,
+   "intervalMax": 70.0,
+   "radius": 5.0
+  },
+  {
+   "type": "random",
+   "name": "Knock_Pipes",
+   "pos": {
+    "x": 7.0,
+    "y": 3.4,
+    "z": 0.6
+   },
+   "clip": "Pipe_Knock",
+   "volume": 0.5,
+   "minDistance": 2.0,
+   "maxDistance": 12.0,
+   "intervalMin": 14.0,
+   "intervalMax": 40.0,
+   "radius": 4.0
+  }
+ ],
+ "camera": {
+  "pos": {
+   "x": 7.0,
+   "y": 1.4,
+   "z": 1.6
+  },
+  "target": {
+   "x": 6.5,
+   "y": 9.0,
+   "z": 3.0
+  },
+  "fov": 70.0
+ },
+ "views": [
+  {
+   "pos": {
+    "x": 6.0,
+    "y": 9.0,
+    "z": 5.1
+   },
+   "target": {
+    "x": 7.0,
+    "y": 4.0,
+    "z": 2.2
+   },
+   "fov": 70.0
+  },
+  {
+   "pos": {
+    "x": 1.0,
+    "y": 0.6,
+    "z": 1.6
+   },
+   "target": {
+    "x": 1.0,
+    "y": 6.0,
+    "z": 4.2
+   },
+   "fov": 70.0
+  },
+  {
+   "pos": {
+    "x": 7.3,
+    "y": 3.0,
+    "z": 1.6
+   },
+   "target": {
+    "x": 7.3,
+    "y": 6.5,
+    "z": 6.8
+   },
+   "fov": 75.0
+  },
+  {
+   "pos": {
+    "x": 6.0,
+    "y": 6.6,
+    "z": 2.0
+   },
+   "target": {
+    "x": 6.4,
+    "y": 9.9,
+    "z": 2.6
+   },
+   "fov": 55.0
+  },
+  {
+   "pos": {
+    "x": 4.0,
+    "y": 8.6,
+    "z": 4.4
+   },
+   "target": {
+    "x": 8.0,
+    "y": 9.9,
+    "z": 5.4
+   },
+   "fov": 60.0
+  }
+ ],
+ "playerStarts": [
+  {
+   "pos": {
+    "x": 7.0,
+    "y": 1.4,
+    "z": 0.05
+   },
+   "target": {
+    "x": 7.0,
+    "y": 4.4,
+    "z": 1.6
+   },
+   "fov": 0.0
+  }
+ ]
+}
