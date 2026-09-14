@@ -31,6 +31,11 @@ public class BoatInteractable : MonoBehaviour, IInteractable
     FirstPersonController rider;
     Transform originalParent;
 
+    // Whether someone is currently aboard. OarInteractable gates on this: the rider is parented to the
+    // seat, so an oar cannot find them by searching its own children, and this component is the only
+    // thing that actually knows who boarded.
+    public bool HasRider => rider != null;
+
     public string GetPrompt() => rider == null ? boardPrompt : leavePrompt;
     public bool CanInteract() => !ScreenTransition.IsRunning && !Dialogue.IsPlaying;
 

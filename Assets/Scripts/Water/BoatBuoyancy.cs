@@ -1,10 +1,14 @@
 using UnityEngine;
 
-// Floats a boat in place on Ocean.shader's surface: X/Z never change (the boat doesn't sail — see
-// BoatInteractable for why), Y and roll/pitch follow OceanWaves.Height/Slope sampled at the bow, stern,
-// port and starboard every frame, reading the same OceanSettings asset the water's material was tuned
-// from. The FBX's origin is the still-water line itself (roosevelt-70: local y = 0 is the surface a
-// resting boat sits at, draft 0.170m below it, freeboard 0.270m at midship, 0.336m at the bow).
+// Floats a boat on Ocean.shader's surface: Y and roll/pitch follow OceanWaves.Height/Slope sampled at the
+// bow, stern, port and starboard every frame, reading the same OceanSettings asset the water's material
+// was tuned from. The FBX's origin is the still-water line itself (roosevelt-70: local y = 0 is the
+// surface a resting boat sits at, draft 0.170m below it, freeboard 0.270m at midship, 0.336m at the bow).
+//
+// This writes ONLY position.y and the rotation. X/Z belong to BoatRowing, which rows the boat around;
+// an earlier version of this file pinned X/Z here because the boat was designed never to sail, and the
+// two would fight if that were restored. Heading below is the other half of that split — rowing steers
+// by writing it, and this reads it to orient both the sample points and the final rotation.
 public class BoatBuoyancy : MonoBehaviour
 {
     // Sample distances to the bow/stern/port/starboard, in metres from the boat's own origin — SM_Forest_Boat_Row's
@@ -18,9 +22,37 @@ public class BoatBuoyancy : MonoBehaviour
     [SerializeField] float portDistance = 0.46f;
     [SerializeField] float starboardDistance = 0.46f;
 
-    Quaternion restYaw;
+    // Heading (degrees around world Y) is writable so BoatRowing can steer. It seeds itself from the
+    // boat's placed rotation on first access and persists from then on.
+    //
+    // The seeding is guarded by an explicit bool, NOT by comparing Heading to a sentinel. This replaced
+    // `if (Heading == default)`, which looks like the `restYaw == default` check it grew out of but is
+    // not the same thing at all: default(Quaternion) is (0,0,0,0), a degenerate value no real rotation
+    // ever takes, whereas default(float) is 0 — a perfectly ordinary heading, and the exact one the
+    // Water_Test boat is placed at. That check therefore re-seeded every frame, reading eulerAngles.y
+    // back off a rotation this method had already multiplied by the wave tilt, so the extracted yaw was
+    // no longer 0 and the boat slowly yawed on its own. Seeding through the property also makes script
+    // execution order irrelevant: BoatRowing reads this in its own Awake.
+    float heading;
+    bool headingSeeded;
 
-    void Awake() => restYaw = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+    public float Heading
+    {
+        get
+        {
+            if (!headingSeeded)
+            {
+                heading = transform.eulerAngles.y;
+                headingSeeded = true;
+            }
+            return heading;
+        }
+        set
+        {
+            heading = value;
+            headingSeeded = true;
+        }
+    }
 
     // Matches Ocean.shader's _Time.y exactly (Time.timeSinceLevelLoad, not Time.time) — see that
     // shader's header comment for why using the wrong clock would drift the boat out of sync.
@@ -31,15 +63,18 @@ public class BoatBuoyancy : MonoBehaviour
     // drives StalkWalker.Tick() by hand instead of relying on it.
     public void Evaluate(float time)
     {
-        if (restYaw == default) restYaw = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
         var settings = OceanSettings.Current;
         var position = transform.position;
         var xz = new Vector2(position.x, position.z);
 
-        // Sample points from the boat's own rest heading, not assumed world axes — see OceanWaves.Slope's
+        // Read Heading once: the property seeds itself on first access, so reading it repeatedly inside
+        // one frame is harmless but pointless.
+        var headingRotation = Quaternion.Euler(0f, Heading, 0f);
+
+        // Sample points from the boat's own heading, not assumed world axes — see OceanWaves.Slope's
         // comment for why (an earlier version used worldXZ + (0, distance) directly, correct only at yaw 0).
-        var forward3 = restYaw * Vector3.forward;
-        var right3 = restYaw * Vector3.right;
+        var forward3 = headingRotation * Vector3.forward;
+        var right3 = headingRotation * Vector3.right;
         var forward = new Vector2(forward3.x, forward3.z);
         var right = new Vector2(right3.x, right3.z);
 
@@ -60,11 +95,12 @@ public class BoatBuoyancy : MonoBehaviour
         // only ~0.04m of worst-case clearance here but never making it worse. A residual gap beyond
         // this and the sampling above is what buoyancyBias is for, left at 0 until playtesting says
         // otherwise — see BoatInteractable/this change's report for what was and wasn't measured.
+        // Only Y is written; BoatRowing owns X/Z positioning.
         position.y = Mathf.Max(Mathf.Max(bowHeight, sternHeight), Mathf.Max(portHeight, starboardHeight)) + buoyancyBias;
         transform.position = position;
 
         var slope = OceanWaves.Slope(bowPoint, bowHeight, sternPoint, sternHeight, portPoint, portHeight, starboardPoint, starboardHeight);
-        transform.rotation = Quaternion.Slerp(Quaternion.identity, slope, tiltScale) * restYaw;
+        transform.rotation = Quaternion.Slerp(Quaternion.identity, slope, tiltScale) * headingRotation;
     }
 
     [Range(0f, 1f)]

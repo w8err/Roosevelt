@@ -26,6 +26,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _CrestThreshold: 0.65
+    - _FoamAmount: 0.7
+    - _FoamDrift: 0.03
+    - _FoamErosion: 0.4
+    - _FoamErosionScale: 0.9
+    - _FoamNoiseScale: 0.18
+    - _FoamNoiseStrength: 0.55
+    - _FoamSoftness: 0.05
+    - _FoamWarp: 2
+    - _FoamWarpScale: 0.05
     - _TimeOffset: 0
     - _Wave1Amplitude: 0.35
     - _Wave1Speed: 2
@@ -42,6 +51,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.089999996, g: 0.23999995, b: 0.29999998, a: 1}
     - _CrestColor: {r: 0.62, g: 0.74, b: 0.68, a: 1}
+    - _FoamColor: {r: 0.76, g: 0.86, b: 0.84, a: 1}
     - _Wave1Direction: {r: 1, g: 0, b: 0, a: 0}
     - _Wave2Direction: {r: 0.7986, g: 0.6018, b: 0, a: 0}
     - _Wave3Direction: {r: -0.1908, g: 0.9816, b: 0, a: 0}

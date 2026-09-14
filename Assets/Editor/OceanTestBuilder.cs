@@ -25,6 +25,7 @@ public static class OceanTestBuilder
     const string ScenePath = "Assets/Scenes/Water_Test.unity";
     const string PlayerPrefabPath = "Assets/Prefabs/Player/PF_Player.prefab";
     const string BoatModelPath = "Assets/Art/Environment/Forest/Meshes/SM_Forest_Boat_Row_100x240x50.fbx";
+    const string OarModelPath = "Assets/Art/Environment/Forest/Meshes/SM_Forest_Oar_200x20x10.fbx";
     const string ForestPropsMaterialPath = "Assets/Art/Environment/Forest/Materials/M_Forest_Props.mat";
     const string SkyboxMaterialPath = "Assets/Art/Environment/Forest/Materials/M_Forest_Skybox_Clear_V1.mat";
     const string SkyboxTexturePath = "Assets/Art/Environment/Forest/Textures/T_Forest_Skybox_Clear_V1.png";
@@ -130,6 +131,21 @@ public static class OceanTestBuilder
             material.SetFloat($"_Wave{n}Speed", w.speed);
         }
 
+        // Pushed for the same reason as the waves, and with a second reason of its own: a material
+        // remembers every property it was ever saved with, so editing a default in the .shader does
+        // nothing to a material that already exists. The first foam pass looked unchanged after a
+        // retune for exactly that — the material was still pinning the old numbers.
+        material.SetColor("_FoamColor", settings.foamColor);
+        material.SetFloat("_FoamAmount", settings.foamAmount);
+        material.SetFloat("_FoamSoftness", settings.foamSoftness);
+        material.SetFloat("_FoamNoiseScale", settings.foamPatchScale);
+        material.SetFloat("_FoamNoiseStrength", settings.foamPatchStrength);
+        material.SetFloat("_FoamDrift", settings.foamDrift);
+        material.SetFloat("_FoamWarp", settings.foamWarp);
+        material.SetFloat("_FoamWarpScale", settings.foamWarpScale);
+        material.SetFloat("_FoamErosion", settings.foamErosion);
+        material.SetFloat("_FoamErosionScale", settings.foamErosionScale);
+
         var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
         // Camera.backgroundColor fallback only: it's what Skybox clear flags render as when
@@ -180,16 +196,40 @@ public static class OceanTestBuilder
         water.AddComponent<MeshRenderer>().sharedMaterial = material;
 
         var boatPosition = new Vector3(0f, 0f, 5f);
-        var buoyancy = BuildBoat(boatPosition, out var seat);
+        var buoyancy = BuildBoat(boatPosition, out var seat, out var boat);
         var playerCamera = BuildPlayerOnSeat(seat);
+
+        // BoatRowing must exist BEFORE the oars: each OarInteractable's serialized reference to it is
+        // filled in as the oar is built, and building in the other order left every one of them null.
+        // They would have limped along on OarInteractable's runtime GetComponentInParent fallback, which
+        // is exactly the kind of silent recovery that hides a broken scene until something else needs the
+        // reference for real.
+        boat.AddComponent<BoatRowing>();
+        BuildOars(boat);
+
+        // Follow the boat so the finite grid stays under it as it rows. Wired through SerializedObject
+        // like every other reference this builder sets, rather than through public fields on the
+        // component. The quad size is handed over from Size/Segments instead of being typed into
+        // OceanFollow as well: it has to match or the grid snaps to the wrong lattice and the waves
+        // shimmer, and two places holding the same number is how that goes wrong later.
+        var follow = new SerializedObject(water.AddComponent<OceanFollow>());
+        follow.FindProperty("target").objectReferenceValue = boat.transform;
+        follow.FindProperty("quadSize").floatValue = Size / Segments;
+        follow.ApplyModifiedPropertiesWithoutUndo();
+
+        // Review cameras are positioned relative to the boat's actual transform, not world coordinates.
+        // Once the boat can row, it will move and the cameras need to track it to stay in frame. Computed as
+        // offsets from the boat's starting position so they frame the boat the same way regardless of where
+        // it rows to. Camera positions are set at capture time in the loop below, not here.
+        var camReviewOffset = new Vector3(0f, 2.2f, -23f);
+        var camReviewTargetOffset = new Vector3(0f, 0.3f, 25f);
+        var camBoatOffset = new Vector3(3f, 0.5f, 0f);
 
         var cam = new GameObject("Camera_Review").AddComponent<Camera>();
         cam.clearFlags = CameraClearFlags.Skybox;
         cam.backgroundColor = skyColor; // fallback if RenderSettings.skybox ended up unset above
         cam.nearClipPlane = 0.05f;
         cam.farClipPlane = 300f;
-        cam.transform.position = new Vector3(0f, 2.2f, -18f);
-        cam.transform.LookAt(new Vector3(0f, 0.3f, 30f));
         cam.fieldOfView = 55f;
 
         // Close, side-on, near water height: "does the boat sit on the surface" is the thing an
@@ -200,8 +240,6 @@ public static class OceanTestBuilder
         boatCam.backgroundColor = skyColor;
         boatCam.nearClipPlane = 0.05f;
         boatCam.farClipPlane = 300f;
-        boatCam.transform.position = boatPosition + new Vector3(3f, 0.5f, 0f);
-        boatCam.transform.LookAt(boatPosition + Vector3.up * 0.05f);
         boatCam.fieldOfView = 35f;
 
         // From the actual seated eye position — reproduces what the player sees, unlike every other
@@ -276,6 +314,15 @@ public static class OceanTestBuilder
             var offset = CaptureTimeOffsets[i];
             material.SetFloat("_TimeOffset", offset);
             buoyancy.Evaluate(baseTime + offset);
+
+            // Position cameras relative to the boat's actual transform, not world coordinates, so they
+            // stay in frame if the boat rows (BoatRowing owns X/Z positioning).
+            var boatTransform = buoyancy.transform;
+            cam.transform.position = boatTransform.position + camReviewOffset;
+            cam.transform.LookAt(boatTransform.position + camReviewTargetOffset);
+            boatCam.transform.position = boatTransform.position + camBoatOffset;
+            boatCam.transform.LookAt(boatTransform.position + Vector3.up * 0.05f);
+
             // seat's own world transform already reflects the boat's current bob/tilt (it's a child of
             // the boat) — the camera copies it rather than tracking a fixed world spot, same as the
             // real seated player's eye would.
@@ -304,12 +351,64 @@ public static class OceanTestBuilder
         AssetDatabase.SaveAssets();
 
         Debug.Log($"[OceanTestBuilder] built {ScenePath}, {filter.sharedMesh.vertexCount} water vertices, capture {string.Join(" ", captures)}");
+
+        SimulateRowing(boat, water);
+    }
+
+    // Drives BoatRowing by hand and prints where the boat ends up. A still capture cannot show whether
+    // rowing works at all, and the turn direction especially needs proving rather than eyeballing: which
+    // way a pulled oar swings the bow has been implemented backwards twice, and both times it looked
+    // perfectly reasonable in a screenshot. Numbers settle it.
+    //
+    // Nothing here is saved — the scene was written to disk before the captures ran, so this moves a
+    // throwaway in-memory copy of the boat. It mirrors CreatureBuilder stepping StalkWalker.Tick().
+    static void SimulateRowing(GameObject boat, GameObject water)
+    {
+        var rowing = boat.GetComponent<BoatRowing>();
+        var buoyancy = boat.GetComponent<BoatBuoyancy>();
+        var follow = water.GetComponent<OceanFollow>();
+        if (rowing == null || buoyancy == null) return;
+
+        const float step = 1f / 60f;
+        var start = boat.transform.position;
+        var startHeading = buoyancy.Heading;
+
+        // Forward: one stroke, then let it run out. Expect travel along the boat's heading (+Z at rest)
+        // of roughly strokeSpeed / dragPerSecond, and X to stay put.
+        rowing.RowForward();
+        for (var i = 0; i < 60 * 8; i++) rowing.Tick(step);
+        var afterForward = boat.transform.position;
+
+        // Port oar: pulling the LEFT oar must swing the bow RIGHT, i.e. heading must INCREASE (Unity yaw
+        // grows clockwise seen from above). A negative delta here means the sign is inverted again.
+        rowing.PullPortOar();
+        for (var i = 0; i < 60 * 2; i++) rowing.Tick(step);
+        var afterPort = buoyancy.Heading;
+
+        rowing.PullStarboardOar();
+        for (var i = 0; i < 60 * 2; i++) rowing.Tick(step);
+        var afterStarboard = buoyancy.Heading;
+
+        var travel = afterForward - start;
+        var portDelta = Mathf.DeltaAngle(startHeading, afterPort);
+        var starboardDelta = Mathf.DeltaAngle(afterPort, afterStarboard);
+
+        // The water has to have kept up, snapped to whole quads, or the boat rows toward the grid edge.
+        // Driven by hand for the same reason as Tick above: LateUpdate doesn't run in Edit mode either.
+        if (follow != null) follow.SnapToTarget();
+        var followed = follow != null ? (water.transform.position - boat.transform.position).magnitude : -1f;
+
+        Debug.Log($"[OceanTestBuilder] rowing check — forward travel {travel.z:0.000}m along Z, " +
+            $"{travel.x:0.000}m across X (expect travel along Z, none across X) | " +
+            $"port oar {portDelta:+0.0;-0.0} deg (expect POSITIVE = bow swings right) | " +
+            $"starboard oar {starboardDelta:+0.0;-0.0} deg (expect NEGATIVE) | " +
+            $"water trails boat by {followed:0.00}m (must stay under half the {Size}m grid)");
     }
 
     // roosevelt-70's FBX if it's there; a box matching the same draft/freeboard/length/beam otherwise
     // (an earlier placeholder had the whole hull below the origin — entirely submerged, since origin is
     // the waterline — which is what actually made the boat-side capture unreadable, not the camera).
-    static BoatBuoyancy BuildBoat(Vector3 position, out Transform seat)
+    static BoatBuoyancy BuildBoat(Vector3 position, out Transform seat, out GameObject boatOut)
     {
         var model = AssetDatabase.LoadAssetAtPath<GameObject>(BoatModelPath);
         GameObject boat;
@@ -354,6 +453,7 @@ public static class OceanTestBuilder
         so.FindProperty("boardOnStart").boolValue = true;
         so.ApplyModifiedPropertiesWithoutUndo();
 
+        boatOut = boat;
         return boat.GetComponent<BoatBuoyancy>();
     }
 
@@ -372,6 +472,114 @@ public static class OceanTestBuilder
         var hullMat = new Material(Shader.Find("Universal Render Pipeline/Simple Lit")) { color = new Color(0.32f, 0.22f, 0.15f) };
         hull.GetComponent<MeshRenderer>().sharedMaterial = hullMat;
         return boat;
+    }
+
+    // Instantiates oar FBX twice as children of the boat at the two oarlock positions with correct
+    // rotations. Each oar gets a collider for gaze raycast and an OarInteractable. A third invisible
+    // target (RowTarget_Both) in the space between the locks lets the player row forward without
+    // picking a specific oar.
+    static void BuildOars(GameObject boat)
+    {
+        var oarModel = AssetDatabase.LoadAssetAtPath<GameObject>(OarModelPath);
+        var propsMaterial = AssetDatabase.LoadAssetAtPath<Material>(ForestPropsMaterialPath);
+
+        // Oarlock positions, boat-local, from make_dream_boat.py's measured pins through this project's
+        // (x,y,z) -> (-x, z, -y) Blender conversion. The FBX origin is already the oarlock pivot, so the
+        // oars drop straight onto these with no offset.
+        //
+        // The bow is +Z, so facing forward the player's LEFT is -X: port is the NEGATIVE side. An earlier
+        // version had these two swapped, which put each oar on the wrong side of the boat and handed the
+        // 180-degree flip to the wrong one as well.
+        var portPosition = new Vector3(-0.447f, 0.350f, 0.250f);
+        var starboardPosition = new Vector3(0.447f, 0.350f, 0.250f);
+
+        if (oarModel != null)
+        {
+            // The mesh's blade points along local -X (Blender +X, flipped by the conversion), so the port
+            // oar is already aimed outboard and the starboard one has to be turned around.
+            var portOar = (GameObject)PrefabUtility.InstantiatePrefab(oarModel, boat.transform);
+            portOar.name = "Oar_Port";
+            portOar.transform.localPosition = portPosition;
+            portOar.transform.localRotation = Quaternion.identity;
+            ConfigureOar(portOar, propsMaterial, OarStroke.PortOar);
+
+            var starboardOar = (GameObject)PrefabUtility.InstantiatePrefab(oarModel, boat.transform);
+            starboardOar.name = "Oar_Starboard";
+            starboardOar.transform.localPosition = starboardPosition;
+            starboardOar.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+            ConfigureOar(starboardOar, propsMaterial, OarStroke.StarboardOar);
+        }
+        else
+        {
+            Debug.LogWarning($"[OceanTestBuilder] {OarModelPath} not found; oars not built");
+        }
+
+        // Invisible gaze target for forward rowing: between the two oarlocks where the rower's hands meet
+        var rowBothTarget = new GameObject("RowTarget_Both");
+        rowBothTarget.transform.SetParent(boat.transform, false);
+        rowBothTarget.transform.localPosition = new Vector3(0f, 0.350f, 0.250f);
+        var boxCol = rowBothTarget.AddComponent<BoxCollider>();
+        boxCol.size = new Vector3(0.55f, 0.30f, 0.30f);
+        WireOar(rowBothTarget.AddComponent<OarInteractable>(), OarStroke.Forward,
+            boat.GetComponent<BoatRowing>(), boat.GetComponent<BoatInteractable>());
+    }
+
+    // Fills in an OarInteractable's serialized references. It can find both of these itself at runtime,
+    // but a scene that ships with them already resolved is one that can be inspected and trusted without
+    // entering play mode.
+    static void WireOar(OarInteractable interactable, OarStroke stroke, BoatRowing rowing, BoatInteractable boat)
+    {
+        var so = new SerializedObject(interactable);
+        so.FindProperty("stroke").enumValueIndex = (int)stroke;
+        if (rowing != null) so.FindProperty("boatRowing").objectReferenceValue = rowing;
+        else Debug.LogWarning($"[OceanTestBuilder] {interactable.name}: no BoatRowing to wire");
+        if (boat != null) so.FindProperty("boat").objectReferenceValue = boat;
+        else Debug.LogWarning($"[OceanTestBuilder] {interactable.name}: no BoatInteractable to wire");
+        so.ApplyModifiedPropertiesWithoutUndo();
+    }
+
+    // Configures an oar GameObject with collider and OarInteractable, applying Forest props material
+    static void ConfigureOar(GameObject oar, Material propsMaterial, OarStroke stroke)
+    {
+        // Apply Forest props material to all renderers
+        if (propsMaterial != null)
+        {
+            foreach (var renderer in oar.GetComponentsInChildren<Renderer>())
+                renderer.sharedMaterials = renderer.sharedMaterials.Select(_ => propsMaterial).ToArray();
+        }
+        else
+        {
+            Debug.LogWarning($"[OceanTestBuilder] {ForestPropsMaterialPath} not found; oar keeps default material");
+        }
+
+        // Gaze-raycast collider, taken from the mesh's own bounds rather than typed in. The oar's origin
+        // is the oarlock pivot, NOT its centre — the blade runs ~1.39m one way and the handle ~0.59m the
+        // other — so a box centred on the origin is wrong at both ends, and the long axis is X, not Z.
+        // A hand-guessed (0.15, 0.10, 1.92) got all three axes and the offset wrong at once; reading the
+        // bounds cannot drift if the oar is ever remodelled.
+        var col = oar.AddComponent<BoxCollider>();
+        var meshFilter = oar.GetComponentInChildren<MeshFilter>();
+        if (meshFilter != null && meshFilter.sharedMesh != null)
+        {
+            var bounds = meshFilter.sharedMesh.bounds;
+            col.center = bounds.center;
+            // The real oar is only ~6cm thick and ~19cm across the blade, which is a mean target for a
+            // view ray at arm's length. Padded to a minimum so aiming at it is comfortable; the padding
+            // is invisible and nothing else collides out here.
+            col.size = new Vector3(bounds.size.x,
+                                   Mathf.Max(bounds.size.y, 0.14f),
+                                   Mathf.Max(bounds.size.z, 0.14f));
+        }
+        else
+        {
+            Debug.LogWarning($"[OceanTestBuilder] {oar.name}: no mesh to size the collider from");
+            col.size = new Vector3(1.98f, 0.14f, 0.14f);
+            col.center = new Vector3(-0.40f, 0f, 0f);
+        }
+
+        // Add OarInteractable with reference to BoatRowing
+        WireOar(oar.AddComponent<OarInteractable>(), stroke, oar.GetComponentInParent<BoatRowing>(),
+            oar.GetComponentInParent<BoatInteractable>());
     }
 
     // Parented on the seat for visual reference only (does the player look right seated on the boat
