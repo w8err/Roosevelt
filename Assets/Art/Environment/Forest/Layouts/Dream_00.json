@@ -33,6 +33,11 @@
    "name": "M_Forest_Figures",
    "atlas": "T_Forest_Figures_Atlas",
    "cutout": false
+  },
+  {
+   "name": "M_Forest_Gardener",
+   "atlas": "T_Forest_Gardener_Atlas",
+   "cutout": false
   }
  ],
  "modules": [
@@ -6368,6 +6373,20 @@
      "z": 3.437
     }
    }
+  },
+  {
+   "mesh": "SM_Forest_Figure_Gardener_Standing_60x120x180",
+   "pos": {
+    "x": -2.4,
+    "y": -4.6,
+    "z": 0.0
+   },
+   "rotZ": 152.4,
+   "scale": 1.0,
+   "interact": {
+    "type": "npc",
+    "dialogue": "Assets/Dialogue/Dream_Gardener.dialogue"
+   }
   }
  ],
  "boxes": [],
@@ -6492,6 +6511,34 @@
   },
   "fov": 60.0
  },
+ "views": [
+  {
+   "pos": {
+    "x": 1.768,
+    "y": -10.888,
+    "z": 1.15
+   },
+   "target": {
+    "x": -3.933,
+    "y": -1.763,
+    "z": 3.437
+   },
+   "fov": 70.0
+  },
+  {
+   "pos": {
+    "x": -2.4,
+    "y": -7.1,
+    "z": 1.6
+   },
+   "target": {
+    "x": -2.4,
+    "y": -4.6,
+    "z": 1.35
+   },
+   "fov": 65.0
+  }
+ ],
  "playerStarts": [
   {
    "pos": {

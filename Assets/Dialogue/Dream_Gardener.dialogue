@@ -1,0 +1,10 @@
+{
+ "startNode": "only",
+ "nodes": [
+  {
+   "id": "only",
+   "speaker": "정원사",
+   "text": "전 정원사입니다."
+  }
+ ]
+}
