@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.natteens.retropsxurp": {
+      "version": "file:com.natteens.retropsxurp",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "17.0.3"
+      }
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 1,
@@ -282,6 +290,22 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.w8err.assetgraph": {
+      "version": "https://github.com/w8err/Unity-AssetGraph.git#v1.2.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      },
+      "hash": "11d12e2b341707e9968355b872563414d72260a5"
+    },
+    "devlocker.versioncontrol.wisegit": {
+      "version": "https://github.com/NibbleByte/UnityWiseGit.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "15fd47b2aec28b29872d7b795c1af3ac9abcf2b1"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
