@@ -7,7 +7,7 @@ paths:
 ---
 # 에셋 파이프라인
 
-에셋 작업 전에 `D:\04_Project Files\Roosevelt\04_에셋_제작\에셋_제작_과정.md`(절차)와 같은 폴더의 `에셋_규격서_지하연구소.md`(규격)를 읽는다.
+에셋 작업 전에 `D:\04_Project Files\Roosevelt\01_기획\Roosevelt_Doc\04_에셋_제작\에셋_제작_과정.md`(절차)와 같은 폴더의 `에셋_규격서_지하연구소.md`(규격)를 읽는다.
 
 - 모듈 원본 `Art/Lab/Lab_Modules.blend`는 MCP로 열지 않고 `blender.exe -b ... -P 스크립트`로 고친다. 고치기 전에 백업한다.
 - 공용 함수는 `Art/tools/labkit.py`. 새 모듈은 `make_doors.py`, 변형은 `make_doorpair.py`를 본뜬다.
