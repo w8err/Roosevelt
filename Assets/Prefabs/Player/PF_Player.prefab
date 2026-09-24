@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 4424588792008741981}
   - component: {fileID: 7390215846620378144}
   - component: {fileID: 5591267968573046784}
+  - component: {fileID: 8144041022191989803}
   m_Layer: 0
   m_Name: PF_Player
   m_TagString: Untagged
@@ -382,7 +383,13 @@ MonoBehaviour:
   cameraTarget: {fileID: 1459223366173570242}
   walkSpeed: 2.2
   sprintSpeed: 6
+  speedChangeTime: 0.8
+  accelerationTime: 0.2
+  decelerationTime: 0.12
   gravity: -9.81
+  useStamina: 1
+  sprintDuration: 10
+  recoverDuration: 5
   mouseSensitivity: 0.08
   stickSensitivity: 120
   maxPitch: 85
@@ -401,7 +408,11 @@ MonoBehaviour:
   noise: {fileID: 3075251844784694675}
   amplitude: {x: 0.4, y: 1}
   frequency: {x: 0.35, y: 1}
+  sprintAmplitude: 1.8
+  sprintFrequency: 1.5
   blendSpeed: 3
+  bobHeight: {x: 0.005, y: 0.0125, z: 0.05}
+  bobRate: 2
 --- !u!114 &7390215846620378144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,12 +423,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae9c8b84394f47598bd3e4080ae9a1c0, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StaminaBar
   size: {x: 240, y: 12}
   margin: {x: 40, y: 40}
   outline: 2
   padding: 2
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  exhaustedColor: {r: 0.8392157, g: 0.29803923, b: 0.29803923, a: 1}
+  fadeDelay: 0.5
+  fadeOutTime: 0.6
+  fadeInTime: 0.1
+  shakeDistance: 6
+  shakeFrequency: 12
+  shakeDuration: 0.35
 --- !u!114 &5591267968573046784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +447,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 479b9ca3871e5a0468d75f7adbc8cbdc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   interactDistance: 2
+  showCrosshair: 1
+  readyColor: {r: 1, g: 1, b: 1, a: 1}
+  blockedColor: {r: 1, g: 1, b: 1, a: 0.45}
+  idleCrosshairColor: {r: 1, g: 1, b: 1, a: 0.25}
+--- !u!114 &8144041022191989803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8721661212378261749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a8b02f00b3e3b4f810e7efe76b3b27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarryHands
+  holdOffset: {x: 0.28, y: -0.22, z: 0.45}
+  holdRotation: {x: 12, y: -25, z: 6}
+  carrySpeedScale: 0.72

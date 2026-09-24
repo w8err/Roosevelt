@@ -1,0 +1,2007 @@
+{
+ "scene": "Lab_Interaction_Playground",
+ "prefabDir": "Assets/Prefabs/Environment/Lab/Modules",
+ "materials": [
+  {
+   "name": "M_Lab_Atlas",
+   "atlas": "T_Lab_Atlas",
+   "cutout": false
+  },
+  {
+   "name": "M_Lab_Panel_Atlas",
+   "atlas": "T_Lab_Panel_Atlas",
+   "cutout": false,
+   "kit": "Panel"
+  },
+  {
+   "name": "M_Lab_Cold_Atlas",
+   "atlas": "T_Lab_Cold_Atlas",
+   "cutout": false,
+   "kit": "Cold"
+  },
+  {
+   "name": "M_Lab_Cold_Glass",
+   "atlas": "T_Lab_Cold_Atlas",
+   "cutout": false,
+   "alpha": 0.35,
+   "kit": "Cold"
+  },
+  {
+   "name": "M_Lab_Cold_Light",
+   "atlas": "T_Lab_Cold_Atlas",
+   "cutout": false,
+   "kit": "Cold"
+  }
+ ],
+ "modules": [
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 0.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 2.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Stained_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 4.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Stained_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 6.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Light_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 8.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Floor_Plain_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Ceiling_Plain_200x200",
+   "pos": {
+    "x": 10.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 0.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 2.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 4.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 8.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 10.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": 0.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 2.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 4.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 6.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 8.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 10.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 0,
+    "z": 0.0
+   },
+   "rotZ": 180.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": 90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 2.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 4.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 6.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_Plain_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 8.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "mesh": "SM_Lab_Wall_CornerIn_200x350",
+   "pos": {
+    "x": 12.0,
+    "y": 10.0,
+    "z": 0.0
+   },
+   "rotZ": -90.0
+  },
+  {
+   "name": "ChartBoard",
+   "mesh": "SM_LabPanel_ChartBoard_90x4x120",
+   "pos": {
+    "x": 6.0,
+    "y": 9.98,
+    "z": 1.5
+   },
+   "rotZ": 0.0,
+   "kit": "Panel",
+   "interact": {
+    "type": "chart",
+    "label": "배합 대조표"
+   }
+  },
+  {
+   "name": "Compound",
+   "mesh": "SM_LabPart_SampleVial_10x10x18",
+   "pos": {
+    "x": 10.1,
+    "y": 8.9,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "kit": "Panel",
+   "interact": {
+    "type": "carryable",
+    "partId": "Compound",
+    "label": "배합물"
+   }
+  }
+ ],
+ "consoles": [
+  {
+   "name": "Analyzer",
+   "mesh": "SM_LabPanel_Console_Analyzer_120x70x110",
+   "kit": "Panel",
+   "pos": {
+    "x": 1.9,
+    "y": 9.6,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "parts": [
+    {
+     "name": "AnalyzerPort",
+     "mesh": "SM_LabPanel_Socket_Sample_14x14x8",
+     "kit": "Panel",
+     "localPosition": {
+      "x": 0.3,
+      "y": 0.8334,
+      "z": 0.1243
+     },
+     "localEulerAngles": {
+      "x": 17.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "검체 투입구"
+     }
+    },
+    {
+     "name": "AnalyzerLever",
+     "mesh": "SM_LabPanel_Lever_8x20x30",
+     "kit": "Panel",
+     "localPosition": {
+      "x": 0.08,
+      "y": 0.8688,
+      "z": 0.1351
+     },
+     "localEulerAngles": {
+      "x": 17.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "lever",
+      "label": "분석 레버"
+     }
+    },
+    {
+     "name": "AnalyzerCRTShell",
+     "mesh": "SM_LabPanel_CRT_40x30x36",
+     "kit": "Panel",
+     "localPosition": {
+      "x": -0.3,
+      "y": 1.1,
+      "z": -0.1775
+     },
+     "localEulerAngles": {
+      "x": 0.0,
+      "y": 0,
+      "z": 0
+     }
+    },
+    {
+     "name": "AnalyzerCRT",
+     "mesh": "SM_LabPanel_CRT_Screen_32x24",
+     "kit": "Panel",
+     "localPosition": {
+      "x": -0.3,
+      "y": 1.31,
+      "z": -0.0425
+     },
+     "localEulerAngles": {
+      "x": 0.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "terminal",
+      "label": "측정기 화면"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Mixer",
+   "mesh": "SM_LabPanel_Console_Mixer_140x70x110",
+   "kit": "Panel",
+   "pos": {
+    "x": 10.1,
+    "y": 9.6,
+    "z": 0.0
+   },
+   "rotZ": 0.0,
+   "parts": [
+    {
+     "name": "MixerOut",
+     "mesh": "SM_LabPanel_Socket_Sample_14x14x8",
+     "kit": "Panel",
+     "localPosition": {
+      "x": -0.4,
+      "y": 1.035,
+      "z": -0.1775
+     },
+     "localEulerAngles": {
+      "x": 0.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Compound",
+      "label": "배출구"
+     }
+    },
+    {
+     "name": "DialA",
+     "mesh": "SM_LabPanel_Dial_10x10x6",
+     "kit": "Panel",
+     "localPosition": {
+      "x": 0.45,
+      "y": 0.8812,
+      "z": 0.1389
+     },
+     "localEulerAngles": {
+      "x": -73.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "dial",
+      "steps": 10,
+      "label": "A 다이얼"
+     }
+    },
+    {
+     "name": "DialB",
+     "mesh": "SM_LabPanel_Dial_10x10x6",
+     "kit": "Panel",
+     "localPosition": {
+      "x": 0.2,
+      "y": 0.8812,
+      "z": 0.1389
+     },
+     "localEulerAngles": {
+      "x": -73.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "dial",
+      "steps": 10,
+      "label": "B 다이얼"
+     }
+    },
+    {
+     "name": "DialC",
+     "mesh": "SM_LabPanel_Dial_10x10x6",
+     "kit": "Panel",
+     "localPosition": {
+      "x": -0.05,
+      "y": 0.8812,
+      "z": 0.1389
+     },
+     "localEulerAngles": {
+      "x": -73.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "dial",
+      "steps": 10,
+      "label": "C 다이얼"
+     }
+    },
+    {
+     "name": "MixerCommit",
+     "mesh": "SM_LabPanel_Button_Confirm_10x10x5",
+     "kit": "Panel",
+     "localPosition": {
+      "x": -0.4,
+      "y": 0.8956,
+      "z": 0.1433
+     },
+     "localEulerAngles": {
+      "x": -73.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "button",
+      "label": "확정"
+     }
+    },
+    {
+     "name": "MixerCRTShell",
+     "mesh": "SM_LabPanel_CRT_40x30x36",
+     "kit": "Panel",
+     "localPosition": {
+      "x": 0.45,
+      "y": 1.1,
+      "z": -0.1775
+     },
+     "localEulerAngles": {
+      "x": 0.0,
+      "y": 0,
+      "z": 0
+     }
+    },
+    {
+     "name": "MixerCRT",
+     "mesh": "SM_LabPanel_CRT_Screen_32x24",
+     "kit": "Panel",
+     "localPosition": {
+      "x": 0.45,
+      "y": 1.31,
+      "z": -0.0425
+     },
+     "localEulerAngles": {
+      "x": 0.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "terminal",
+      "label": "배합기 화면"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Reactor",
+   "mesh": "SM_LabPanel_Console_Run_160x80x120",
+   "kit": "Panel",
+   "pos": {
+    "x": 10.1,
+    "y": 0.45,
+    "z": 0.0
+   },
+   "rotZ": 180.0,
+   "parts": [
+    {
+     "name": "ReactorPort",
+     "mesh": "SM_LabPanel_Socket_Sample_14x14x8",
+     "kit": "Panel",
+     "localPosition": {
+      "x": 0.55,
+      "y": 0.8422,
+      "z": 0.1456
+     },
+     "localEulerAngles": {
+      "x": 17.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Compound",
+      "label": "장전구"
+     }
+    },
+    {
+     "name": "ReactorLever",
+     "mesh": "SM_LabPanel_Lever_8x20x30",
+     "kit": "Panel",
+     "localPosition": {
+      "x": 0.3,
+      "y": 0.8775,
+      "z": 0.1564
+     },
+     "localEulerAngles": {
+      "x": 17.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "lever",
+      "label": "가동 레버"
+     }
+    },
+    {
+     "name": "ReactorGaugeFace",
+     "mesh": "SM_LabPanel_Gauge_Face_24x24x8",
+     "kit": "Panel",
+     "localPosition": {
+      "x": -0.2,
+      "y": 0.8903,
+      "z": 0.108
+     },
+     "localEulerAngles": {
+      "x": 17.0,
+      "y": 0,
+      "z": 0
+     }
+    },
+    {
+     "name": "ReactorGauge",
+     "mesh": "SM_LabPanel_Gauge_Needle_20x3x3",
+     "kit": "Panel",
+     "localPosition": {
+      "x": -0.2,
+      "y": 0.94,
+      "z": 0.1232
+     },
+     "localEulerAngles": {
+      "x": 17.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "gauge",
+      "label": "압력계"
+     }
+    },
+    {
+     "name": "ReactorCRTShell",
+     "mesh": "SM_LabPanel_CRT_40x30x36",
+     "kit": "Panel",
+     "localPosition": {
+      "x": -0.5,
+      "y": 1.2,
+      "z": -0.262
+     },
+     "localEulerAngles": {
+      "x": 0.0,
+      "y": 0,
+      "z": 0
+     }
+    },
+    {
+     "name": "ReactorCRT",
+     "mesh": "SM_LabPanel_CRT_Screen_32x24",
+     "kit": "Panel",
+     "localPosition": {
+      "x": -0.5,
+      "y": 1.41,
+      "z": -0.127
+     },
+     "localEulerAngles": {
+      "x": 0.0,
+      "y": 0,
+      "z": 0
+     },
+     "interact": {
+      "type": "terminal",
+      "label": "가동 콘솔 화면"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Fridge",
+   "mesh": "SM_LabCold_Body_140x70x200",
+   "kit": "Cold",
+   "pos": {
+    "x": 0.4,
+    "y": 2.4,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "parts": [
+    {
+     "name": "FridgeDoorL",
+     "mesh": "SM_LabCold_Door_L_68x4x170",
+     "kit": "Cold",
+     "localPosition": {
+      "x": 0.69,
+      "y": 0.11,
+      "z": 0.39
+     },
+     "interact": {
+      "type": "door",
+      "openAngle": 90,
+      "label": "냉장고"
+     }
+    },
+    {
+     "name": "FridgeDoorR",
+     "mesh": "SM_LabCold_Door_R_68x4x170",
+     "kit": "Cold",
+     "localPosition": {
+      "x": -0.69,
+      "y": 0.11,
+      "z": 0.39
+     },
+     "interact": {
+      "type": "door",
+      "openAngle": -90,
+      "label": "냉장고"
+     }
+    },
+    {
+     "name": "Fridge_shelf_1",
+     "mesh": "SM_LabCold_Shelf_Wire_130x58x3",
+     "kit": "Cold",
+     "localPosition": {
+      "x": -0.0,
+      "y": 0.48,
+      "z": 0.045
+     }
+    },
+    {
+     "name": "Fridge_shelf_2",
+     "mesh": "SM_LabCold_Shelf_Wire_130x58x3",
+     "kit": "Cold",
+     "localPosition": {
+      "x": -0.0,
+      "y": 0.82,
+      "z": 0.045
+     }
+    },
+    {
+     "name": "Fridge_shelf_3",
+     "mesh": "SM_LabCold_Shelf_Wire_130x58x3",
+     "kit": "Cold",
+     "localPosition": {
+      "x": -0.0,
+      "y": 1.16,
+      "z": 0.045
+     }
+    },
+    {
+     "name": "Fridge_shelf_4",
+     "mesh": "SM_LabCold_Shelf_Wire_130x58x3",
+     "kit": "Cold",
+     "localPosition": {
+      "x": -0.0,
+      "y": 1.5,
+      "z": 0.045
+     }
+    },
+    {
+     "name": "Fridge_rack",
+     "mesh": "SM_LabCold_Rack_Vial_42x22x6",
+     "kit": "Cold",
+     "localPosition": {
+      "x": 0.3,
+      "y": 1.18,
+      "z": 0.045
+     }
+    },
+    {
+     "name": "FridgeSlot1",
+     "kit": "Cold",
+     "localPosition": {
+      "x": 0.43,
+      "y": 1.195,
+      "z": -0.009
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "검체 칸"
+     }
+    },
+    {
+     "name": "FridgeSlot2",
+     "kit": "Cold",
+     "localPosition": {
+      "x": 0.3,
+      "y": 1.195,
+      "z": -0.009
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "검체 칸"
+     }
+    },
+    {
+     "name": "FridgeSlot3",
+     "kit": "Cold",
+     "localPosition": {
+      "x": 0.17,
+      "y": 1.195,
+      "z": -0.009
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "검체 칸"
+     }
+    },
+    {
+     "name": "FridgeSlot4",
+     "kit": "Cold",
+     "localPosition": {
+      "x": 0.43,
+      "y": 1.195,
+      "z": 0.099
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "검체 칸"
+     }
+    },
+    {
+     "name": "FridgeSlot5",
+     "kit": "Cold",
+     "localPosition": {
+      "x": 0.3,
+      "y": 1.195,
+      "z": 0.099
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "검체 칸"
+     }
+    },
+    {
+     "name": "FridgeSlot6",
+     "kit": "Cold",
+     "localPosition": {
+      "x": 0.17,
+      "y": 1.195,
+      "z": 0.099
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "검체 칸"
+     }
+    },
+    {
+     "name": "Fridge_panel",
+     "mesh": "SM_LabCold_Panel_Control_30x8x18",
+     "kit": "Cold",
+     "localPosition": {
+      "x": -0.4,
+      "y": 1.815,
+      "z": 0.39
+     }
+    },
+    {
+     "name": "FridgeLight",
+     "kit": "Cold",
+     "localPosition": {
+      "x": -0.0,
+      "y": 1.73,
+      "z": 0.21
+     },
+     "interact": {
+      "type": "lamp",
+      "range": 1.6,
+      "intensity": 2.6,
+      "color": {
+       "r": 0.82,
+       "g": 0.92,
+       "b": 1.0,
+       "a": 1.0
+      }
+     }
+    },
+    {
+     "name": "FridgeVial1",
+     "mesh": "SM_LabPart_SampleVial_10x10x18",
+     "kit": "Panel",
+     "parent": "FridgeSlot1",
+     "localPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "interact": {
+      "type": "carryable",
+      "partId": "Sample",
+      "label": "검체 용기"
+     }
+    },
+    {
+     "name": "FridgeVial2",
+     "mesh": "SM_LabPart_SampleVial_10x10x18",
+     "kit": "Panel",
+     "parent": "FridgeSlot2",
+     "localPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "interact": {
+      "type": "carryable",
+      "partId": "Sample",
+      "label": "검체 용기"
+     }
+    },
+    {
+     "name": "FridgeVial3",
+     "mesh": "SM_LabPart_SampleVial_10x10x18",
+     "kit": "Panel",
+     "parent": "FridgeSlot3",
+     "localPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+     },
+     "interact": {
+      "type": "carryable",
+      "partId": "Sample",
+      "label": "검체 용기"
+     }
+    }
+   ]
+  },
+  {
+   "name": "SampleCart",
+   "mesh": "SM_LabCold_Cart_Utility_90x50x90",
+   "kit": "Cold",
+   "pos": {
+    "x": 2.7,
+    "y": 6.2,
+    "z": 0.0
+   },
+   "rotZ": 90.0,
+   "parts": [
+    {
+     "name": "SampleCartDrawer1",
+     "mesh": "SM_LabCold_Cart_Drawer_76x44x24",
+     "kit": "Cold",
+     "localPosition": {
+      "x": -0.0,
+      "y": 0.435,
+      "z": 0.065
+     },
+     "interact": {
+      "type": "drawer",
+      "label": "카트 서랍 1",
+      "openOffset": {
+       "x": 0.0,
+       "y": 0.0,
+       "z": 0.28
+      }
+     }
+    },
+    {
+     "name": "SampleCartSlot1_1",
+     "kit": "Cold",
+     "parent": "SampleCartDrawer1",
+     "localPosition": {
+      "x": 0.13,
+      "y": 0.03,
+      "z": 0.06
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "카트 검체 칸"
+     }
+    },
+    {
+     "name": "SampleCartSlot1_2",
+     "kit": "Cold",
+     "parent": "SampleCartDrawer1",
+     "localPosition": {
+      "x": -0.0,
+      "y": 0.03,
+      "z": 0.06
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "카트 검체 칸"
+     }
+    },
+    {
+     "name": "SampleCartSlot1_3",
+     "kit": "Cold",
+     "parent": "SampleCartDrawer1",
+     "localPosition": {
+      "x": -0.13,
+      "y": 0.03,
+      "z": 0.06
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "카트 검체 칸"
+     }
+    },
+    {
+     "name": "SampleCartDrawer2",
+     "mesh": "SM_LabCold_Cart_Drawer_76x44x24",
+     "kit": "Cold",
+     "localPosition": {
+      "x": -0.0,
+      "y": 0.185,
+      "z": 0.065
+     },
+     "interact": {
+      "type": "drawer",
+      "label": "카트 서랍 2",
+      "openOffset": {
+       "x": 0.0,
+       "y": 0.0,
+       "z": 0.28
+      }
+     }
+    },
+    {
+     "name": "SampleCartSlot2_1",
+     "kit": "Cold",
+     "parent": "SampleCartDrawer2",
+     "localPosition": {
+      "x": 0.13,
+      "y": 0.03,
+      "z": 0.06
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "카트 검체 칸"
+     }
+    },
+    {
+     "name": "SampleCartSlot2_2",
+     "kit": "Cold",
+     "parent": "SampleCartDrawer2",
+     "localPosition": {
+      "x": -0.0,
+      "y": 0.03,
+      "z": 0.06
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "카트 검체 칸"
+     }
+    },
+    {
+     "name": "SampleCartSlot2_3",
+     "kit": "Cold",
+     "parent": "SampleCartDrawer2",
+     "localPosition": {
+      "x": -0.13,
+      "y": 0.03,
+      "z": 0.06
+     },
+     "colliderSize": {
+      "x": 0.104,
+      "y": 0.1,
+      "z": 0.104
+     },
+     "interact": {
+      "type": "socket",
+      "accepts": "Sample",
+      "label": "카트 검체 칸"
+     }
+    }
+   ]
+  }
+ ],
+ "machines": [
+  {
+   "type": "chart",
+   "name": "ProcedureChart",
+   "specs": [
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "indexCount": 6,
+   "digits": 3,
+   "seed": 4417,
+   "boards": [
+    "ChartBoard"
+   ]
+  },
+  {
+   "type": "analyzer",
+   "name": "Analyzer_M",
+   "socket": "AnalyzerPort",
+   "lever": "AnalyzerLever",
+   "terminal": "AnalyzerCRT",
+   "chart": "ProcedureChart",
+   "duration": 5.0
+  },
+  {
+   "type": "mixer",
+   "name": "Mixer_M",
+   "dials": [
+    "DialA",
+    "DialB",
+    "DialC"
+   ],
+   "button": "MixerCommit",
+   "terminal": "MixerCRT",
+   "chart": "ProcedureChart",
+   "analyzer": "Analyzer_M",
+   "output": "MixerOut",
+   "compound": "Compound"
+  },
+  {
+   "type": "bay",
+   "name": "FridgeBay",
+   "doors": [
+    "FridgeDoorL",
+    "FridgeDoorR"
+   ],
+   "slots": [
+    "FridgeSlot1",
+    "FridgeSlot2",
+    "FridgeSlot3",
+    "FridgeSlot4",
+    "FridgeSlot5",
+    "FridgeSlot6"
+   ],
+   "light": "FridgeLight"
+  },
+  {
+   "type": "bay",
+   "name": "SampleCartBay1",
+   "drawers": [
+    "SampleCartDrawer1"
+   ],
+   "slots": [
+    "SampleCartSlot1_1",
+    "SampleCartSlot1_2",
+    "SampleCartSlot1_3"
+   ]
+  },
+  {
+   "type": "bay",
+   "name": "SampleCartBay2",
+   "drawers": [
+    "SampleCartDrawer2"
+   ],
+   "slots": [
+    "SampleCartSlot2_1",
+    "SampleCartSlot2_2",
+    "SampleCartSlot2_3"
+   ]
+  },
+  {
+   "type": "reactor",
+   "name": "Reactor_M",
+   "socket": "ReactorPort",
+   "lever": "ReactorLever",
+   "gauge": "ReactorGauge",
+   "terminal": "ReactorCRT",
+   "mixer": "Mixer_M",
+   "duration": 6.0
+  }
+ ],
+ "environment": {
+  "ambient": {
+   "r": 0.15,
+   "g": 0.16,
+   "b": 0.16,
+   "a": 1.0
+  },
+  "fogDensity": 0.022
+ },
+ "lights": [
+  {
+   "pos": {
+    "x": 1.0,
+    "y": 3.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 3.6,
+   "range": 10.0
+  },
+  {
+   "pos": {
+    "x": 5.0,
+    "y": 3.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 3.6,
+   "range": 10.0
+  },
+  {
+   "pos": {
+    "x": 9.0,
+    "y": 3.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 3.6,
+   "range": 10.0
+  },
+  {
+   "pos": {
+    "x": 1.0,
+    "y": 7.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 3.6,
+   "range": 10.0
+  },
+  {
+   "pos": {
+    "x": 5.0,
+    "y": 7.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 3.6,
+   "range": 10.0
+  },
+  {
+   "pos": {
+    "x": 9.0,
+    "y": 7.0,
+    "z": 3.3
+   },
+   "color": {
+    "r": 0.965,
+    "g": 0.802,
+    "b": 0.625,
+    "a": 1.0
+   },
+   "intensity": 3.6,
+   "range": 10.0
+  },
+  {
+   "pos": {
+    "x": 1.9,
+    "y": 8.9,
+    "z": 2.2
+   },
+   "color": {
+    "r": 0.96,
+    "g": 0.86,
+    "b": 0.72,
+    "a": 1.0
+   },
+   "intensity": 4.0,
+   "range": 6.0
+  },
+  {
+   "pos": {
+    "x": 10.1,
+    "y": 8.9,
+    "z": 2.2
+   },
+   "color": {
+    "r": 0.96,
+    "g": 0.86,
+    "b": 0.72,
+    "a": 1.0
+   },
+   "intensity": 4.0,
+   "range": 6.0
+  },
+  {
+   "pos": {
+    "x": 10.1,
+    "y": 1.5,
+    "z": 2.2
+   },
+   "color": {
+    "r": 0.96,
+    "g": 0.86,
+    "b": 0.72,
+    "a": 1.0
+   },
+   "intensity": 4.0,
+   "range": 6.0
+  },
+  {
+   "pos": {
+    "x": 1.7,
+    "y": 2.0,
+    "z": 2.2
+   },
+   "color": {
+    "r": 0.96,
+    "g": 0.86,
+    "b": 0.72,
+    "a": 1.0
+   },
+   "intensity": 4.0,
+   "range": 6.0
+  },
+  {
+   "pos": {
+    "x": 6.0,
+    "y": 9.2,
+    "z": 2.2
+   },
+   "color": {
+    "r": 0.96,
+    "g": 0.86,
+    "b": 0.72,
+    "a": 1.0
+   },
+   "intensity": 4.0,
+   "range": 6.0
+  }
+ ],
+ "camera": {
+  "pos": {
+   "x": 1.0,
+   "y": 1.0,
+   "z": 1.75
+  },
+  "target": {
+   "x": 10.0,
+   "y": 8.6,
+   "z": 1.1
+  },
+  "fov": 70.0
+ },
+ "views": [
+  {
+   "pos": {
+    "x": 1.9,
+    "y": 8.5,
+    "z": 1.6
+   },
+   "target": {
+    "x": 1.9,
+    "y": 9.6,
+    "z": 1.0
+   },
+   "fov": 55.0
+  },
+  {
+   "pos": {
+    "x": 6.0,
+    "y": 8.6,
+    "z": 1.6
+   },
+   "target": {
+    "x": 6.0,
+    "y": 9.98,
+    "z": 1.5
+   },
+   "fov": 55.0
+  },
+  {
+   "pos": {
+    "x": 10.1,
+    "y": 8.5,
+    "z": 1.6
+   },
+   "target": {
+    "x": 10.1,
+    "y": 9.6,
+    "z": 1.0
+   },
+   "fov": 55.0
+  },
+  {
+   "pos": {
+    "x": 10.1,
+    "y": 1.55,
+    "z": 1.6
+   },
+   "target": {
+    "x": 10.1,
+    "y": 0.45,
+    "z": 1.05
+   },
+   "fov": 55.0
+  },
+  {
+   "pos": {
+    "x": 3.8,
+    "y": 2.4,
+    "z": 1.5
+   },
+   "target": {
+    "x": 0.75,
+    "y": 2.4,
+    "z": 1.05
+   },
+   "fov": 50.0
+  },
+  {
+   "pos": {
+    "x": 4.7,
+    "y": 6.2,
+    "z": 1.45
+   },
+   "target": {
+    "x": 2.7,
+    "y": 6.2,
+    "z": 0.78
+   },
+   "fov": 50.0
+  },
+  {
+   "pos": {
+    "x": 10.1,
+    "y": 8.9,
+    "z": 1.45
+   },
+   "target": {
+    "x": 10.1,
+    "y": 9.55,
+    "z": 0.95
+   },
+   "fov": 42.0
+  }
+ ],
+ "playerStarts": [
+  {
+   "pos": {
+    "x": 3.0,
+    "y": 1.6,
+    "z": 0.05
+   },
+   "target": {
+    "x": 6.0,
+    "y": 6.0,
+    "z": 1.6
+   },
+   "fov": 0.0
+  }
+ ]
+}
