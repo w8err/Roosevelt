@@ -12,9 +12,19 @@ public class LabDoor : MonoBehaviour, IInteractable
     bool isOpen;
     float progress;
 
+    // A cabinet door gates what is behind it: StorageBay keeps its shelf sockets locked until this
+    // says otherwise, so a vial cannot be taken through a shut door.
+    public bool IsOpen => isOpen;
+    public event System.Action Changed;
+
     public string GetPrompt() => locked ? LockedPrompt : isOpen ? ClosePrompt : OpenPrompt;
     public bool CanInteract() => !locked;
-    public void Interact(PlayerInteraction player) => isOpen = !isOpen;
+
+    public void Interact(PlayerInteraction player)
+    {
+        isOpen = !isOpen;
+        Changed?.Invoke();
+    }
 
     void Update()
     {

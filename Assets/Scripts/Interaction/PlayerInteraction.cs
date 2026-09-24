@@ -52,7 +52,9 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        Target = InputLock.IsLocked ? null : FindTarget();
+        // While the hands are on a cart, E belongs to the cart mode itself. Looking around must
+        // not operate a nearby machine or door by accident.
+        Target = InputLock.IsLocked || controller.IsCartControlled ? null : FindTarget();
         // The template gives Interact a Hold interaction; WasPressedThisFrame reacts on press regardless.
         if (Target != null && Target.CanInteract() && controller.InteractAction.WasPressedThisFrame())
             Target.Interact(this);

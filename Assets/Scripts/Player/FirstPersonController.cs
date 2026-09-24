@@ -31,19 +31,23 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] float mouseSensitivity = 0.08f; // degrees per pixel
     [SerializeField] float stickSensitivity = 120f;  // degrees per second
     [SerializeField] float maxPitch = 85f;
+    [Tooltip("How far the player may look sideways while holding a cart handle.")]
+    [SerializeField] float cartLookYawLimit = 60f;
 
     CharacterController body;
     InputActionMap map;
     InputAction move, look, interact, sprint;
     // speed: the walk/sprint speed the player is heading for. moveSpeed: how fast they actually go along moveDir.
     float pitch, fallSpeed, speed, moveSpeed, stamina = 1f;
+    float cartLookYaw;
     float poseEyeHeight;
     Vector3 moveDir;
-    bool exhausted, wantedSprint, posed;
+    bool exhausted, wantedSprint, posed, cartControlled;
 
     public Transform CameraTarget => cameraTarget;
     // Read by PlayerInteraction; the action sits in the same Player map as movement.
     public InputAction InteractAction => interact;
+    public Vector2 MoveInput => InputLock.IsLocked ? Vector2.zero : Vector2.ClampMagnitude(move.ReadValue<Vector2>(), 1f);
     public float WalkSpeed => walkSpeed;
     public float SprintSpeed => sprintSpeed;
     public bool UseStamina => useStamina;
@@ -51,7 +55,13 @@ public class FirstPersonController : MonoBehaviour
     public bool Exhausted => exhausted;
     public float Pitch => pitch;
     // A fixed-camera posture (sitting, lying) driven by a chair/bed interactable. See SetPosed.
+    // Scales walking and sprinting without touching the tuned speeds: CarryHands turns it down
+    // while the player is carrying a machine part, so a trip across the room costs something.
+    // 1 = unencumbered. Instance state, so Play mode's skipped domain reload cannot strand it.
+    public float SpeedScale { get; set; } = 1f;
+
     public bool IsPosed => posed;
+    public bool IsCartControlled => cartControlled;
     public float PoseEyeHeight => poseEyeHeight;
     // Fired once each time the player tries to sprint while exhausted.
     public event System.Action SprintDenied;
@@ -85,8 +95,44 @@ public class FirstPersonController : MonoBehaviour
     {
         // Dialogue, transitions and cutscenes hold InputLock. Gravity keeps running so the body stays grounded.
         var locked = InputLock.IsLocked;
-        if (!locked) Look();
-        if (!posed) Move(locked);
+        if (!locked)
+        {
+            if (cartControlled) LookFromCartHandle();
+            else Look();
+        }
+        if (!posed && !cartControlled) Move(locked);
+    }
+
+    // UtilityCart owns root motion while this mode is active. The body is disabled so the
+    // CharacterController cannot fight the cart, while look yaw stays on the camera pivot instead
+    // of steering the cart whenever the player glances sideways.
+    public void BeginCartControl()
+    {
+        cartControlled = true;
+        cartLookYaw = 0f;
+        moveSpeed = 0f;
+        wantedSprint = false;
+        body.enabled = false;
+        cameraTarget.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+    }
+
+    public void SetCartPose(Vector3 position, Quaternion rotation)
+    {
+        if (!cartControlled) return;
+        transform.SetPositionAndRotation(position, rotation);
+    }
+
+    public void EndCartControl()
+    {
+        if (!cartControlled) return;
+        // Leave the handle facing where the camera was looking, then return yaw to the body.
+        transform.Rotate(0f, cartLookYaw, 0f);
+        cartLookYaw = 0f;
+        cartControlled = false;
+        body.enabled = true;
+        fallSpeed = -1f;
+        moveSpeed = 0f;
+        cameraTarget.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 
     // Enters or leaves a fixed-camera posture (sitting in a chair, lying in bed, ...). While
@@ -142,6 +188,15 @@ public class FirstPersonController : MonoBehaviour
         cameraTarget.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 
+    void LookFromCartHandle()
+    {
+        var delta = look.ReadValue<Vector2>();
+        delta *= look.activeControl?.device is Pointer ? mouseSensitivity : stickSensitivity * Time.deltaTime;
+        cartLookYaw = Mathf.Clamp(cartLookYaw + delta.x, -cartLookYawLimit, cartLookYawLimit);
+        pitch = Mathf.Clamp(pitch - delta.y, -maxPitch, maxPitch);
+        cameraTarget.localRotation = Quaternion.Euler(pitch, cartLookYaw, 0f);
+    }
+
     void Move(bool locked)
     {
         var input = locked ? Vector2.zero : Vector2.ClampMagnitude(move.ReadValue<Vector2>(), 1f);
@@ -164,7 +219,7 @@ public class FirstPersonController : MonoBehaviour
         if (wish.sqrMagnitude > 1e-4f)
         {
             moveDir = wish.normalized;
-            targetSpeed = speed * wish.magnitude;
+            targetSpeed = speed * wish.magnitude * SpeedScale;
         }
         var rate = walkSpeed / (targetSpeed > moveSpeed ? accelerationTime : decelerationTime);
         moveSpeed = Mathf.MoveTowards(moveSpeed, targetSpeed, rate * Time.deltaTime);
