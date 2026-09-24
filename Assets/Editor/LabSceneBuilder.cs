@@ -37,13 +37,21 @@ public static class LabSceneBuilder
     // doorway or wall off a whole tree crown), thin or see-through dressing gets nothing, everything else a box.
     // _Stair_ climbs on its own treads: a box over a staircase is a ramp the CharacterController cannot step onto,
     // and a ramp collider would make the machine room's catwalk stair feel like an escalator.
+    // _Console_ takes a mesh collider because its face is sloped: a box around the whole cabinet
+    // reaches out past the panel, and the ray would hit that box before the knob standing on the
+    // slope, making every dial and lever unaimable.
     static readonly string[] MeshColliderTags = { "_Wall_Door", "_Terrain_", "_Tree_", "_ChoirTotem_", "_Rock_", "_Log_", "_Stump_",
-                                                  "_RootCluster_", "_ServiceDoor_", "_Horizon_", "_Stair_" };
+                                                  "_RootCluster_", "_ServiceDoor_", "_Horizon_", "_Stair_", "_Console_",
+                                                  // A cabinet is hollow and holds sockets: a box around it would
+                                                  // wall off its own interior from the crosshair.
+                                                  "_LabCold_Body_" };
     // _CableTray_ hangs at 2.4 m and above -- overhead dressing the player can never reach, so a box
     // there is collision the physics system pays for and nobody ever touches. Pipe runs keep theirs:
     // they cross the walkway at knee height and are meant to be walked around, not through.
+    // Shelves and racks live inside a cabinet the player never walks into, and their boxes would sit
+    // between the crosshair and the slots moulded into them.
     static readonly string[] NoColliderTags = { "_DoorPart_", "_Shrub_", "_Grass_", "_Backdrop_", "_Path_", "_WarningLight_", "_CCTV_",
-                                                "_CableTray_" };
+                                                "_CableTray_", "_Shelf_Wire_", "_Rack_Vial_" };
 
     [Serializable] class Layout
     {
@@ -65,10 +73,14 @@ public static class LabSceneBuilder
         public EnvDef environment;
         public CreatureDef[] creatures;
         public SoundDef[] sounds;    // ambient loops and random one-shot emitters
+        public ConsoleDef[] consoles; // LabPanel cabinets with their knobs, levers and screens
+        public MachineDef[] machines; // ties panel parts built above into working machines
     }
     // Prefab name in CreatureBuilder.PrefabDir; walkers get the layout's terrain as their ground.
     [Serializable] class CreatureDef { public string prefab; public Vector3 pos; public float rotZ; public float scale; }
-    [Serializable] class MaterialDef { public string name; public string atlas; public bool cutout; public string shader; public string kit; } // shader empty = Simple Lit, kit empty = use kitRoot
+    // alpha below 1 makes the slot see-through (the fridge glass), which cutout cannot do: cutout is
+    // all-or-nothing per texel and a window needs a partial tint.
+    [Serializable] class MaterialDef { public string name; public string atlas; public bool cutout; public float alpha; public string shader; public string kit; } // shader empty = Simple Lit, kit empty = use kitRoot
     // Conditional object gate: exists only if all conditions are met (minDay/maxDay, requiredFlag, requiredItem, etc.)
     [Serializable] class ConditionalObjectWhen
     {
@@ -81,7 +93,9 @@ public static class LabSceneBuilder
             !string.IsNullOrEmpty(requiredFlag) || !string.IsNullOrEmpty(forbiddenFlag) ||
             !string.IsNullOrEmpty(requiredItem) || !string.IsNullOrEmpty(forbiddenItem);
     }
-    [Serializable] class Module { public string mesh; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; public string kit; public ConditionalObjectWhen when; } // scale 0 means 1, kit empty = kitRoot/Meshes
+    // name is optional and only matters when something else has to find this object: `machines`
+    // resolves its references by name, and a module is otherwise called after its mesh.
+    [Serializable] class Module { public string name; public string mesh; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; public string kit; public ConditionalObjectWhen when; } // scale 0 means 1, kit empty = kitRoot/Meshes
     // Empty target: a door that swings on its hinge. Otherwise it stays shut and teleports the player to that spawn.
     // Doors gate by locking (unlockFlag), not by existence (when). A visible locked door tells the player "that's the goal".
     [Serializable] class DoorDef { public string leaf; public string[] parts; public Vector3 pos; public float rotZ; public bool locked; public string target; public string unlockFlag; } // unlockFlag gates door opening (separate from existence gate)
@@ -92,8 +106,44 @@ public static class LabSceneBuilder
     // A prefab placed as-is, e.g. the lobby NPC.
     [Serializable] class PrefabDef { public string name; public string prefab; public Vector3 pos; public float rotZ; public float scale; public InteractDef interact; public ConditionalObjectWhen when; }
     // What using a box or prop does. type "bed" sleeps into tonight's dream; "npc" plays `dialogue` (a .dialogue asset path); "chair" sits with look direction.
-    [Serializable] class InteractDef { public string type; public string dialogue; public Vector3 seat; public Vector3 look; public Vector3 stand; public Vector3 standLook; }
-    [Serializable] class LightDef { public Vector3 pos; public Color color; public float intensity; public float range; public ConditionalObjectWhen when; }
+    // Machine-procedure types attach one panel component each: "carryable", "socket", "dial", "lever",
+    // "button", "gauge", "terminal", "chart". They are wired to each other afterwards by `machines`,
+    // because a console's parts are separate objects and only names can cross between them in JSON.
+    [Serializable] class InteractDef
+    {
+        public string type; public string dialogue; public Vector3 seat; public Vector3 look; public Vector3 stand; public Vector3 standLook;
+        public string partId;   // carryable: which sockets accept it (MachineParts constants)
+        public string label;    // prompt name, e.g. "검체 용기". Falls back to the object's own name
+        public string accepts;  // socket: partId it takes; empty accepts anything (a bench)
+        public int steps;       // dial: positions, default 10
+        public bool startsLocked; // socket: clamped shut until a machine opens it
+        public float openAngle;   // door: degrees the leaf swings, default 90
+        public Vector3 openOffset;      // drawer: where it sits fully open, in its own local space
+        public float range, intensity;  // lamp: point light reach and brightness
+        public Color color;             // lamp: light colour
+    }
+    // A LabPanel cabinet and the parts standing on its sloped face. Part transforms come straight from
+    // Art/Lab/Lab_Panel_mounts.json, so nobody retypes a coordinate.
+    [Serializable] class ConsoleDef { public string name; public string mesh; public string kit; public Vector3 pos; public float rotZ; public PartDef[] parts; }
+    // localPosition / localEulerAngles are Unity-space, relative to the cabinet.
+    // mesh may be empty: a socket in a hole moulded into another mesh has nothing of its own to
+    // draw, and gets colliderSize so the crosshair still has something to land on. parent nests
+    // this part under another part of the same console, which is how a slot is stocked at build
+    // time: the vial is a child of the socket, and Socket adopts it on Awake.
+    [Serializable] class PartDef { public string name; public string mesh; public string kit; public string parent; public Vector3 localPosition; public Vector3 localEulerAngles; public Vector3 colliderSize; public InteractDef interact; }
+    // Logic-only objects that tie panel parts into one machine, resolved by name after everything is built.
+    // type: "chart" (the lookup table plus the boards that show it), "analyzer", "mixer", "reactor".
+    [Serializable] class MachineDef
+    {
+        public string type; public string name;
+        public string socket, lever, terminal, gauge, button, chart, analyzer, mixer, output, compound;
+        public string light;
+        public string[] dials, boards, specs, slots, doors, drawers;
+        public int indexCount, digits, seed;
+        public float duration;
+    }
+    // name is optional, for a light something else has to find: a cabinet's interior lamp.
+    [Serializable] class LightDef { public string name; public Vector3 pos; public Color color; public float intensity; public float range; public ConditionalObjectWhen when; }
     [Serializable] class ViewDef { public Vector3 pos; public Vector3 target; public float fov; }
     [Serializable] class GroundDef { public float size; public Color color; }
     // Audio: ambient loop or random one-shot emitter
@@ -170,8 +220,16 @@ public static class LabSceneBuilder
         if (!File.Exists(RequestPath)) return;
 
         // One layout name per line (json file name, no extension) builds only those; an empty request builds all.
-        var only = File.ReadAllLines(RequestPath).Select(l => l.Trim()).Where(l => l.Length > 0).ToArray();
+        // External automation can opt into saving open scenes by adding an explicit @save line.
+        var lines = File.ReadAllLines(RequestPath).Select(l => l.Trim()).Where(l => l.Length > 0).ToArray();
+        var saveOpenScenes = lines.Contains("@save");
+        var only = lines.Where(l => l != "@save").ToArray();
         File.Delete(RequestPath);
+        if (saveOpenScenes && !EditorSceneManager.SaveOpenScenes())
+        {
+            Debug.LogWarning("[LabSceneBuilder] request skipped: an open scene could not be saved");
+            return;
+        }
         for (var i = 0; i < SceneManager.sceneCount; i++)
         {
             if (SceneManager.GetSceneAt(i).isDirty)
@@ -251,7 +309,7 @@ public static class LabSceneBuilder
             {
                 var matDir = string.IsNullOrEmpty(d.kit) ? $"{kitRoot}/Materials" : $"{kitRoot}/{d.kit}/Materials";
                 var texDir = string.IsNullOrEmpty(d.kit) ? $"{kitRoot}/Textures" : $"{kitRoot}/{d.kit}/Textures";
-                return GetOrCreateMaterial($"{matDir}/{d.name}.mat", $"{texDir}/{d.atlas}.png", d.cutout, d.shader);
+                return GetOrCreateMaterial($"{matDir}/{d.name}.mat", $"{texDir}/{d.atlas}.png", d.cutout, d.shader, d.alpha);
             }),
         };
         Debug.Log($"[LabSceneBuilder] build started: {sceneName}");
@@ -267,6 +325,7 @@ public static class LabSceneBuilder
             var prefab = GetPrefab(m.mesh, kit, m.kit, kitRoot, layout.prefabDir, kit.Materials, prefabs);
             if (prefab == null) continue;
             var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab, room);
+            if (!string.IsNullOrEmpty(m.name)) go.name = m.name;
             go.transform.SetPositionAndRotation(ToUnity(m.pos), Yaw(m.rotZ));
             if (m.scale > 0f) go.transform.localScale = Vector3.one * m.scale;
             AttachInteract(go, m.interact, m.mesh);
@@ -305,11 +364,15 @@ public static class LabSceneBuilder
         BuildBoxes(boxes, kitRoot);
         var propDefs = layout.prefabs ?? Array.Empty<PrefabDef>();
         BuildProps(propDefs);
+        var consoles = layout.consoles ?? Array.Empty<ConsoleDef>();
+        BuildConsoles(consoles, kit, kitRoot, layout.prefabDir, prefabs);
+        // Last, so a machine can point at any box, prop or console part by name.
+        WireMachines(layout.machines ?? Array.Empty<MachineDef>());
 
         var lights = new GameObject("Lights").transform;
         foreach (var l in layout.lights ?? Array.Empty<LightDef>())
         {
-            var go = new GameObject("Light_Point");
+            var go = new GameObject(string.IsNullOrEmpty(l.name) ? "Light_Point" : l.name);
             go.transform.SetParent(lights, false);
             go.transform.position = ToUnity(l.pos);
             var light = go.AddComponent<Light>();
@@ -742,11 +805,432 @@ public static class LabSceneBuilder
                 so.ApplyModifiedPropertiesWithoutUndo();
                 break;
             }
+            case "carryable":
+            {
+                var part = go.GetComponent<Carryable>() ?? go.AddComponent<Carryable>();
+                var so = new SerializedObject(part);
+                so.FindProperty("partId").stringValue = string.IsNullOrEmpty(def.partId) ? MachineParts.Sample : def.partId;
+                so.FindProperty("displayName").stringValue = Label(def, go);
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            case "socket":
+            {
+                var socket = go.GetComponent<Socket>() ?? go.AddComponent<Socket>();
+                // No mount child: the kit puts a socket's origin exactly where the part's own origin
+                // belongs, at the floor of the recess, so Socket falls back to this transform and a
+                // vial stands in the hole rather than hovering over it. The part inherits the pivot's
+                // slope with it, which is what a recess cut into a tilted panel should do.
+                var so = new SerializedObject(socket);
+                so.FindProperty("acceptedPartId").stringValue = def.accepts ?? "";
+                so.FindProperty("displayName").stringValue = Label(def, go);
+                so.FindProperty("startsLocked").boolValue = def.startsLocked;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            case "dial":
+            {
+                var dial = go.GetComponent<RotaryDial>() ?? go.AddComponent<RotaryDial>();
+                var so = new SerializedObject(dial);
+                so.FindProperty("knob").objectReferenceValue = go.transform;
+                so.FindProperty("steps").intValue = def.steps > 0 ? def.steps : 10;
+                so.FindProperty("displayName").stringValue = Label(def, go);
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            case "lever":
+            {
+                var lever = go.GetComponent<ToggleLever>() ?? go.AddComponent<ToggleLever>();
+                var so = new SerializedObject(lever);
+                so.FindProperty("handle").objectReferenceValue = go.transform;
+                so.FindProperty("displayName").stringValue = Label(def, go);
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            case "button":
+            {
+                var button = go.GetComponent<PushButton>() ?? go.AddComponent<PushButton>();
+                var so = new SerializedObject(button);
+                so.FindProperty("plunger").objectReferenceValue = go.transform;
+                so.FindProperty("displayName").stringValue = Label(def, go);
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            case "gauge":
+            {
+                var gauge = go.GetComponent<NeedleGauge>() ?? go.AddComponent<NeedleGauge>();
+                var so = new SerializedObject(gauge);
+                so.FindProperty("needle").objectReferenceValue = go.transform;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                // Asking the component rather than re-reading minAngle off this SerializedObject:
+                // after Apply it hands back 0 for untouched fields, and a 0 here produces an identity
+                // rotation, which looks exactly like the line never having run.
+                gauge.ApplyRestPose();
+                break;
+            }
+            case "lamp":
+            {
+                // The bulb inside a cabinet, wired to its doors by StorageBay. A part rather than a
+                // layout light, so its position comes from the kit's own mount file in the body's
+                // frame instead of being converted by hand into room coordinates.
+                // Explicit == rather than ??: for a built-in component Unity hands back a fake null
+                // that ?? happily accepts, and the next line then throws MissingComponentException.
+                // Only Unity's overloaded == sees through it.
+                var lamp = go.GetComponent<Light>();
+                if (lamp == null) lamp = go.AddComponent<Light>();
+                lamp.type = LightType.Point;
+                lamp.range = def.range > 0f ? def.range : 1.2f;
+                lamp.intensity = def.intensity > 0f ? def.intensity : 2f;
+                lamp.color = def.color.maxColorComponent > 0f ? def.color : Color.white;
+                lamp.shadows = LightShadows.None;
+                break;
+            }
+            case "drawer":
+            {
+                // The sliding counterpart of "door". The kit leaves the drawer at its shut position
+                // and says which way it pulls, so nothing here has to guess an axis.
+                var slide = go.GetComponent<Drawer>();
+                if (slide == null) slide = go.AddComponent<Drawer>();
+                var so = new SerializedObject(slide);
+                if (def.openOffset.sqrMagnitude > 0f)
+                    so.FindProperty("openOffset").vector3Value = def.openOffset;
+                so.FindProperty("locked").boolValue = def.startsLocked;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            case "door":
+            {
+                // The same hinge component the lab's wall doors use, on a cabinet leaf whose origin
+                // the kit put on the hinge axis. StorageBay listens to it for what is behind it.
+                var hinge = go.GetComponent<LabDoor>() ?? go.AddComponent<LabDoor>();
+                var so = new SerializedObject(hinge);
+                if (Mathf.Abs(def.openAngle) > 0.01f) so.FindProperty("openAngle").floatValue = def.openAngle;
+                so.FindProperty("locked").boolValue = def.startsLocked;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            case "terminal":
+            {
+                // Goes straight on the kit's screen plane, whose origin is the middle of the glass
+                // and whose scale is 1, so the world-space canvas MachineTerminal builds lands on
+                // the glass at the right size without any compensation.
+                var terminal = go.GetComponent<MachineTerminal>() ?? go.AddComponent<MachineTerminal>();
+                var so = new SerializedObject(terminal);
+                so.FindProperty("displayName").stringValue = Label(def, go);
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
+            case "chart":
+            {
+                var board = go.GetComponent<InspectableChart>() ?? go.AddComponent<InspectableChart>();
+                var so = new SerializedObject(board);
+                so.FindProperty("displayName").stringValue = Label(def, go);
+                so.ApplyModifiedPropertiesWithoutUndo();
+                break;
+            }
             default:
                 Debug.LogError($"[LabSceneBuilder] {go.name}: unknown interact type '{def.type}'");
                 break;
         }
     }
+
+    // A cabinet plus the parts on its face. Each part hangs off its own pivot, which carries the
+    // console's slope, while the part's own local rotation stays identity. That split is required,
+    // not tidy: RotaryDial writes localEulerAngles.z, ToggleLever writes .x and NeedleGauge writes
+    // .y, so a tilt stored on the part itself is erased the first time it moves. PushButton travels
+    // along its parent's -Z, which is the pivot's, so the cap sinks into the panel rather than
+    // straight back.
+    //
+    // Every moving part turns its own prefab root, never a child found by name. The kit's contract
+    // is that a part's root origin sits on its turning axis, and a Blender FBX carries a second node
+    // under that root whose name matches just as well ("..._Gauge_Needle" and "..._Gauge_Needle.001")
+    // but whose origin and axes are its own: turning that one swings the needle around a point that
+    // is not the middle of the dial.
+    static void BuildConsoles(ConsoleDef[] defs, Kit kit, string kitRoot, string prefabDir,
+                              Dictionary<string, GameObject> prefabs)
+    {
+        if (defs.Length == 0) return;
+        var root = new GameObject("Consoles").transform;
+        foreach (var c in defs)
+        {
+            var bodyPrefab = GetPrefab(c.mesh, kit, c.kit, kitRoot, prefabDir, kit.Materials, prefabs);
+            if (bodyPrefab == null) continue;
+            var body = (GameObject)PrefabUtility.InstantiatePrefab(bodyPrefab, root);
+            body.name = c.name;
+            body.transform.SetPositionAndRotation(ToUnity(c.pos), Yaw(c.rotZ));
+
+            // A utility cart keeps its drawer fronts and handle clear of raycasts. The prefab's generic
+            // full-bounds box reaches past the drawer fronts and makes the drawers and their slots impossible
+            // to target, so the scene instance gets a low compound body and kinematic transport.
+            if (c.mesh.Contains("_Cart_")) ConfigureUtilityCart(body);
+
+            // Parts can nest inside earlier parts of the same console, so a slot can be stocked.
+            var built = new Dictionary<string, Transform>();
+
+            foreach (var p in c.parts ?? Array.Empty<PartDef>())
+            {
+                var host = body.transform;
+                if (!string.IsNullOrEmpty(p.parent))
+                {
+                    if (!built.TryGetValue(p.parent, out host))
+                    {
+                        Debug.LogError($"[LabSceneBuilder] console '{c.name}': part '{p.name}' wants parent '{p.parent}', which is not one of the parts listed before it");
+                        continue;
+                    }
+                }
+
+                var pivot = new GameObject("Pivot_" + p.name).transform;
+                pivot.SetParent(host, false);
+                pivot.localPosition = p.localPosition;
+                pivot.localEulerAngles = p.localEulerAngles;
+
+                GameObject part;
+                if (string.IsNullOrEmpty(p.mesh))
+                {
+                    // Nothing to draw: a socket sitting in a hole that belongs to another mesh.
+                    part = new GameObject(p.name);
+                    part.transform.SetParent(pivot, false);
+                    if (p.colliderSize.sqrMagnitude > 0f)
+                    {
+                        var hole = part.AddComponent<BoxCollider>();
+                        hole.size = p.colliderSize;
+                        // Centred on the hole's mouth rather than its floor, so the crosshair finds
+                        // the opening the player is actually looking into.
+                        hole.center = new Vector3(0f, p.colliderSize.y * 0.5f, 0f);
+                    }
+                }
+                else
+                {
+                    var partPrefab = GetPrefab(p.mesh, kit, p.kit, kitRoot, prefabDir, kit.Materials, prefabs);
+                    if (partPrefab == null) continue;
+                    part = (GameObject)PrefabUtility.InstantiatePrefab(partPrefab, pivot);
+                    part.name = p.name;
+                    part.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                }
+                built[p.name] = part.transform;
+                AttachInteract(part, p.interact, p.mesh);
+                // After AttachInteract and only for things the player aims at. A collider on the
+                // gauge needle would be a raycast blocker sweeping across the console face as the
+                // needle moves, stealing the lever and the socket from the crosshair at some
+                // pressures and not others. Dressing gets no collider at all.
+                if (part.GetComponent<IInteractable>() != null) EnsurePartCollider(part);
+            }
+        }
+    }
+
+    static void ConfigureUtilityCart(GameObject body)
+    {
+        foreach (var collider in body.GetComponentsInChildren<Collider>(true))
+            UnityEngine.Object.DestroyImmediate(collider);
+
+        // Covers wheels, lower shelf, posts and the upper tray, but ends below the vial sockets.
+        // This keeps the cart solid to the player without intercepting a ray aimed at its rack.
+        var frame = body.AddComponent<BoxCollider>();
+        // Four centimetres of caster clearance keeps horizontal Rigidbody.SweepTest calls from
+        // mistaking floor-tile seams for a wall while preserving the full cart footprint.
+        frame.center = new Vector3(0f, 0.38f, 0f);
+        frame.size = new Vector3(0.9f, 0.68f, 0.5f);
+
+        var rigidbody = body.AddComponent<Rigidbody>();
+        rigidbody.mass = 38f;
+        rigidbody.useGravity = false;
+        rigidbody.isKinematic = true;
+        rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+        rigidbody.constraints = RigidbodyConstraints.FreezePositionY |
+                                RigidbodyConstraints.FreezeRotationX |
+                                RigidbodyConstraints.FreezeRotationZ;
+
+        var audio = body.AddComponent<AudioSource>();
+        audio.playOnAwake = false;
+        audio.spatialBlend = 1f;
+        audio.rolloffMode = AudioRolloffMode.Linear;
+        audio.minDistance = 1f;
+        audio.maxDistance = 12f;
+
+        var cart = body.AddComponent<UtilityCart>();
+        var so = new SerializedObject(cart);
+        // Only the knock: it peaks on its first frame and decays, which is what a bump sounds like.
+        // Metal_Groan swells for a second and fades, so as a collision layer it arrived as an
+        // unexplained noise rising behind the player rather than as the cart they just pushed.
+        so.FindProperty("wheelImpactClip").objectReferenceValue =
+            AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Audio/Ambience/Pipe_Knock_01.wav");
+        so.ApplyModifiedPropertiesWithoutUndo();
+    }
+
+    // The kit ships panel parts without colliders. A part needs one to be aimed at, and it has to
+    // stand slightly proud of the cabinet's mesh collider, or a knob set flush into the slope loses
+    // the raycast to the panel behind it.
+    static void EnsurePartCollider(GameObject part)
+    {
+        if (part.GetComponentInChildren<Collider>() != null) return;
+        var filter = part.GetComponentInChildren<MeshFilter>();
+        if (filter == null || filter.sharedMesh == null) return;
+
+        var bounds = filter.sharedMesh.bounds;
+        // Local space of the mesh may not be the part's own if the prefab nests it.
+        if (filter.transform != part.transform)
+        {
+            var offset = part.transform.InverseTransformPoint(filter.transform.TransformPoint(bounds.center));
+            bounds = new Bounds(offset, bounds.size);
+        }
+        var box = part.AddComponent<BoxCollider>();
+        box.center = bounds.center;
+        // A flat plane (the CRT glass) would otherwise get a zero-thickness box that the ray slips past.
+        box.size = bounds.size + Vector3.one * 0.02f;
+    }
+
+    // Ties the panel parts into machines. Runs after every object exists, because a console's socket,
+    // lever, dials and CRT are separate objects and JSON can only point at them by name.
+    static void WireMachines(MachineDef[] defs)
+    {
+        if (defs.Length == 0) return;
+        var root = new GameObject("Machines").transform;
+        var charts = new Dictionary<string, ProcedureChart>();
+
+        // Charts first: every other machine points at one.
+        foreach (var d in defs)
+        {
+            if (d.type != "chart") continue;
+            var chart = NewMachine<ProcedureChart>(d.name, root);
+            var so = new SerializedObject(chart);
+            if (d.specs != null && d.specs.Length > 0)
+            {
+                var labels = so.FindProperty("specLabels");
+                labels.arraySize = d.specs.Length;
+                for (var i = 0; i < d.specs.Length; i++)
+                    labels.GetArrayElementAtIndex(i).stringValue = d.specs[i];
+            }
+            if (d.indexCount > 0) so.FindProperty("indexCount").intValue = d.indexCount;
+            if (d.digits > 0) so.FindProperty("digitsPerCell").intValue = d.digits;
+            if (d.seed != 0) so.FindProperty("seed").intValue = d.seed;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            charts[d.name] = chart;
+
+            foreach (var boardName in d.boards ?? Array.Empty<string>())
+            {
+                var board = FindComponent<InspectableChart>(boardName);
+                if (board == null) continue;
+                var bso = new SerializedObject(board);
+                bso.FindProperty("chart").objectReferenceValue = chart;
+                bso.ApplyModifiedPropertiesWithoutUndo();
+            }
+        }
+
+        foreach (var d in defs)
+        {
+            ProcedureChart chart = null;
+            if (!string.IsNullOrEmpty(d.chart) && !charts.TryGetValue(d.chart, out chart))
+                Debug.LogError($"[LabSceneBuilder] machine '{d.name}': no chart named '{d.chart}'");
+
+            switch (d.type)
+            {
+                case "chart":
+                    break;
+                case "analyzer":
+                {
+                    var so = new SerializedObject(NewMachine<SampleAnalyzer>(d.name, root));
+                    so.FindProperty("sampleSocket").objectReferenceValue = FindComponent<Socket>(d.socket);
+                    so.FindProperty("runLever").objectReferenceValue = FindComponent<ToggleLever>(d.lever);
+                    so.FindProperty("terminal").objectReferenceValue = FindComponent<MachineTerminal>(d.terminal);
+                    so.FindProperty("chart").objectReferenceValue = chart;
+                    if (d.duration > 0f) so.FindProperty("analyzeDuration").floatValue = d.duration;
+                    so.ApplyModifiedPropertiesWithoutUndo();
+                    break;
+                }
+                case "mixer":
+                {
+                    var so = new SerializedObject(NewMachine<CompoundMixer>(d.name, root));
+                    var dials = so.FindProperty("dials");
+                    var names = d.dials ?? Array.Empty<string>();
+                    dials.arraySize = names.Length;
+                    for (var i = 0; i < names.Length; i++)
+                        dials.GetArrayElementAtIndex(i).objectReferenceValue = FindComponent<RotaryDial>(names[i]);
+                    so.FindProperty("commitButton").objectReferenceValue = FindComponent<PushButton>(d.button);
+                    so.FindProperty("terminal").objectReferenceValue = FindComponent<MachineTerminal>(d.terminal);
+                    so.FindProperty("chart").objectReferenceValue = chart;
+                    so.FindProperty("analyzer").objectReferenceValue = FindComponent<SampleAnalyzer>(d.analyzer);
+                    so.FindProperty("outputSocket").objectReferenceValue = FindComponent<Socket>(d.output);
+                    so.FindProperty("compound").objectReferenceValue = FindComponent<Carryable>(d.compound);
+                    so.ApplyModifiedPropertiesWithoutUndo();
+                    break;
+                }
+                case "bay":
+                {
+                    var so = new SerializedObject(NewMachine<StorageBay>(d.name, root));
+                    var bayDoors = so.FindProperty("doors");
+                    var doorNames = d.doors ?? Array.Empty<string>();
+                    bayDoors.arraySize = doorNames.Length;
+                    for (var i = 0; i < doorNames.Length; i++)
+                        bayDoors.GetArrayElementAtIndex(i).objectReferenceValue = FindComponent<LabDoor>(doorNames[i]);
+                    var slots = so.FindProperty("slots");
+                    var names = d.slots ?? Array.Empty<string>();
+                    slots.arraySize = names.Length;
+                    for (var i = 0; i < names.Length; i++)
+                        slots.GetArrayElementAtIndex(i).objectReferenceValue = FindComponent<Socket>(names[i]);
+                    var bayDrawers = so.FindProperty("drawers");
+                    var drawerNames = d.drawers ?? Array.Empty<string>();
+                    bayDrawers.arraySize = drawerNames.Length;
+                    for (var i = 0; i < drawerNames.Length; i++)
+                        bayDrawers.GetArrayElementAtIndex(i).objectReferenceValue = FindComponent<Drawer>(drawerNames[i]);
+                    if (!string.IsNullOrEmpty(d.light))
+                        so.FindProperty("interiorLight").objectReferenceValue = FindComponent<Light>(d.light);
+                    so.ApplyModifiedPropertiesWithoutUndo();
+                    break;
+                }
+                case "reactor":
+                {
+                    var so = new SerializedObject(NewMachine<RunConsole>(d.name, root));
+                    so.FindProperty("compoundSocket").objectReferenceValue = FindComponent<Socket>(d.socket);
+                    so.FindProperty("runLever").objectReferenceValue = FindComponent<ToggleLever>(d.lever);
+                    so.FindProperty("gauge").objectReferenceValue = FindComponent<NeedleGauge>(d.gauge);
+                    so.FindProperty("terminal").objectReferenceValue = FindComponent<MachineTerminal>(d.terminal);
+                    so.FindProperty("mixer").objectReferenceValue = FindComponent<CompoundMixer>(d.mixer);
+                    if (d.duration > 0f) so.FindProperty("runDuration").floatValue = d.duration;
+                    so.ApplyModifiedPropertiesWithoutUndo();
+                    break;
+                }
+                default:
+                    Debug.LogError($"[LabSceneBuilder] unknown machine type '{d.type}'");
+                    break;
+            }
+        }
+        // The mixer is created after the analyzer only if the layout happens to list it later, so the
+        // analyzer reference is resolved by name above rather than by build order.
+    }
+
+    static T NewMachine<T>(string name, Transform parent) where T : Component
+    {
+        var go = new GameObject(string.IsNullOrEmpty(name) ? typeof(T).Name : name);
+        go.transform.SetParent(parent, false);
+        return go.AddComponent<T>();
+    }
+
+    // Layout names refer to boxes as the layout wrote them; BuildBoxes prefixes the object with "Box_".
+    static GameObject FindNamed(string name)
+    {
+        if (string.IsNullOrEmpty(name)) return null;
+        foreach (var root in SceneManager.GetActiveScene().GetRootGameObjects())
+            foreach (var t in root.GetComponentsInChildren<Transform>(true))
+                if (t.name == name || t.name == "Box_" + name) return t.gameObject;
+        Debug.LogError($"[LabSceneBuilder] machine wiring: no object named '{name}'");
+        return null;
+    }
+
+    static T FindComponent<T>(string name) where T : Component
+    {
+        var go = FindNamed(name);
+        if (go == null) return null;
+        // Children too: a terminal's component lives on the screen plane inside the monitor, not on
+        // the monitor's own object.
+        var component = go.GetComponentInChildren<T>(true);
+        if (component == null)
+            Debug.LogError($"[LabSceneBuilder] machine wiring: '{name}' has no {typeof(T).Name}");
+        return component;
+    }
+
+    static string Label(InteractDef def, GameObject go) =>
+        string.IsNullOrEmpty(def.label) ? go.name.Replace("Box_", "") : def.label;
+
 
     static void CreateGround(GroundDef def, string materialPath)
     {
@@ -783,6 +1267,7 @@ public static class LabSceneBuilder
         if (existing != null && existing.GetComponentInChildren<CinemachineCamera>(true) != null)
         {
             UpgradeToWalkNoise(existing);
+            EnsureCarryHands(existing);
             return existing;
         }
 
@@ -861,6 +1346,20 @@ public static class LabSceneBuilder
         Debug.Log("[LabSceneBuilder] player camera switched to walk bob noise");
     }
 
+    // Carrying a part is a player ability, not a scene's, so it belongs on the prefab rather than on
+    // whatever object the layout happens to spawn. Added in place like the camera upgrade above, so
+    // scenes built before the machine work pick it up on their next build.
+    static void EnsureCarryHands(GameObject prefab)
+    {
+        if (prefab.GetComponent<CarryHands>() != null) return;
+
+        var contents = PrefabUtility.LoadPrefabContents(PlayerPrefabPath);
+        contents.AddComponent<CarryHands>();
+        PrefabUtility.SaveAsPrefabAsset(contents, PlayerPrefabPath);
+        PrefabUtility.UnloadPrefabContents(contents);
+        Debug.Log("[LabSceneBuilder] PF_Player: added CarryHands");
+    }
+
     static NoiseSettings GetOrCreateWalkNoise()
     {
         var noise = AssetDatabase.LoadAssetAtPath<NoiseSettings>(WalkNoisePath);
@@ -882,7 +1381,7 @@ public static class LabSceneBuilder
         return noise;
     }
 
-    static Material GetOrCreateMaterial(string materialPath, string atlasPath, bool cutout = false, string shaderName = null)
+    static Material GetOrCreateMaterial(string materialPath, string atlasPath, bool cutout = false, string shaderName = null, float alpha = 0f)
     {
         var custom = !string.IsNullOrEmpty(shaderName);
         var shader = Shader.Find(custom ? shaderName : "Universal Render Pipeline/Simple Lit");
@@ -908,6 +1407,25 @@ public static class LabSceneBuilder
             mat.EnableKeyword("_ALPHATEST_ON");
             mat.SetOverrideTag("RenderType", "TransparentCutout");
             mat.renderQueue = (int)RenderQueue.AlphaTest;
+        }
+        else if (alpha > 0f && alpha < 1f)
+        {
+            // Simple Lit alpha blending, for a pane you see the room through. Depth writing goes off
+            // the way every transparent surface needs, or the glass would hide the shelves behind it.
+            mat.SetFloat("_Surface", 1f);
+            mat.SetFloat("_Blend", 0f);
+            mat.SetFloat("_SrcBlend", (float)BlendMode.SrcAlpha);
+            mat.SetFloat("_DstBlend", (float)BlendMode.OneMinusSrcAlpha);
+            mat.SetFloat("_ZWrite", 0f);
+            mat.SetFloat("_AlphaClip", 0f);
+            mat.DisableKeyword("_ALPHATEST_ON");
+            mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            mat.SetOverrideTag("RenderType", "Transparent");
+            mat.renderQueue = (int)RenderQueue.Transparent;
+            // The atlas has no alpha channel of its own, so the tint carries it.
+            var tint = new Color(1f, 1f, 1f, alpha);
+            if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", tint);
+            if (mat.HasProperty("_Color")) mat.SetColor("_Color", tint);
         }
         EditorUtility.SetDirty(mat);
         return mat;
@@ -1003,10 +1521,16 @@ public static class LabSceneBuilder
         RenderSettings.fog = true;
         if (!IsOutdoor(env))
         {
-            RenderSettings.ambientLight = new Color(0.06f, 0.08f, 0.08f);
+            // Indoor defaults are the dim lab every story scene wants. A layout may still override
+            // them without becoming an outdoor one (IsOutdoor keys off fogMode, which stays empty):
+            // the interaction test bench has to be legible before it is atmospheric, and at the
+            // default 0.06 density a 12 m room loses half its light before it reaches the far wall.
+            var lit = env != null && env.ambient.maxColorComponent > 0f;
+            RenderSettings.ambientLight = lit ? env.ambient : new Color(0.06f, 0.08f, 0.08f);
             RenderSettings.fogMode = FogMode.Exponential;
-            RenderSettings.fogColor = new Color(0.02f, 0.03f, 0.03f);
-            RenderSettings.fogDensity = 0.06f;
+            RenderSettings.fogColor = env != null && env.fogColor.maxColorComponent > 0f
+                ? env.fogColor : new Color(0.02f, 0.03f, 0.03f);
+            RenderSettings.fogDensity = env != null && env.fogDensity > 0f ? env.fogDensity : 0.06f;
             return;
         }
         // Outdoor: common settings
